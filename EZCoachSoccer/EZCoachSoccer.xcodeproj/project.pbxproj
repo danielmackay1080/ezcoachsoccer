@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29BD53281ECB482E00E0824B /* CoachLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD53271ECB482E00E0824B /* CoachLoginViewController.swift */; };
+		29BD532A1ECB48AB00E0824B /* PlayerLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD53291ECB48AB00E0824B /* PlayerLoginViewController.swift */; };
+		29BD532C1ECB5C5900E0824B /* ConnectionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD532B1ECB5C5900E0824B /* ConnectionTest.swift */; };
+		29BD532E1ECB77E400E0824B /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD532D1ECB77E300E0824B /* CreateAccountViewController.swift */; };
+		29BD53301ECB79AD00E0824B /* SetFieldTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BD532F1ECB79AD00E0824B /* SetFieldTypeViewController.swift */; };
 		29FABB3E1EC9FC1D008857E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FABB3D1EC9FC1D008857E4 /* AppDelegate.swift */; };
 		29FABB401EC9FC1D008857E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FABB3F1EC9FC1D008857E4 /* ViewController.swift */; };
 		29FABB431EC9FC1D008857E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29FABB411EC9FC1D008857E4 /* Main.storyboard */; };
@@ -14,6 +19,10 @@
 		29FABB481EC9FC1E008857E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29FABB461EC9FC1E008857E4 /* LaunchScreen.storyboard */; };
 		29FABB531EC9FC1E008857E4 /* EZCoachSoccerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FABB521EC9FC1E008857E4 /* EZCoachSoccerTests.swift */; };
 		29FABB5E1EC9FC1F008857E4 /* EZCoachSoccerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FABB5D1EC9FC1F008857E4 /* EZCoachSoccerUITests.swift */; };
+		29FABB6C1ECA0133008857E4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 29FABB6B1ECA0133008857E4 /* GoogleService-Info.plist */; };
+		EC9A8D21120B5571E08DC7D7 /* Pods_EZCoachSoccerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E0CD2DAF3579E788DDFB88 /* Pods_EZCoachSoccerUITests.framework */; };
+		EDF16A34F7E521308D5E38F3 /* Pods_EZCoachSoccer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E00CD9481048F253CC8F4DC /* Pods_EZCoachSoccer.framework */; };
+		FA83FD6C511ABF6CB69B9154 /* Pods_EZCoachSoccerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 156563835E128CD7B95E91A2 /* Pods_EZCoachSoccerTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +43,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		156563835E128CD7B95E91A2 /* Pods_EZCoachSoccerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EZCoachSoccerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		20E9E5F430CE210E68D20BFF /* Pods-EZCoachSoccerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerTests/Pods-EZCoachSoccerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		22BE2832CEBB169FED9D6CE5 /* Pods-EZCoachSoccerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerUITests/Pods-EZCoachSoccerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		29BD53271ECB482E00E0824B /* CoachLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachLoginViewController.swift; sourceTree = "<group>"; };
+		29BD53291ECB48AB00E0824B /* PlayerLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerLoginViewController.swift; sourceTree = "<group>"; };
+		29BD532B1ECB5C5900E0824B /* ConnectionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionTest.swift; sourceTree = "<group>"; };
+		29BD532D1ECB77E300E0824B /* CreateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
+		29BD532F1ECB79AD00E0824B /* SetFieldTypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetFieldTypeViewController.swift; sourceTree = "<group>"; };
 		29FABB3A1EC9FC1D008857E4 /* EZCoachSoccer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EZCoachSoccer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29FABB3D1EC9FC1D008857E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29FABB3F1EC9FC1D008857E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +64,13 @@
 		29FABB591EC9FC1E008857E4 /* EZCoachSoccerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EZCoachSoccerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29FABB5D1EC9FC1F008857E4 /* EZCoachSoccerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EZCoachSoccerUITests.swift; sourceTree = "<group>"; };
 		29FABB5F1EC9FC1F008857E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29FABB6B1ECA0133008857E4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		54E0CD2DAF3579E788DDFB88 /* Pods_EZCoachSoccerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EZCoachSoccerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AF7D335885C4614B4ACAC5C /* Pods-EZCoachSoccerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerTests/Pods-EZCoachSoccerTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E00CD9481048F253CC8F4DC /* Pods_EZCoachSoccer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EZCoachSoccer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3BFEB194771CAB68D13AA43 /* Pods-EZCoachSoccer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccer.release.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccer/Pods-EZCoachSoccer.release.xcconfig"; sourceTree = "<group>"; };
+		F4B37F6980C2D29421278F82 /* Pods-EZCoachSoccerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerUITests/Pods-EZCoachSoccerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FD52059907697E1F33402BC3 /* Pods-EZCoachSoccer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccer/Pods-EZCoachSoccer.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDF16A34F7E521308D5E38F3 /* Pods_EZCoachSoccer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA83FD6C511ABF6CB69B9154 /* Pods_EZCoachSoccerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC9A8D21120B5571E08DC7D7 /* Pods_EZCoachSoccerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +108,8 @@
 				29FABB511EC9FC1E008857E4 /* EZCoachSoccerTests */,
 				29FABB5C1EC9FC1E008857E4 /* EZCoachSoccerUITests */,
 				29FABB3B1EC9FC1D008857E4 /* Products */,
+				5DF370D67BE7FCD1BB64B83D /* Pods */,
+				394DDD573267C601BDEE1AE8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,7 +131,13 @@
 				29FABB411EC9FC1D008857E4 /* Main.storyboard */,
 				29FABB441EC9FC1E008857E4 /* Assets.xcassets */,
 				29FABB461EC9FC1E008857E4 /* LaunchScreen.storyboard */,
+				29FABB6B1ECA0133008857E4 /* GoogleService-Info.plist */,
 				29FABB491EC9FC1E008857E4 /* Info.plist */,
+				29BD53271ECB482E00E0824B /* CoachLoginViewController.swift */,
+				29BD53291ECB48AB00E0824B /* PlayerLoginViewController.swift */,
+				29BD532B1ECB5C5900E0824B /* ConnectionTest.swift */,
+				29BD532D1ECB77E300E0824B /* CreateAccountViewController.swift */,
+				29BD532F1ECB79AD00E0824B /* SetFieldTypeViewController.swift */,
 			);
 			path = EZCoachSoccer;
 			sourceTree = "<group>";
@@ -125,6 +160,29 @@
 			path = EZCoachSoccerUITests;
 			sourceTree = "<group>";
 		};
+		394DDD573267C601BDEE1AE8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9E00CD9481048F253CC8F4DC /* Pods_EZCoachSoccer.framework */,
+				156563835E128CD7B95E91A2 /* Pods_EZCoachSoccerTests.framework */,
+				54E0CD2DAF3579E788DDFB88 /* Pods_EZCoachSoccerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5DF370D67BE7FCD1BB64B83D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD52059907697E1F33402BC3 /* Pods-EZCoachSoccer.debug.xcconfig */,
+				E3BFEB194771CAB68D13AA43 /* Pods-EZCoachSoccer.release.xcconfig */,
+				20E9E5F430CE210E68D20BFF /* Pods-EZCoachSoccerTests.debug.xcconfig */,
+				6AF7D335885C4614B4ACAC5C /* Pods-EZCoachSoccerTests.release.xcconfig */,
+				22BE2832CEBB169FED9D6CE5 /* Pods-EZCoachSoccerUITests.debug.xcconfig */,
+				F4B37F6980C2D29421278F82 /* Pods-EZCoachSoccerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29FABB621EC9FC1F008857E4 /* Build configuration list for PBXNativeTarget "EZCoachSoccer" */;
 			buildPhases = (
+				E23EE36F7175840D6F88E4E6 /* [CP] Check Pods Manifest.lock */,
 				29FABB361EC9FC1D008857E4 /* Sources */,
 				29FABB371EC9FC1D008857E4 /* Frameworks */,
 				29FABB381EC9FC1D008857E4 /* Resources */,
+				48B24E32C80A6D638CA15B60 /* [CP] Embed Pods Frameworks */,
+				5F69D047A0CD59B97C9B2034 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29FABB651EC9FC1F008857E4 /* Build configuration list for PBXNativeTarget "EZCoachSoccerTests" */;
 			buildPhases = (
+				C832D6758219B18DF20AEA2E /* [CP] Check Pods Manifest.lock */,
 				29FABB4A1EC9FC1E008857E4 /* Sources */,
 				29FABB4B1EC9FC1E008857E4 /* Frameworks */,
 				29FABB4C1EC9FC1E008857E4 /* Resources */,
+				6DF1D99E2FF91A9C1A36BE5E /* [CP] Embed Pods Frameworks */,
+				FA83D053E65D0144A7A4D34F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +231,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 29FABB681EC9FC1F008857E4 /* Build configuration list for PBXNativeTarget "EZCoachSoccerUITests" */;
 			buildPhases = (
+				78BF7EB3C22D2A9EAA0975B2 /* [CP] Check Pods Manifest.lock */,
 				29FABB551EC9FC1E008857E4 /* Sources */,
 				29FABB561EC9FC1E008857E4 /* Frameworks */,
 				29FABB571EC9FC1E008857E4 /* Resources */,
+				5C518FBD305AC669C0A20090 /* [CP] Embed Pods Frameworks */,
+				DCEFE1F6430277F2196C0CEF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -236,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29FABB481EC9FC1E008857E4 /* LaunchScreen.storyboard in Resources */,
+				29FABB6C1ECA0133008857E4 /* GoogleService-Info.plist in Resources */,
 				29FABB451EC9FC1E008857E4 /* Assets.xcassets in Resources */,
 				29FABB431EC9FC1D008857E4 /* Main.storyboard in Resources */,
 			);
@@ -257,13 +325,156 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		48B24E32C80A6D638CA15B60 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EZCoachSoccer/Pods-EZCoachSoccer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C518FBD305AC669C0A20090 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EZCoachSoccerUITests/Pods-EZCoachSoccerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F69D047A0CD59B97C9B2034 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EZCoachSoccer/Pods-EZCoachSoccer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6DF1D99E2FF91A9C1A36BE5E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EZCoachSoccerTests/Pods-EZCoachSoccerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		78BF7EB3C22D2A9EAA0975B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C832D6758219B18DF20AEA2E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DCEFE1F6430277F2196C0CEF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EZCoachSoccerUITests/Pods-EZCoachSoccerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E23EE36F7175840D6F88E4E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA83D053E65D0144A7A4D34F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EZCoachSoccerTests/Pods-EZCoachSoccerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		29FABB361EC9FC1D008857E4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29BD532E1ECB77E400E0824B /* CreateAccountViewController.swift in Sources */,
+				29BD53301ECB79AD00E0824B /* SetFieldTypeViewController.swift in Sources */,
 				29FABB401EC9FC1D008857E4 /* ViewController.swift in Sources */,
+				29BD532C1ECB5C5900E0824B /* ConnectionTest.swift in Sources */,
 				29FABB3E1EC9FC1D008857E4 /* AppDelegate.swift in Sources */,
+				29BD53281ECB482E00E0824B /* CoachLoginViewController.swift in Sources */,
+				29BD532A1ECB48AB00E0824B /* PlayerLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +626,7 @@
 		};
 		29FABB631EC9FC1F008857E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD52059907697E1F33402BC3 /* Pods-EZCoachSoccer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AYWS6MV5C6;
@@ -428,6 +640,7 @@
 		};
 		29FABB641EC9FC1F008857E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3BFEB194771CAB68D13AA43 /* Pods-EZCoachSoccer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AYWS6MV5C6;
@@ -441,6 +654,7 @@
 		};
 		29FABB661EC9FC1F008857E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20E9E5F430CE210E68D20BFF /* Pods-EZCoachSoccerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -456,6 +670,7 @@
 		};
 		29FABB671EC9FC1F008857E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AF7D335885C4614B4ACAC5C /* Pods-EZCoachSoccerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -471,6 +686,7 @@
 		};
 		29FABB691EC9FC1F008857E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22BE2832CEBB169FED9D6CE5 /* Pods-EZCoachSoccerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = AYWS6MV5C6;
@@ -485,6 +701,7 @@
 		};
 		29FABB6A1EC9FC1F008857E4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4B37F6980C2D29421278F82 /* Pods-EZCoachSoccerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = AYWS6MV5C6;
@@ -516,6 +733,7 @@
 				29FABB641EC9FC1F008857E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29FABB651EC9FC1F008857E4 /* Build configuration list for PBXNativeTarget "EZCoachSoccerTests" */ = {
 			isa = XCConfigurationList;
@@ -524,6 +742,7 @@
 				29FABB671EC9FC1F008857E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29FABB681EC9FC1F008857E4 /* Build configuration list for PBXNativeTarget "EZCoachSoccerUITests" */ = {
 			isa = XCConfigurationList;
@@ -532,6 +751,7 @@
 				29FABB6A1EC9FC1F008857E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

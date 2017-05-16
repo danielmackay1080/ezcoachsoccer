@@ -1,0 +1,67 @@
+//
+//  CreateAccountViewController.swift
+//  EZCoachSoccer
+//
+//  Created by Daniel Mackay on 5/16/17.
+//  Copyright © 2017 Daniel Mackay. All rights reserved.
+//
+
+import UIKit
+import Firebase
+
+class CreateAccountViewController: UIViewController {
+    
+    @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var password1Txt: UITextField!
+    @IBOutlet weak var password2Txt: UITextField!
+    
+    var em = ""
+    var pw1 = ""
+    var pw2 = ""
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func createAccount(_ sender: Any) {
+        if (em.isEmpty || pw1.isEmpty || pw2.isEmpty){
+            showAlert(alertMessage: "Please enter an email and a password")
+        } else {
+            if (ConnectionTest.isConnected()){
+            FIRAuth.auth()?.createUser(withEmail: em, password: pw2, completion: { (user, error) in
+                if let err = error{
+                   self.showAlert(alertMessage: err.localizedDescription)
+                    return
+                } else {
+                    self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
+                }
+            })
+            }
+        }
+    }
+    
+    func showAlert(alertMessage: String){
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

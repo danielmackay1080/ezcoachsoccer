@@ -8,7 +8,11 @@
 
 import UIKit
 
+
 class ViewController: UIViewController {
+    
+    var udef = UserDefaults.standard
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +23,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func IamPlayer(_ sender: Any) {
+        udef.set(true, forKey: "IamPlayer")
+        udef.set(false, forKey: "IamCoach")
+    }
 
+    @IBAction func IamCoach(_ sender: Any) {
+        udef.set(false, forKey: "IamPlayer")
+        udef.set(true, forKey: "IamCoach")
+    }
 
 }
 
