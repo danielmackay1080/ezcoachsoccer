@@ -18,13 +18,22 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     var em = ""
     var pw = ""
+    var dbRef : FIRDatabaseReference?
+    var firstLaunch = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         fbLogin.delegate = self
+        firstLaunch = UserDefaults.standard.bool(forKey: "firstLaunch")
+        if (!firstLaunch){
         FIRDatabase.database().persistenceEnabled = true
+            firstLaunch = true
+            UserDefaults.standard.set(firstLaunch, forKey: "firstLaunch")
+        }
+        dbRef = FIRDatabase.database().reference()
+        
         
     }
 
@@ -43,12 +52,15 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     print("my token" , FBSDKAccessToken.current().tokenString)
                     let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                     FIRAuth.auth()?.signIn(with: credential) { (user, error) in
-                        print("firebase error" , error!)
+                       // print("firebase error" , error!)
                         if let err = error{
                             self.showAlert(alertMessage: err.localizedDescription)
                             return
                         }else {
+                            let teamCode = "myteam\(Int(arc4random_uniform(1000)))"
+                        self.dbRef?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("TeamCode").setValue(teamCode)
                             self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                            
                         }
 
                     }

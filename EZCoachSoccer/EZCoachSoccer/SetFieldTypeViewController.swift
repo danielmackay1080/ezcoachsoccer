@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class SetFieldTypeViewController: UIViewController {
+    
+    var udef = UserDefaults.standard
+    var ref : FIRDatabaseReference!
+    var user = FIRAuth.auth()?.currentUser
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = FIRDatabase.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -21,15 +26,47 @@ class SetFieldTypeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func v5(_ sender: Any) {
+        if (user != nil){
+        udef.set(true, forKey: "isFive")
+        udef.set(false, forKey: "isNine")
+        udef.set(false, forKey: "isSeven")
+        udef.set(false, forKey: "isEleven")
+        ref.child("users").child((user?.uid)!).child("fieldType").setValue("5v5")
+        performSegue(withIdentifier: "selecttypetofield", sender: self)
+        }
     }
-    */
 
+    @IBAction func v7(_ sender: Any) {
+        if (user != nil){
+        udef.set(false, forKey: "isFive")
+        udef.set(false, forKey: "isNine")
+        udef.set(true, forKey: "isSeven")
+        udef.set(false, forKey: "isEleven")
+            ref.child("users").child((user?.uid)!).child("fieldType").setValue("7v7")
+        performSegue(withIdentifier: "selecttypetofield", sender: self)
+        }
+    }
+   
+     @IBAction func v9(_ sender: Any) {
+        if (user != nil){
+        udef.set(false, forKey: "isFive")
+        udef.set(true, forKey: "isNine")
+        udef.set(false, forKey: "isSeven")
+        udef.set(false, forKey: "isEleven")
+            ref.child("users").child((user?.uid)!).child("fieldType").setValue("9v9")
+        performSegue(withIdentifier: "selecttypetofield", sender: self)
+        }
+     }
+    
+    @IBAction func v11(_ sender: Any) {
+        if (user != nil){
+        udef.set(false, forKey: "isFive")
+        udef.set(false, forKey: "isNine")
+        udef.set(false, forKey: "isSeven")
+        udef.set(true, forKey: "isEleven")
+            ref.child("users").child((user?.uid)!).child("fieldType").setValue("11v11")
+        performSegue(withIdentifier: "selecttypetofield", sender: self)
+        }
+    }
 }

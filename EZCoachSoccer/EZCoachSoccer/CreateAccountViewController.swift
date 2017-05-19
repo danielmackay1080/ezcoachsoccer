@@ -31,6 +31,9 @@ class CreateAccountViewController: UIViewController {
     }
     
     @IBAction func createAccount(_ sender: Any) {
+        em = emailTxt.text!
+        pw1 = password1Txt.text!
+        pw2 = password2Txt.text!
         if (em.isEmpty || pw1.isEmpty || pw2.isEmpty){
             showAlert(alertMessage: "Please enter an email and a password")
         } else {
