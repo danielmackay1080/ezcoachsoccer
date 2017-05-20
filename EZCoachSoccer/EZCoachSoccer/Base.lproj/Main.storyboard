@@ -133,12 +133,16 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playerLoginButton:" destination="z6K-g6-FRS" eventType="touchUpInside" id="An0-xh-hjP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Player Login" id="dh9-TV-PYM"/>
                     <connections>
+                        <outlet property="teamCodeTxt" destination="8g4-Za-88c" id="MJE-cp-pSM"/>
                         <segue destination="ta2-hE-FAP" kind="show" identifier="playerlogintofield" id="y2z-Bj-ZSf"/>
                     </connections>
                 </viewController>
@@ -243,6 +247,7 @@
                         <outlet property="forgetPw" destination="CG9-wr-NH0" id="gn9-5z-TL8"/>
                         <outlet property="passwordTxt" destination="4c9-LK-3sL" id="tH2-q8-cSZ"/>
                         <segue destination="kes-UJ-ni8" kind="show" identifier="loginToSetType" id="aqh-4d-hwj"/>
+                        <segue destination="5gs-fp-RXD" kind="show" identifier="toteamid" id="XLT-ri-jmx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FNt-FB-CwY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,9 +355,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxw-gS-Yu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2775.5859375" y="458.59375"/>
+            <point key="canvasLocation" x="3012" y="459"/>
         </scene>
-        <!--Item-->
+        <!--View Team View Controller-->
         <scene sceneID="S5l-ZI-hpv">
             <objects>
                 <viewController id="C72-cF-Eff" customClass="ViewTeamViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -396,13 +401,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Ock-8W-1du"/>
+                    <tabBarItem key="tabBarItem" systemItem="favorites" id="Ock-8W-1du"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rr-0g-h4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4316.015625" y="-377.34375"/>
         </scene>
-        <!--Item-->
+        <!--Formations-->
         <scene sceneID="6Z5-ug-JGV">
             <objects>
                 <viewController id="oKy-ub-c7f" customClass="FieldViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -415,11 +420,74 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="s39-GE-0K0"/>
+                    <tabBarItem key="tabBarItem" title="Formations" image="ball" id="s39-GE-0K0">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULv-eu-93F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4316" y="320"/>
+        </scene>
+        <!--Set TeamID View Controller-->
+        <scene sceneID="zXn-YK-cOW">
+            <objects>
+                <viewController id="5gs-fp-RXD" customClass="SetTeamIDViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fzf-sA-trK"/>
+                        <viewControllerLayoutGuide type="bottom" id="gxF-1r-riT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="fVy-rF-O3z">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="de5-PB-Fya">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sen-t0-5NT">
+                                <rect key="frame" x="215" y="260" width="580" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6RV-Z1-bP1">
+                                <rect key="frame" x="215" y="410" width="580" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifT-bg-DbH">
+                                <rect key="frame" x="384" y="545" width="256" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.25221472979999998" green="0.35563194749999999" blue="0.16680172090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="playerLoginButton:" destination="z6K-g6-FRS" eventType="touchUpInside" id="fn0-mM-xp2"/>
+                                    <action selector="submit:" destination="5gs-fp-RXD" eventType="touchUpInside" id="f8g-pW-HS7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="eNameTxt" destination="Sen-t0-5NT" id="95i-vA-mb3"/>
+                        <outlet property="eTidTxt" destination="6RV-Z1-bP1" id="oQz-Lh-alP"/>
+                        <segue destination="kes-UJ-ni8" kind="show" identifier="fromteamidtofieldtype" id="erX-Xc-HCW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="608-0W-81u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2236.5234375" y="40.625"/>
         </scene>
         <!--Create Account View Controller-->
         <scene sceneID="ahq-hx-Rti">
@@ -438,7 +506,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7n-5F-GYV">
-                                <rect key="frame" x="617" y="540" width="308" height="51"/>
+                                <rect key="frame" x="617" y="608" width="308" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
@@ -460,21 +528,35 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="guq-Rk-QDm">
-                                <rect key="frame" x="578" y="211" width="387" height="30"/>
+                                <rect key="frame" x="578" y="183" width="387" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ojC-DV-tUx">
+                                <rect key="frame" x="578" y="436" width="387" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Retype Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yxr-dx-uoo">
-                                <rect key="frame" x="578" y="417" width="387" height="30"/>
+                                <rect key="frame" x="578" y="355" width="387" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JnH-uW-HY4">
-                                <rect key="frame" x="578" y="314" width="387" height="30"/>
+                                <rect key="frame" x="578" y="269" width="387" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team ID" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u20-Bo-bbq">
+                                <rect key="frame" x="578" y="521" width="387" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
@@ -485,8 +567,10 @@
                     </view>
                     <connections>
                         <outlet property="emailTxt" destination="guq-Rk-QDm" id="T5F-sb-dma"/>
+                        <outlet property="nameTxt" destination="ojC-DV-tUx" id="4pB-Sd-JJ9"/>
                         <outlet property="password1Txt" destination="JnH-uW-HY4" id="lYt-GG-CGw"/>
                         <outlet property="password2Txt" destination="Yxr-dx-uoo" id="Ijr-b3-Q2z"/>
+                        <outlet property="teamIDTxt" destination="u20-Bo-bbq" id="nhq-Ob-b8c"/>
                         <segue destination="kes-UJ-ni8" kind="show" identifier="crAcctoSetType" id="AnT-EC-gn9"/>
                     </connections>
                 </viewController>
@@ -518,6 +602,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ta2-hE-FAP" customClass="ViewTeamAndFormationsViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="pKD-8D-zJC">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -533,11 +618,12 @@
     </scenes>
     <resources>
         <image name="FieldInterface" width="1024" height="749"/>
+        <image name="ball" width="24" height="23"/>
         <image name="ezcoachbg" width="1921" height="1079"/>
         <image name="ezcoachlogo" width="261" height="282"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dms-JR-nd1"/>
-        <segue reference="AnT-EC-gn9"/>
+        <segue reference="erX-Xc-HCW"/>
+        <segue reference="y2z-Bj-ZSf"/>
     </inferredMetricsTieBreakers>
 </document>

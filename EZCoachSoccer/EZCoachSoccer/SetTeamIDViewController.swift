@@ -1,21 +1,26 @@
 //
-//  PlayerLoginViewController.swift
+//  SetTeamIDViewController.swift
 //  EZCoachSoccer
 //
-//  Created by Daniel Mackay on 5/16/17.
+//  Created by Daniel Mackay on 5/20/17.
 //  Copyright © 2017 Daniel Mackay. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
-class PlayerLoginViewController: UIViewController {
-
-    @IBOutlet weak var teamCodeTxt: UITextField!
-    var tc = ""
+class SetTeamIDViewController: UIViewController {
+    
+    @IBOutlet weak var eNameTxt: UITextField!
+    @IBOutlet weak var eTidTxt: UITextField!
+    
+    var n = ""
+    var tid = ""
+    var ref  : FIRDatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+            ref = FIRDatabase.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -24,21 +29,19 @@ class PlayerLoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func playerLoginButton(_ sender: Any) {
-        tc = teamCodeTxt.text!
-        if (ConnectionTest.isConnected()){
-        if (tc.isEmpty){
-            showAlert(alertMessage: "You must enter a team code to login")
-        } else{
-            FIRAuth.auth()?.signIn(withCustomToken: tc ) { (user, error) in
-                // ...
-                //user?.providerData.
-            }
+    @IBAction func submit(_ sender: Any) {
+        n = eNameTxt.text!
+        tid = eTidTxt.text!
+        if (n.isEmpty || tid.isEmpty){
+            showAlert(alertMessage: "Please enter your name and a team ID to continue.")
+        } else {
             
+            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("teamID").setValue(tid)
+            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("coachName").setValue(n)
+            ref?.child("teams").child(tid).child("coachName").setValue(n)
+
         }
-    }else {
-            showAlert(alertMessage: "Unable to establish an internet connection")
-    }
+        
     }
     
     func showAlert(alertMessage: String){
@@ -46,6 +49,7 @@ class PlayerLoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
 
     /*
     // MARK: - Navigation

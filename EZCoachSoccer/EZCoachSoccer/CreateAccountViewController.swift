@@ -15,13 +15,18 @@ class CreateAccountViewController: UIViewController {
     @IBOutlet weak var password1Txt: UITextField!
     @IBOutlet weak var password2Txt: UITextField!
     
+    @IBOutlet weak var teamIDTxt: UITextField!
+    @IBOutlet weak var nameTxt: UITextField!
     var em = ""
     var pw1 = ""
     var pw2 = ""
+    var n  = ""
+    var tid = ""
+    var ref : FIRDatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+            ref = FIRDatabase.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -34,8 +39,10 @@ class CreateAccountViewController: UIViewController {
         em = emailTxt.text!
         pw1 = password1Txt.text!
         pw2 = password2Txt.text!
-        if (em.isEmpty || pw1.isEmpty || pw2.isEmpty){
-            showAlert(alertMessage: "Please enter an email and a password")
+        n = nameTxt.text!
+        tid = teamIDTxt.text!
+        if (em.isEmpty || pw1.isEmpty || pw2.isEmpty || n.isEmpty || tid.isEmpty){
+            showAlert(alertMessage: "Please enter an email, a password, your name and a team ID.")
         } else {
             if (ConnectionTest.isConnected()){
             FIRAuth.auth()?.createUser(withEmail: em, password: pw2, completion: { (user, error) in
@@ -43,6 +50,8 @@ class CreateAccountViewController: UIViewController {
                    self.showAlert(alertMessage: err.localizedDescription)
                     return
                 } else {
+                    self.ref?.child("users").child((user?.uid)!).child("teamID").setValue(self.tid)
+                    self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
                     self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
                 }
             })

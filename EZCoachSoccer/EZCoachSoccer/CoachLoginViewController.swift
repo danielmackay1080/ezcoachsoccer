@@ -20,6 +20,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     var pw = ""
     var dbRef : FIRDatabaseReference?
     var firstLaunch = false
+    var teamCode = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +58,21 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             self.showAlert(alertMessage: err.localizedDescription)
                             return
                         }else {
-                            let teamCode = "myteam\(Int(arc4random_uniform(1000)))"
-                        self.dbRef?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("TeamCode").setValue(teamCode)
-                            self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                            
+                        //self.dbRef?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("TeamCode").setValue(self.teamCode)
+                            //user?.mutableSetValue(forKeyPath: "teamCode")
+                            self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                                let val = snapshot.value as? NSDictionary
+                                self.teamCode = val?["teamID"] as? String ?? ""
+                                
+                                if (self.teamCode.isEmpty){
+                                    self.performSegue(withIdentifier: "toteamid", sender: self)
+                                } else {
+                                    self.performSegue(withIdentifier: "loginToSetType", sender: self)
+
+                                }
+                            
+                            })
                             
                         }
 
@@ -96,7 +109,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     self.showAlert(alertMessage: err.localizedDescription)
                     return
                 }else {
-                    
+                    self.performSegue(withIdentifier: "loginToSetType", sender: self)
                 }
             })
         }
