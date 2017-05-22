@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-zL-i50">
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="b5Y-zL-i50">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A07-9T-GlP">
@@ -109,7 +109,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="AMv-iX-FbF">
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="AMv-iX-FbF">
                                 <rect key="frame" x="0.0" y="-36" width="1027" height="804"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -162,7 +162,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="tHp-zj-ffS">
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="tHp-zj-ffS">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -284,8 +284,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="createAcc:" destination="djD-CX-Lsi" eventType="touchUpInside" id="Xqi-ss-b6p"/>
-                                    <action selector="createAccount:" destination="ldX-WS-yVb" eventType="touchUpInside" id="44Q-4f-HLi"/>
                                     <action selector="v5:" destination="kes-UJ-ni8" eventType="touchUpInside" id="FOg-8j-B8m"/>
                                 </connections>
                             </button>
@@ -303,8 +301,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="createAcc:" destination="djD-CX-Lsi" eventType="touchUpInside" id="aIZ-Vu-xt7"/>
-                                    <action selector="createAccount:" destination="ldX-WS-yVb" eventType="touchUpInside" id="Ss3-Fl-hAh"/>
                                     <action selector="v7:" destination="kes-UJ-ni8" eventType="touchUpInside" id="90q-nI-rEO"/>
                                 </connections>
                             </button>
@@ -322,8 +318,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="createAcc:" destination="djD-CX-Lsi" eventType="touchUpInside" id="TfH-EA-Avw"/>
-                                    <action selector="createAccount:" destination="ldX-WS-yVb" eventType="touchUpInside" id="X49-8z-XW2"/>
                                     <action selector="v9:" destination="kes-UJ-ni8" eventType="touchUpInside" id="PbZ-55-2dt"/>
                                 </connections>
                             </button>
@@ -341,8 +335,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="createAcc:" destination="djD-CX-Lsi" eventType="touchUpInside" id="s1V-Fx-HGV"/>
-                                    <action selector="createAccount:" destination="ldX-WS-yVb" eventType="touchUpInside" id="ALn-B2-fry"/>
                                     <action selector="v11:" destination="kes-UJ-ni8" eventType="touchUpInside" id="h7b-c9-BKb"/>
                                 </connections>
                             </button>
@@ -356,6 +348,122 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxw-gS-Yu0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3012" y="459"/>
+        </scene>
+        <!--Add Player View Controller-->
+        <scene sceneID="wUW-mO-hnQ">
+            <objects>
+                <viewController id="GzV-gs-u9M" customClass="AddPlayerViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TDN-eu-FZZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="vxu-gO-Aq4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="bpn-1s-2xv">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="itP-eX-Flp">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1eH-gw-qYw">
+                                <rect key="frame" x="61" y="150" width="427" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Parent Full Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TnH-OS-SsT">
+                                <rect key="frame" x="61" y="350" width="427" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Parent Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v4E-ML-vBM">
+                                <rect key="frame" x="61" y="435" width="427" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zx0-MS-CXJ">
+                                <rect key="frame" x="61" y="524" width="427" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hfd-qF-TGQ">
+                                <rect key="frame" x="61" y="618" width="427" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFX-kj-8un">
+                                <rect key="frame" x="538" y="150" width="427" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position 1 *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FyH-2X-ppZ">
+                                <rect key="frame" x="61" y="258" width="285" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVo-KI-O55">
+                                <rect key="frame" x="409" y="258" width="285" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kit Number *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W9w-NX-H6j">
+                                <rect key="frame" x="766" y="258" width="199" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="numberPad" returnKeyType="continue"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-jj-rtR">
+                                <rect key="frame" x="657" y="504" width="308" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                <state key="normal" title="Add Player">
+                                    <color key="titleColor" red="0.25221472979999998" green="0.35563194749999999" blue="0.16680172090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addPlayer:" destination="GzV-gs-u9M" eventType="touchUpInside" id="AJQ-vb-qPU"/>
+                                    <action selector="v11:" destination="kes-UJ-ni8" eventType="touchUpInside" id="7rB-Il-JrY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="kitNum" destination="W9w-NX-H6j" id="6QR-Fl-wE4"/>
+                        <outlet property="parentEm" destination="v4E-ML-vBM" id="W8F-vj-ee4"/>
+                        <outlet property="parentFN" destination="TnH-OS-SsT" id="2d4-2A-rdE"/>
+                        <outlet property="pfName" destination="1eH-gw-qYw" id="lB6-jK-LSf"/>
+                        <outlet property="phoneNum" destination="Hfd-qF-TGQ" id="91y-OF-MeG"/>
+                        <outlet property="plName" destination="dFX-kj-8un" id="sUT-8E-3qj"/>
+                        <outlet property="playerEM" destination="zx0-MS-CXJ" id="bgx-MB-EDW"/>
+                        <outlet property="pos1" destination="FyH-2X-ppZ" id="f7p-aT-GcF"/>
+                        <outlet property="pos2" destination="zVo-KI-O55" id="2Ng-Oq-jPH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qxz-d0-iQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4996.875" y="-1062.5"/>
         </scene>
         <!--View Team View Controller-->
         <scene sceneID="S5l-ZI-hpv">
@@ -386,13 +494,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6k-LC-Mhd">
-                                <rect key="frame" x="857" y="339" width="128" height="41"/>
+                                <rect key="frame" x="857" y="339" width="128" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
                                 <state key="normal" title="Add Player">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" red="0.1480683623603741" green="0.21160247387843437" blue="0.53216604948043822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="GzV-gs-u9M" kind="show" id="IZi-ag-Iy2"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igK-5T-s4M">
                                 <rect key="frame" x="412" y="100" width="200" height="200"/>
@@ -440,7 +551,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="de5-PB-Fya">
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="de5-PB-Fya">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -472,7 +583,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="playerLoginButton:" destination="z6K-g6-FRS" eventType="touchUpInside" id="fn0-mM-xp2"/>
                                     <action selector="submit:" destination="5gs-fp-RXD" eventType="touchUpInside" id="f8g-pW-HS7"/>
                                 </connections>
                             </button>
@@ -501,7 +611,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-f6-08r">
+                            <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="Juo-f6-08r">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -519,7 +629,6 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="createAcc:" destination="djD-CX-Lsi" eventType="touchUpInside" id="TbT-QP-7Hm"/>
                                     <action selector="createAccount:" destination="ldX-WS-yVb" eventType="touchUpInside" id="Pjs-fD-SPj"/>
                                 </connections>
                             </button>
@@ -623,7 +732,7 @@
         <image name="ezcoachlogo" width="261" height="282"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="erX-Xc-HCW"/>
-        <segue reference="y2z-Bj-ZSf"/>
+        <segue reference="AnT-EC-gn9"/>
+        <segue reference="dms-JR-nd1"/>
     </inferredMetricsTieBreakers>
 </document>

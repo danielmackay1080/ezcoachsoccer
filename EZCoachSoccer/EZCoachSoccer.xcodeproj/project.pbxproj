@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		298EA3331ED0DA84006F7A14 /* SetTeamIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */; };
+		298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */; };
+		298EA3371ED33958006F7A14 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3361ED33958006F7A14 /* Players.swift */; };
 		29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */; };
 		29B4701D1ECCDD06003BC32A /* FiveVFiveInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */; };
 		29B4701F1ECCDF19003BC32A /* SevenVSevenInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701E1ECCDF19003BC32A /* SevenVSevenInterface.sks */; };
@@ -59,6 +61,8 @@
 		20E9E5F430CE210E68D20BFF /* Pods-EZCoachSoccerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerTests/Pods-EZCoachSoccerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		22BE2832CEBB169FED9D6CE5 /* Pods-EZCoachSoccerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerUITests/Pods-EZCoachSoccerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTeamIDViewController.swift; sourceTree = "<group>"; };
+		298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayerViewController.swift; sourceTree = "<group>"; };
+		298EA3361ED33958006F7A14 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTeamAndFormationsViewController.swift; sourceTree = "<group>"; };
 		29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FiveVFiveInterface.sks; sourceTree = "<group>"; };
 		29B4701E1ECCDF19003BC32A /* SevenVSevenInterface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SevenVSevenInterface.sks; sourceTree = "<group>"; };
@@ -176,6 +180,8 @@
 				29B4702C1ECE038F003BC32A /* ViewTeamViewController.swift */,
 				29B4702E1ECE042E003BC32A /* FieldViewController.swift */,
 				298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */,
+				298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */,
+				298EA3361ED33958006F7A14 /* Players.swift */,
 			);
 			path = EZCoachSoccer;
 			sourceTree = "<group>";
@@ -522,12 +528,14 @@
 				29B470271ECCE0E1003BC32A /* SevenVSevenInterface.swift in Sources */,
 				29B4702D1ECE038F003BC32A /* ViewTeamViewController.swift in Sources */,
 				29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */,
+				298EA3371ED33958006F7A14 /* Players.swift in Sources */,
 				29FABB401EC9FC1D008857E4 /* ViewController.swift in Sources */,
 				29B4702F1ECE042E003BC32A /* FieldViewController.swift in Sources */,
 				29BD532C1ECB5C5900E0824B /* ConnectionTest.swift in Sources */,
 				29B470251ECCE0C3003BC32A /* FiveVFiveInterface.swift in Sources */,
 				29B4702B1ECCE13D003BC32A /* ElevenVElevenInterface.swift in Sources */,
 				29FABB3E1EC9FC1D008857E4 /* AppDelegate.swift in Sources */,
+				298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */,
 				29BD53281ECB482E00E0824B /* CoachLoginViewController.swift in Sources */,
 				29BD532A1ECB48AB00E0824B /* PlayerLoginViewController.swift in Sources */,
 			);

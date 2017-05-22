@@ -33,7 +33,12 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(false, forKey: "isSeven")
         udef.set(false, forKey: "isEleven")
         ref.child("users").child((user?.uid)!).child("fieldType").setValue("5v5")
-        performSegue(withIdentifier: "selecttypetofield", sender: self)
+            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let tid = val?["teamID"] as? String ?? ""
+                self.ref.child("teams").child(tid).child("fieldType").setValue("5v5")
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            })
         }
     }
 
@@ -44,7 +49,13 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(true, forKey: "isSeven")
         udef.set(false, forKey: "isEleven")
             ref.child("users").child((user?.uid)!).child("fieldType").setValue("7v7")
-        performSegue(withIdentifier: "selecttypetofield", sender: self)
+            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let tid = val?["teamID"] as? String ?? ""
+                self.ref.child("teams").child(tid).child("fieldType").setValue("7v7")
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            })
+
         }
     }
    
@@ -55,7 +66,13 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(false, forKey: "isSeven")
         udef.set(false, forKey: "isEleven")
             ref.child("users").child((user?.uid)!).child("fieldType").setValue("9v9")
-        performSegue(withIdentifier: "selecttypetofield", sender: self)
+            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let tid = val?["teamID"] as? String ?? ""
+                self.ref.child("teams").child(tid).child("fieldType").setValue("9v9")
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            })
+
         }
      }
     
@@ -66,7 +83,13 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(false, forKey: "isSeven")
         udef.set(true, forKey: "isEleven")
             ref.child("users").child((user?.uid)!).child("fieldType").setValue("11v11")
-        performSegue(withIdentifier: "selecttypetofield", sender: self)
+            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let tid = val?["teamID"] as? String ?? ""
+                self.ref.child("teams").child(tid).child("fieldType").setValue("11v11")
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            })
+
         }
     }
 }

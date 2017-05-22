@@ -27,7 +27,7 @@ class FieldViewController: UIViewController {
         ref = FIRDatabase.database().reference()
         ref?.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
-            print("val \(val)")
+           // print("val \(val)")
             self.ft = val?["fieldType"] as? String ?? ""
             print("ft \(self.ft)")
             
