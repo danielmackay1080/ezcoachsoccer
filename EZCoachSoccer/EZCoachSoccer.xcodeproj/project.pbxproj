@@ -10,6 +10,8 @@
 		298EA3331ED0DA84006F7A14 /* SetTeamIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */; };
 		298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */; };
 		298EA3371ED33958006F7A14 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3361ED33958006F7A14 /* Players.swift */; };
+		298EA3391ED3736D006F7A14 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3381ED3736D006F7A14 /* TeamCell.swift */; };
+		298EA33B1ED3DB06006F7A14 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA33A1ED3DB06006F7A14 /* ForgotPasswordViewController.swift */; };
 		29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */; };
 		29B4701D1ECCDD06003BC32A /* FiveVFiveInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */; };
 		29B4701F1ECCDF19003BC32A /* SevenVSevenInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701E1ECCDF19003BC32A /* SevenVSevenInterface.sks */; };
@@ -63,6 +65,8 @@
 		298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTeamIDViewController.swift; sourceTree = "<group>"; };
 		298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayerViewController.swift; sourceTree = "<group>"; };
 		298EA3361ED33958006F7A14 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
+		298EA3381ED3736D006F7A14 /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
+		298EA33A1ED3DB06006F7A14 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTeamAndFormationsViewController.swift; sourceTree = "<group>"; };
 		29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FiveVFiveInterface.sks; sourceTree = "<group>"; };
 		29B4701E1ECCDF19003BC32A /* SevenVSevenInterface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SevenVSevenInterface.sks; sourceTree = "<group>"; };
@@ -182,6 +186,8 @@
 				298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */,
 				298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */,
 				298EA3361ED33958006F7A14 /* Players.swift */,
+				298EA3381ED3736D006F7A14 /* TeamCell.swift */,
+				298EA33A1ED3DB06006F7A14 /* ForgotPasswordViewController.swift */,
 			);
 			path = EZCoachSoccer;
 			sourceTree = "<group>";
@@ -528,7 +534,9 @@
 				29B470271ECCE0E1003BC32A /* SevenVSevenInterface.swift in Sources */,
 				29B4702D1ECE038F003BC32A /* ViewTeamViewController.swift in Sources */,
 				29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */,
+				298EA33B1ED3DB06006F7A14 /* ForgotPasswordViewController.swift in Sources */,
 				298EA3371ED33958006F7A14 /* Players.swift in Sources */,
+				298EA3391ED3736D006F7A14 /* TeamCell.swift in Sources */,
 				29FABB401EC9FC1D008857E4 /* ViewController.swift in Sources */,
 				29B4702F1ECE042E003BC32A /* FieldViewController.swift in Sources */,
 				29BD532C1ECB5C5900E0824B /* ConnectionTest.swift in Sources */,

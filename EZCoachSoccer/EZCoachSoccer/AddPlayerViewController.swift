@@ -82,7 +82,7 @@ class AddPlayerViewController: UIViewController {
                 //self.udef.set(self.pld, forKey: "plarrDict")
                 //let par = self.udef.object(forKey: "plarrDict") as? [NSDictionary] ?? [NSDictionary]()
             
-                self.ref?.child("teams").child(self.tid).child("players").child(self.plln+self.ps1+self.kn).setValue(playersDict)
+                self.ref?.child("teams").child(self.tid).child("players").childByAutoId().setValue(playersDict)
                 self.navigationController?.popViewController(animated: true)
                 
             })
