@@ -12,6 +12,10 @@
 		298EA3371ED33958006F7A14 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3361ED33958006F7A14 /* Players.swift */; };
 		298EA3391ED3736D006F7A14 /* TeamCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3381ED3736D006F7A14 /* TeamCell.swift */; };
 		298EA33B1ED3DB06006F7A14 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA33A1ED3DB06006F7A14 /* ForgotPasswordViewController.swift */; };
+		298EA33D1ED4B16A006F7A14 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA33C1ED4B16A006F7A14 /* SettingsViewController.swift */; };
+		298EA33F1ED4BEE4006F7A14 /* UpdateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA33E1ED4BEE4006F7A14 /* UpdateAccountViewController.swift */; };
+		298EA3411ED615DB006F7A14 /* ChangeFormationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3401ED615DB006F7A14 /* ChangeFormationViewController.swift */; };
+		298EA3431ED616DA006F7A14 /* FormationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3421ED616DA006F7A14 /* FormationTableViewCell.swift */; };
 		29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */; };
 		29B4701D1ECCDD06003BC32A /* FiveVFiveInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */; };
 		29B4701F1ECCDF19003BC32A /* SevenVSevenInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701E1ECCDF19003BC32A /* SevenVSevenInterface.sks */; };
@@ -67,6 +71,10 @@
 		298EA3361ED33958006F7A14 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
 		298EA3381ED3736D006F7A14 /* TeamCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamCell.swift; sourceTree = "<group>"; };
 		298EA33A1ED3DB06006F7A14 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		298EA33C1ED4B16A006F7A14 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		298EA33E1ED4BEE4006F7A14 /* UpdateAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAccountViewController.swift; sourceTree = "<group>"; };
+		298EA3401ED615DB006F7A14 /* ChangeFormationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangeFormationViewController.swift; sourceTree = "<group>"; };
+		298EA3421ED616DA006F7A14 /* FormationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormationTableViewCell.swift; sourceTree = "<group>"; };
 		29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTeamAndFormationsViewController.swift; sourceTree = "<group>"; };
 		29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FiveVFiveInterface.sks; sourceTree = "<group>"; };
 		29B4701E1ECCDF19003BC32A /* SevenVSevenInterface.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SevenVSevenInterface.sks; sourceTree = "<group>"; };
@@ -188,6 +196,10 @@
 				298EA3361ED33958006F7A14 /* Players.swift */,
 				298EA3381ED3736D006F7A14 /* TeamCell.swift */,
 				298EA33A1ED3DB06006F7A14 /* ForgotPasswordViewController.swift */,
+				298EA33C1ED4B16A006F7A14 /* SettingsViewController.swift */,
+				298EA33E1ED4BEE4006F7A14 /* UpdateAccountViewController.swift */,
+				298EA3401ED615DB006F7A14 /* ChangeFormationViewController.swift */,
+				298EA3421ED616DA006F7A14 /* FormationTableViewCell.swift */,
 			);
 			path = EZCoachSoccer;
 			sourceTree = "<group>";
@@ -527,10 +539,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				298EA3411ED615DB006F7A14 /* ChangeFormationViewController.swift in Sources */,
 				29B470291ECCE0FE003BC32A /* NineVNineInterface.swift in Sources */,
 				29BD532E1ECB77E400E0824B /* CreateAccountViewController.swift in Sources */,
 				298EA3331ED0DA84006F7A14 /* SetTeamIDViewController.swift in Sources */,
+				298EA33D1ED4B16A006F7A14 /* SettingsViewController.swift in Sources */,
 				29BD53301ECB79AD00E0824B /* SetFieldTypeViewController.swift in Sources */,
+				298EA33F1ED4BEE4006F7A14 /* UpdateAccountViewController.swift in Sources */,
 				29B470271ECCE0E1003BC32A /* SevenVSevenInterface.swift in Sources */,
 				29B4702D1ECE038F003BC32A /* ViewTeamViewController.swift in Sources */,
 				29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */,
@@ -545,6 +560,7 @@
 				29FABB3E1EC9FC1D008857E4 /* AppDelegate.swift in Sources */,
 				298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */,
 				29BD53281ECB482E00E0824B /* CoachLoginViewController.swift in Sources */,
+				298EA3431ED616DA006F7A14 /* FormationTableViewCell.swift in Sources */,
 				29BD532A1ECB48AB00E0824B /* PlayerLoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

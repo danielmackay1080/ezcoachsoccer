@@ -34,7 +34,21 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             UserDefaults.standard.set(firstLaunch, forKey: "firstLaunch")
         }
         dbRef = FIRDatabase.database().reference()
-        
+        let user  = FIRAuth.auth()?.currentUser
+        if (user != nil){
+        self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            let val = snapshot.value as? NSDictionary
+            self.teamCode = val?["teamID"] as? String ?? ""
+            
+            if (self.teamCode.isEmpty){
+                self.performSegue(withIdentifier: "toteamid", sender: self)
+            } else {
+                self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                
+            }
+            
+        })
+        }
         
     }
 

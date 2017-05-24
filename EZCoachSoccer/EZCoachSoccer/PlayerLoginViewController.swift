@@ -13,9 +13,11 @@ class PlayerLoginViewController: UIViewController {
 
     @IBOutlet weak var teamCodeTxt: UITextField!
     var tc = ""
+    var ref : FIRDatabaseReference?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        ref = FIRDatabase.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -30,11 +32,26 @@ class PlayerLoginViewController: UIViewController {
         if (tc.isEmpty){
             showAlert(alertMessage: "You must enter a team code to login")
         } else{
-            FIRAuth.auth()?.signIn(withCustomToken: tc ) { (user, error) in
+            FIRAuth.auth()?.signInAnonymously(completion:  { (user, error) in
                 // ...
                 //user?.providerData.
+                if let error = error{
+                    print("playererror \(error.localizedDescription)")
+                } else {
+                self.ref?.child("teams").observe(.value, with: { (snapshot) in
+                    if (snapshot.hasChild(self.tc)){
+                        self.ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("teamID").setValue(self.tc)
+                        self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+                    } else {
+                        self.showAlert(alertMessage: "This team has not been registered please try again.")
+                        try! FIRAuth.auth()!.signOut()
+                        FIRAuth.auth()?.currentUser?.delete(completion: { error in
+                        })
+                        return
+                    }
+                })
             }
-            
+            })
         }
     }else {
             showAlert(alertMessage: "Unable to establish an internet connection")

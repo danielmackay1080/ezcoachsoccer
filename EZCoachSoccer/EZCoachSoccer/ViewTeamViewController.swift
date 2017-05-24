@@ -11,18 +11,24 @@ import Firebase
 
 class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
+    @IBOutlet weak var AddplayerButton: UIButton!
+    
     @IBOutlet weak var teamBadge: UIImageView!
     @IBOutlet weak var teamTable: UITableView!
     @IBOutlet weak var coachName: UILabel!
     var ref : FIRDatabaseReference?
     var arrPlay  = [Players]()
     var tid = ""
+    var isPlayer : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         teamTable.delegate = self
         ref = FIRDatabase.database().reference()
-        
+        isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
+        if (isPlayer)!{
+            AddplayerButton.isHidden = true
+        }
         // Do any additional setup after loading the view.
         ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary

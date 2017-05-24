@@ -19,63 +19,73 @@ class FieldViewController: UIViewController {
     var fieldType = ""
     var uid = FIRAuth.auth()?.currentUser?.uid
     var ft = ""
+    var tc = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //self.navigationController?.navigationBar.isHidden = false;
+        //self.tabBarController?.tabBarController.h
+        let rightItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: Selector(("Settings")))
+        self.navigationController?.navigationItem.rightBarButtonItem = rightItem
         // Do any additional setup after loading the view.
         ref = FIRDatabase.database().reference()
         ref?.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
            // print("val \(val)")
-            self.ft = val?["fieldType"] as? String ?? ""
-            print("ft \(self.ft)")
-            
-            if (self.ft == "5v5"){
-                let scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
-                let v = self.view as! SKView
-                v.showsFPS = true
-                v.showsNodeCount = true
-                v.ignoresSiblingOrder = true
-                scn.scaleMode = .aspectFit
-                //scn.size = self.view.frame.size
-                v.presentScene(scn)
+            self.tc = val?["teamID"] as? String ?? ""
+            self.ref?.child("teams").child(self.tc).observe(.value, with: {(snapshot) in
+                let val = snapshot.value as? NSDictionary
+                self.ft = val?["fieldType"] as? String ?? ""
                 
-            } else if (self.ft == "7v7"){
-                let scn = SevenVSevenInterface(fileNamed: "SevenVSevenInterface")!
-                let v = self.view as! SKView
-                v.showsFPS = true
-                v.showsNodeCount = true
-                v.ignoresSiblingOrder = true
-                scn.scaleMode = .aspectFit
-                //scn.size = self.view.frame.size
-                v.presentScene(scn)
+                print("ft \(self.ft)")
                 
-                
-            }else if (self.ft == "9v9"){
-                let scn = NineVNineInterface(fileNamed: "NineVNineInterface")!
-                let v = self.view as! SKView
-                v.showsFPS = true
-                v.showsNodeCount = true
-                v.ignoresSiblingOrder = true
-                scn.scaleMode = .aspectFit
-                //scn.size = self.view.frame.size
-                v.presentScene(scn)
-                
-                
-            } else if (self.ft == "11v11"){
-                let scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
-                let v = self.view as! SKView
-                v.showsFPS = true
-                v.showsNodeCount = true
-                v.ignoresSiblingOrder = true
-                scn.scaleMode = .aspectFit
-                //scn.size = self.view.frame.size
-                v.presentScene(scn)
-                
-                
-            }
+                if (self.ft == "5v5"){
+                    let scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
+                    let v = self.view as! SKView
+                    v.showsFPS = true
+                    v.showsNodeCount = true
+                    v.ignoresSiblingOrder = true
+                    scn.scaleMode = .aspectFit
+                    //scn.size = self.view.frame.size
+                    v.presentScene(scn)
+                    
+                } else if (self.ft == "7v7"){
+                    let scn = SevenVSevenInterface(fileNamed: "SevenVSevenInterface")!
+                    let v = self.view as! SKView
+                    v.showsFPS = true
+                    v.showsNodeCount = true
+                    v.ignoresSiblingOrder = true
+                    scn.scaleMode = .aspectFit
+                    //scn.size = self.view.frame.size
+                    v.presentScene(scn)
+                    
+                    
+                }else if (self.ft == "9v9"){
+                    let scn = NineVNineInterface(fileNamed: "NineVNineInterface")!
+                    let v = self.view as! SKView
+                    v.showsFPS = true
+                    v.showsNodeCount = true
+                    v.ignoresSiblingOrder = true
+                    scn.scaleMode = .aspectFit
+                    //scn.size = self.view.frame.size
+                    v.presentScene(scn)
+                    
+                    
+                } else if (self.ft == "11v11"){
+                    let scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
+                    let v = self.view as! SKView
+                    v.showsFPS = true
+                    v.showsNodeCount = true
+                    v.ignoresSiblingOrder = true
+                    scn.scaleMode = .aspectFit
+                    //scn.size = self.view.frame.size
+                    v.presentScene(scn)
+                    
+                    
+                }
 
+            })
+            
             
         })
         { (error) in
