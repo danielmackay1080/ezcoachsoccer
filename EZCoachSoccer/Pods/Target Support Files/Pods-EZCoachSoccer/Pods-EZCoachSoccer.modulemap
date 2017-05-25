@@ -1,0 +1,6 @@
+framework module Pods_EZCoachSoccer {
+  umbrella header "Pods-EZCoachSoccer-umbrella.h"
+
+  export *
+  module * { export * }
+}

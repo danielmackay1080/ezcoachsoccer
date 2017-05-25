@@ -1,0 +1,6 @@
+framework module Pods_EZCoachSoccerUITests {
+  umbrella header "Pods-EZCoachSoccerUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
