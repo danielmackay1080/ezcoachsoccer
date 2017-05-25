@@ -54,7 +54,7 @@ class SetTeamIDViewController: UIViewController {
                     self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tid)
                     self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("coachName").setValue(self.n)
                     self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
-
+                    self.performSegue(withIdentifier: "fromteamidtofieldtype", sender: self)
                 }
             })
 

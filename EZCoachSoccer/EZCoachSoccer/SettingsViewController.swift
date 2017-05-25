@@ -44,7 +44,10 @@ class SettingsViewController: ViewController {
         if (ConnectionTest.isConnected()){
 
         let user = Auth.auth().currentUser
-        
+            if (FBSDKAccessToken.current() != nil){
+                let loginMan = FBSDKLoginManager()
+                loginMan.logOut()
+            }
         user?.delete { error in
             if let error = error {
                 self.showAlert(alertMessage: error.localizedDescription)
@@ -66,6 +69,7 @@ class SettingsViewController: ViewController {
             self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child(tid).removeValue()
             self.ref?.child("teams").child(tid).removeValue()
             UserDefaults.standard.set(true, forKey: "teamDeleted")
+            self.showAlert(alertMessage: "Your team has been deleted.")
             self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)
         })
         } else {

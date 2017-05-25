@@ -513,7 +513,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="addPlayer:" destination="GzV-gs-u9M" eventType="touchUpInside" id="AJQ-vb-qPU"/>
-                                    <action selector="v11:" destination="kes-UJ-ni8" eventType="touchUpInside" id="7rB-Il-JrY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1087,7 +1086,7 @@
                     <connections>
                         <outlet property="eNameTxt" destination="Sen-t0-5NT" id="95i-vA-mb3"/>
                         <outlet property="eTidTxt" destination="6RV-Z1-bP1" id="oQz-Lh-alP"/>
-                        <segue destination="kes-UJ-ni8" kind="show" identifier="fromteamidtofieldtype" id="erX-Xc-HCW"/>
+                        <segue destination="kes-UJ-ni8" kind="show" identifier="fromteamidtofieldtype" id="00v-Fm-Nlj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="608-0W-81u" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1247,7 +1246,7 @@
         <image name="play4" width="602" height="425"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aqh-4d-hwj"/>
-        <segue reference="y2z-Bj-ZSf"/>
+        <segue reference="00v-Fm-Nlj"/>
+        <segue reference="dms-JR-nd1"/>
     </inferredMetricsTieBreakers>
 </document>
