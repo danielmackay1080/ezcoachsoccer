@@ -31,7 +31,7 @@ class ForgotPasswordViewController: ViewController {
                 if let error = error{
                     self.showAlert(alertMessage: error.localizedDescription)
                 } else {
-                    self.showAlert(alertMessage: "A confirmation email has been sent to this address")
+                    self.showAlert(alertMessage: "A password reset email has been sent to \(self.em)")
                     self.navigationController?.popViewController(animated: true)
                 }
             })

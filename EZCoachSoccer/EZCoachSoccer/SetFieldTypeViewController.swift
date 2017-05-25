@@ -37,8 +37,11 @@ class SetFieldTypeViewController: UIViewController {
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("5v5")
-                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
             })
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            }
+            
         }
     }
 
@@ -53,8 +56,11 @@ class SetFieldTypeViewController: UIViewController {
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("7v7")
-                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+                
             })
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            }
 
         }
     }
@@ -70,8 +76,11 @@ class SetFieldTypeViewController: UIViewController {
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("9v9")
-                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+                
             })
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            }
 
         }
      }
@@ -87,9 +96,11 @@ class SetFieldTypeViewController: UIViewController {
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("11v11")
-                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
-            })
 
+            })
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "selecttypetofield", sender: self)
+            }
         }
     }
 }

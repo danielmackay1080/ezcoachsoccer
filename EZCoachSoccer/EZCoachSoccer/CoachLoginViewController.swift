@@ -78,14 +78,16 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
                                 let val = snapshot.value as? NSDictionary
                                 self.teamCode = val?["teamID"] as? String ?? ""
-                                
-                                if (self.teamCode.isEmpty){
-                                    self.performSegue(withIdentifier: "toteamid", sender: self)
-                                } else {
-                                    self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                                DispatchQueue.main.async {
+                                    if (self.teamCode.isEmpty){
+                                        self.performSegue(withIdentifier: "toteamid", sender: self)
+                                    } else {
+                                        self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                                        
+                                    }
 
                                 }
-                            
+                                
                             })
                             
                         }

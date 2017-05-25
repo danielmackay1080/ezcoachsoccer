@@ -69,8 +69,10 @@ class SettingsViewController: ViewController {
             self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child(tid).removeValue()
             self.ref?.child("teams").child(tid).removeValue()
             UserDefaults.standard.set(true, forKey: "teamDeleted")
-            self.showAlert(alertMessage: "Your team has been deleted.")
-            self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)
+            DispatchQueue.main.async {
+                self.showAlert(alertMessage: "Your team has been deleted.")
+            }
+            //self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)
         })
         } else {
             showAlert(alertMessage: "Unable to connect to the internet")

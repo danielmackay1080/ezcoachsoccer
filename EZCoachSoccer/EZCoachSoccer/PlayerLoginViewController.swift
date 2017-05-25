@@ -41,9 +41,13 @@ class PlayerLoginViewController: UIViewController {
                 self.ref?.child("teams").observe(.value, with: { (snapshot) in
                     if (snapshot.hasChild(self.tc)){
                         self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tc)
-                        self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+                        }
                     } else {
-                        self.showAlert(alertMessage: "This team has not been registered please try again.")
+                        DispatchQueue.main.async {
+                            self.showAlert(alertMessage: "This team has not been registered please try again.")
+                        }
                         try! Auth.auth().signOut()
                         Auth.auth().currentUser?.delete(completion: { error in
                         })

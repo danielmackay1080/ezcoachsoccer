@@ -52,7 +52,9 @@ class CreateAccountViewController: UIViewController {
                 } else {
                     self.ref?.child("users").child((user?.uid)!).child("teamID").setValue(self.tid)
                     self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
-                    self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
+                    }
                 }
             })
             }
