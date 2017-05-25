@@ -56,7 +56,7 @@ class AddPlayerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func addPlayer(_ sender: Any) {
+    @IBAction func addPlayer(_ sender: Any) { // adds player
         plfn = pfName.text!
         plln = plName.text!
         ps1 = pos1.text!

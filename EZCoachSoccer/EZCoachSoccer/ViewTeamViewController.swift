@@ -31,7 +31,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             AddplayerButton.isHidden = true
         }
         // Do any additional setup after loading the view.
-        ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
+        ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in // reads data for tableview
             let val = snapshot.value as? NSDictionary
             self.tid = val?["teamID"] as? String ?? ""
             self.coachName.text! = val?["coachName"] as? String ?? ""

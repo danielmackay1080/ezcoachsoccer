@@ -35,12 +35,13 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         dbRef = Database.database().reference()
         let user  = Auth.auth().currentUser
-        if (user != nil){
-        self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+        //if (user != nil){
+        /*self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
             self.teamCode = val?["teamID"] as? String ?? ""
             
             if (self.teamCode.isEmpty){
+                
                 self.performSegue(withIdentifier: "toteamid", sender: self)
             } else {
                 self.performSegue(withIdentifier: "loginToSetType", sender: self)
@@ -48,7 +49,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             }
             
         })
-        }
+        }*/
         
     }
 
@@ -56,7 +57,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    // login with facebook
     func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if (ConnectionTest.isConnected()){
             if let err = error{
@@ -112,7 +113,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     @IBAction func createAcc(_ sender: Any) {
     }
     
-    @IBAction func loginEmail(_ sender: Any) {
+    @IBAction func loginEmail(_ sender: Any) {// login email
         em = emailTxt.text!
         pw = passwordTxt.text!
         if (ConnectionTest.isConnected()){
@@ -132,7 +133,6 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
     }
     
-    @IBOutlet weak var forgetPw: UIButton!
     
     func showAlert(alertMessage: String){
         let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)

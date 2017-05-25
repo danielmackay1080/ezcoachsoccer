@@ -42,7 +42,7 @@ class SetTeamIDViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func submit(_ sender: Any) {
+    @IBAction func submit(_ sender: Any) { // sets a unique team id
         n = eNameTxt.text!
         tid = eTidTxt.text!
         if (n.isEmpty || tid.isEmpty){

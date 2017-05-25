@@ -32,7 +32,7 @@ class PlayerLoginViewController: UIViewController {
         if (tc.isEmpty){
             showAlert(alertMessage: "You must enter a team code to login")
         } else{
-            Auth.auth().signInAnonymously(completion:  { (user, error) in
+            Auth.auth().signInAnonymously(completion:  { (user, error) in // player login
                 // ...
                 //user?.providerData.
                 if let error = error{
@@ -40,7 +40,9 @@ class PlayerLoginViewController: UIViewController {
                 } else {
                 self.ref?.child("teams").observe(.value, with: { (snapshot) in
                     if (snapshot.hasChild(self.tc)){
+                        let ft = snapshot.childSnapshot(forPath: self.tc).childSnapshot(forPath: "fieldType").value
                         self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tc)
+                        self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("fieldType").setValue(ft)
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "playerlogintofield", sender: self)
                         }

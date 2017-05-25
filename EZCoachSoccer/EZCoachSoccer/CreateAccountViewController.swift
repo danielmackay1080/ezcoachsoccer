@@ -35,7 +35,7 @@ class CreateAccountViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func createAccount(_ sender: Any) {
+    @IBAction func createAccount(_ sender: Any) { // creates account
         em = emailTxt.text!
         pw1 = password1Txt.text!
         pw2 = password2Txt.text!

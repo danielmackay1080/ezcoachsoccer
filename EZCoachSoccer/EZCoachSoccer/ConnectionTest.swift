@@ -9,7 +9,7 @@
 import Foundation
 import SystemConfiguration
 
-public class ConnectionTest {
+public class ConnectionTest { // test internet connection
     
     class func isConnected()->Bool{
         var address = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr:0), sin_zero: (0,0,0,0,0,0,0,0))

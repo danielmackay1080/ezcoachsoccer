@@ -24,7 +24,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    @IBAction func IamPlayer(_ sender: Any) {
+    @IBAction func IamPlayer(_ sender: Any) {// sets value for player or coach
         udef.set(true, forKey: "IamPlayer")
         udef.set(false, forKey: "IamCoach")
     }

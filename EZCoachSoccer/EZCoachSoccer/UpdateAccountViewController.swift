@@ -38,7 +38,7 @@ class UpdateAccountViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func updateAccount(_ sender: Any) {
+    @IBAction func updateAccount(_ sender: Any) { // updates account
         ue = upEmail.text!
         up1 = upPw1.text!
         up2 = upPw2.text!

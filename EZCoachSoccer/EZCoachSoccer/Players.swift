@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Players {
+public class Players { // custom class to catch player data
     
     var pfName, plName, pos1, pos2, parentEm, playerEm, parentFN : String
     var kitNum, phoneNum : String

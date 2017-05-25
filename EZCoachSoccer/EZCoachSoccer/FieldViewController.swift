@@ -37,7 +37,7 @@ class FieldViewController: UIViewController {
                 
                 print("ft \(self.ft)")
                 
-                if (self.ft == "5v5"){
+                if (self.ft == "5v5"){ // loads field type depending on what was saved
                     let scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
                     let v = self.view as! SKView
                     v.showsFPS = true

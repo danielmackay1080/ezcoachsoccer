@@ -40,7 +40,7 @@ class SettingsViewController: ViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func deleteAccount(_ sender: Any) {
+    @IBAction func deleteAccount(_ sender: Any) { // delete account
         if (ConnectionTest.isConnected()){
 
         let user = Auth.auth().currentUser
@@ -60,7 +60,7 @@ class SettingsViewController: ViewController {
         }
     }
     
-    @IBAction func deleteTeam(_ sender: Any) {
+    @IBAction func deleteTeam(_ sender: Any) { // delete team
         if (ConnectionTest.isConnected()){
         ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
             
@@ -83,7 +83,7 @@ class SettingsViewController: ViewController {
             self.performSegue(withIdentifier: "toeditAcc", sender: self)
     }
    
-    @IBAction func logout(_ sender: Any) {
+    @IBAction func logout(_ sender: Any) { // logs user out
         if (ConnectionTest.isConnected()){
             if (FBSDKAccessToken.current() != nil){
                 let loginMan = FBSDKLoginManager()

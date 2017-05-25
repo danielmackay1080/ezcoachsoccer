@@ -40,7 +40,7 @@ public class FiveVFiveInterface: SKScene{
         ball5 = childNode(withName: "ball5") as! SKSpriteNode!
     }
     
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) { // moves players and ball
         for touch in touches{
             let tl = touch.location(in: self)
             if let node = self.atPoint(tl) as? SKSpriteNode{

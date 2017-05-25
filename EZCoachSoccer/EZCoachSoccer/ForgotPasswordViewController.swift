@@ -22,7 +22,7 @@ class ForgotPasswordViewController: ViewController {
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func submit(_ sender: Any) {
+    @IBAction func submit(_ sender: Any) { // sends email to user
         em = email.text!
                 if (em.isEmpty){
             showAlert(alertMessage: "Please enter an email to reset your password.")

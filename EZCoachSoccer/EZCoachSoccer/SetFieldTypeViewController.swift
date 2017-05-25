@@ -25,7 +25,7 @@ class SetFieldTypeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    // selects field type
     @IBAction func v5(_ sender: Any) {
         if (user != nil){
         udef.set(true, forKey: "isFive")
