@@ -13,11 +13,11 @@ import SpriteKit
 
 class FieldViewController: UIViewController {
     
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
     var uDef = UserDefaults.standard
     var isPlayer : Bool?
     var fieldType = ""
-    var uid = FIRAuth.auth()?.currentUser?.uid
+    var uid = Auth.auth().currentUser?.uid
     var ft = ""
     var tc = ""
     
@@ -25,10 +25,8 @@ class FieldViewController: UIViewController {
         super.viewDidLoad()
         //self.navigationController?.navigationBar.isHidden = false;
         //self.tabBarController?.tabBarController.h
-        let rightItem = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: Selector(("Settings")))
-        self.navigationController?.navigationItem.rightBarButtonItem = rightItem
         // Do any additional setup after loading the view.
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         ref?.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
            // print("val \(val)")

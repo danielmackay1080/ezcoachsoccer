@@ -40,14 +40,14 @@ class AddPlayerViewController: UIViewController {
     var pn = ""
     var tid = ""
     
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
     var players = [Players]()
     var pld = [NSDictionary]()
     var udef = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -73,7 +73,7 @@ class AddPlayerViewController: UIViewController {
             showAlert(alertMessage: "Please enter an email address.")
         } else {
             players.append(Players(pfName: plfn, plName: plln, pos1: ps1, pos2: ps2, parentEm: parem, playerEm: plem, parentFN: parfn, kitNum: kn, phoneNum: pn))
-            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 self.tid = val?["teamID"] as? String ?? ""
                 let playersDict = ["playerFirstName" : self.plfn, "playerLastName":self.plln, "position1" : self.ps1, "position2": self.ps2, "parentName":self.parfn, "playerEmail" : self.plem, "kitNumber" : self.kn, "parentEmail":self.parem, "phoneNumber": self.pn ]

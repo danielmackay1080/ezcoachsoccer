@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SetTeamIDViewController: UIViewController {
     
@@ -16,11 +18,21 @@ class SetTeamIDViewController: UIViewController {
     
     var n = ""
     var tid = ""
-    var ref  : FIRDatabaseReference?
+    var ref  : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            ref = FIRDatabase.database().reference()
+            ref = Database.database().reference()
+        if((FBSDKAccessToken.current()) != nil){
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "name"]).start(completionHandler: { (connection, result, error) -> Void in
+                if (error == nil){
+                    //print("fb result \(result)")
+                    //result.
+                    let data = result as! [String : AnyObject]
+                    self.eNameTxt.text = data["name"] as? String
+                }
+            })
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -35,11 +47,18 @@ class SetTeamIDViewController: UIViewController {
         if (n.isEmpty || tid.isEmpty){
             showAlert(alertMessage: "Please enter your name and a team ID to continue.")
         } else {
-            
-            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("teamID").setValue(tid)
-            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("coachName").setValue(n)
-            ref?.child("teams").child(tid).child("coachName").setValue(n)
+            self.ref?.child("teams").observe(.value, with: { (snapshot) in
+                if (snapshot.hasChild(self.tid)){
+                    self.showAlert(alertMessage: "Another user has selected this Team ID please try again")
+                } else {
+                    self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tid)
+                    self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("coachName").setValue(self.n)
+                    self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
 
+                }
+            })
+
+            
         }
         
     }

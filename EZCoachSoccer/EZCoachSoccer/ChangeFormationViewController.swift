@@ -36,7 +36,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
          return arr.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "") as! FormationTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cformationcell") as! FormationTableViewCell
         cell.Ftitle.text = arr[indexPath.row]
         return cell
     }

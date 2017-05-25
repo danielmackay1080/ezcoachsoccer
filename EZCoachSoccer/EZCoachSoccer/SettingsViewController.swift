@@ -8,23 +8,30 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SettingsViewController: ViewController {
     
     @IBOutlet weak var editAccountButton: UIButton!
     @IBOutlet weak var deleteTeamButton: UIButton!
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
     var isPlayer : Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         if (isPlayer)!{
            editAccountButton.isHidden = true
             deleteTeamButton.isHidden = true
         }
-
+        if (FBSDKAccessToken.current() != nil){
+            editAccountButton.isHidden = true
+        }
+        let user = Auth.auth().currentUser
+        //print("user provide \(user?.providerID)")
+       
         // Do any additional setup after loading the view.
     }
 
@@ -36,7 +43,7 @@ class SettingsViewController: ViewController {
     @IBAction func deleteAccount(_ sender: Any) {
         if (ConnectionTest.isConnected()){
 
-        let user = FIRAuth.auth()?.currentUser
+        let user = Auth.auth().currentUser
         
         user?.delete { error in
             if let error = error {
@@ -52,17 +59,14 @@ class SettingsViewController: ViewController {
     
     @IBAction func deleteTeam(_ sender: Any) {
         if (ConnectionTest.isConnected()){
-        ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+        ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
+            
             let value = snapshot.value as? NSDictionary
             let tid = value?["teamID"] as? String ?? ""
-            
+            self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child(tid).removeValue()
             self.ref?.child("teams").child(tid).removeValue()
-            for vc in (self.navigationController?.viewControllers)! {
-                if (vc.isKind(of: SetFieldTypeViewController.self)){
-                    self.navigationController?.popToViewController(vc, animated: true)
-                }
-            }
-            
+            UserDefaults.standard.set(true, forKey: "teamDeleted")
+            self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)
         })
         } else {
             showAlert(alertMessage: "Unable to connect to the internet")
@@ -70,11 +74,16 @@ class SettingsViewController: ViewController {
     }
     
     @IBAction func editAccount(_ sender: Any) {
+            self.performSegue(withIdentifier: "toeditAcc", sender: self)
     }
    
     @IBAction func logout(_ sender: Any) {
         if (ConnectionTest.isConnected()){
-            try! FIRAuth.auth()!.signOut()
+            if (FBSDKAccessToken.current() != nil){
+                let loginMan = FBSDKLoginManager()
+                loginMan.logOut()
+            }
+            try! Auth.auth().signOut()
             navigationController?.popToRootViewController(animated: true)
         } else {
             showAlert(alertMessage: "Unable to connect to the internet")

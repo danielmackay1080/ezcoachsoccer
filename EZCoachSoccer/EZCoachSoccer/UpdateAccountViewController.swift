@@ -17,8 +17,6 @@ class UpdateAccountViewController: ViewController {
 
     @IBOutlet weak var upPw2: UITextField!
     
-    @IBOutlet weak var upTid: UITextField!
-    
     @IBOutlet weak var upName: UITextField!
     
     var ue = ""
@@ -26,7 +24,7 @@ class UpdateAccountViewController: ViewController {
     var up2 = ""
     var ut = ""
     var un = ""
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +34,7 @@ class UpdateAccountViewController: ViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         // Dispose of any resources that can be recreated.
     }
     
@@ -44,37 +42,28 @@ class UpdateAccountViewController: ViewController {
         ue = upEmail.text!
         up1 = upPw1.text!
         up2 = upPw2.text!
-        ut = upTid.text!
         un = upName.text!
         
         if (ue.isEmpty || up1.isEmpty || up2.isEmpty || ut.isEmpty || un.isEmpty){
             showAlert(alertMessage: "Please enter the field you would like to update.")
         } else if (!ue.isEmpty){
-            FIRAuth.auth()?.currentUser?.updateEmail(ue) { (error) in
+            Auth.auth().currentUser?.updateEmail(to: ue) { (error) in
             }
         } else if (!up1.isEmpty || !up2.isEmpty && up1 == up2){
-            FIRAuth.auth()?.currentUser?.updatePassword(up2, completion: { (error) in
+            Auth.auth().currentUser?.updatePassword(to: up2, completion: { (error) in
             })
-        } else if (!ut.isEmpty){
-            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
-                let value = snapshot.value as? NSDictionary
-                let tid = value?["teamID"] as? String ?? ""
-                self.ref?.child("teams").observe(.value, with: { (snapshot) in
-                    if (snapshot.hasChild(self.ut)){
-                        self.showAlert(alertMessage: "Another user has selected this Team ID please try again")
-                    } else {
-                        self.ref?.child("teams").updateChildValues([tid : self.ut])
-                    }
-                })
-            })
-        } else if(!un.isEmpty){
-            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("coachName").setValue(un)
-            ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+        }  else if(!un.isEmpty){
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("coachName").setValue(un)
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
                 let value = snapshot.value as? NSDictionary
                 let tid = value?["teamID"] as? String ?? ""
                 self.ref?.child("teams").child(tid).child("coachName").setValue(self.un)
             })
 
+        } else if (!ue.isEmpty){
+            Auth.auth().currentUser?.updateEmail(to: ue, completion: { (error) in
+            }
+)
         }
         navigationController?.popViewController(animated: true)
     }

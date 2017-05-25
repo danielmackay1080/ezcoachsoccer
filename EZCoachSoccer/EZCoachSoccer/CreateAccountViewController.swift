@@ -22,11 +22,11 @@ class CreateAccountViewController: UIViewController {
     var pw2 = ""
     var n  = ""
     var tid = ""
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-            ref = FIRDatabase.database().reference()
+            ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -45,7 +45,7 @@ class CreateAccountViewController: UIViewController {
             showAlert(alertMessage: "Please enter an email, a password, your name and a team ID.")
         } else {
             if (ConnectionTest.isConnected()){
-            FIRAuth.auth()?.createUser(withEmail: em, password: pw2, completion: { (user, error) in
+            Auth.auth().createUser(withEmail: em, password: pw2, completion: { (user, error) in
                 if let err = error{
                    self.showAlert(alertMessage: err.localizedDescription)
                     return

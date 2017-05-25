@@ -18,7 +18,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     
     var em = ""
     var pw = ""
-    var dbRef : FIRDatabaseReference?
+    var dbRef : DatabaseReference?
     var firstLaunch = false
     var teamCode = ""
 
@@ -29,12 +29,12 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         fbLogin.delegate = self
         firstLaunch = UserDefaults.standard.bool(forKey: "firstLaunch")
         if (!firstLaunch){
-        FIRDatabase.database().persistenceEnabled = true
+        Database.database().isPersistenceEnabled = true
             firstLaunch = true
             UserDefaults.standard.set(firstLaunch, forKey: "firstLaunch")
         }
-        dbRef = FIRDatabase.database().reference()
-        let user  = FIRAuth.auth()?.currentUser
+        dbRef = Database.database().reference()
+        let user  = Auth.auth().currentUser
         if (user != nil){
         self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
@@ -65,8 +65,8 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
             } else {
                 if ((FBSDKAccessToken.current()) != nil){
                     print("my token" , FBSDKAccessToken.current().tokenString)
-                    let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                    FIRAuth.auth()?.signIn(with: credential) { (user, error) in
+                    let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                    Auth.auth().signIn(with: credential) { (user, error) in
                        // print("firebase error" , error!)
                         if let err = error{
                             self.showAlert(alertMessage: err.localizedDescription)
@@ -101,7 +101,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     }
     func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         if (ConnectionTest.isConnected()){
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
         } else {
             showAlert(alertMessage: "Unable to connect to the internet")
         }
@@ -117,7 +117,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         if (em.isEmpty || pw.isEmpty){
             showAlert(alertMessage: "Please enter your email and password")
         } else {
-            FIRAuth.auth()?.signIn(withEmail: em, password: pw, completion: { (user, error) in
+            Auth.auth().signIn(withEmail: em, password: pw, completion: { (user, error) in
                 // ...
                 if let err = error{
                     self.showAlert(alertMessage: err.localizedDescription)

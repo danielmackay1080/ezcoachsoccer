@@ -12,12 +12,12 @@ import Firebase
 class SetFieldTypeViewController: UIViewController {
     
     var udef = UserDefaults.standard
-    var ref : FIRDatabaseReference!
-    var user = FIRAuth.auth()?.currentUser
+    var ref : DatabaseReference!
+    var user = Auth.auth().currentUser
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
 

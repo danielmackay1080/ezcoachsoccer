@@ -13,11 +13,11 @@ class PlayerLoginViewController: UIViewController {
 
     @IBOutlet weak var teamCodeTxt: UITextField!
     var tc = ""
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         // Do any additional setup after loading the view.
     }
 
@@ -32,7 +32,7 @@ class PlayerLoginViewController: UIViewController {
         if (tc.isEmpty){
             showAlert(alertMessage: "You must enter a team code to login")
         } else{
-            FIRAuth.auth()?.signInAnonymously(completion:  { (user, error) in
+            Auth.auth().signInAnonymously(completion:  { (user, error) in
                 // ...
                 //user?.providerData.
                 if let error = error{
@@ -40,12 +40,12 @@ class PlayerLoginViewController: UIViewController {
                 } else {
                 self.ref?.child("teams").observe(.value, with: { (snapshot) in
                     if (snapshot.hasChild(self.tc)){
-                        self.ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("teamID").setValue(self.tc)
+                        self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tc)
                         self.performSegue(withIdentifier: "playerlogintofield", sender: self)
                     } else {
                         self.showAlert(alertMessage: "This team has not been registered please try again.")
-                        try! FIRAuth.auth()!.signOut()
-                        FIRAuth.auth()?.currentUser?.delete(completion: { error in
+                        try! Auth.auth().signOut()
+                        Auth.auth().currentUser?.delete(completion: { error in
                         })
                         return
                     }

@@ -27,7 +27,7 @@ class ForgotPasswordViewController: ViewController {
                 if (em.isEmpty){
             showAlert(alertMessage: "Please enter an email to reset your password.")
         } else {
-            FIRAuth.auth()?.sendPasswordReset(withEmail: em, completion: { error in
+            Auth.auth().sendPasswordReset(withEmail: em, completion: { error in
                 if let error = error{
                     self.showAlert(alertMessage: error.localizedDescription)
                 } else {

@@ -13,10 +13,11 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var AddplayerButton: UIButton!
     
+    @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var teamBadge: UIImageView!
     @IBOutlet weak var teamTable: UITableView!
     @IBOutlet weak var coachName: UILabel!
-    var ref : FIRDatabaseReference?
+    var ref : DatabaseReference?
     var arrPlay  = [Players]()
     var tid = ""
     var isPlayer : Bool?
@@ -24,16 +25,17 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         teamTable.delegate = self
-        ref = FIRDatabase.database().reference()
+        ref = Database.database().reference()
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         if (isPlayer)!{
             AddplayerButton.isHidden = true
         }
         // Do any additional setup after loading the view.
-        ref?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).observe(.value, with: { (snapshot) in
+        ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
             self.tid = val?["teamID"] as? String ?? ""
             self.coachName.text! = val?["coachName"] as? String ?? ""
+            self.idLabel.text! = self.tid
             let ref2 = self.ref?.child("teams").child(self.tid).child("players")
             ref2?.observe(.value, with: { (snapshot) in
                 _ = snapshot.value as? [NSDictionary]
@@ -43,7 +45,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                     self.arrPlay.removeAll()
                 }
                 for child in  snapshot.children{
-                    let item = child as! FIRDataSnapshot
+                    let item = child as! DataSnapshot
                     //let dict = ((item as AnyObject) as AnyObject) as! NSDictionary
                     let plfn = item.childSnapshot(forPath: "playerFirstName").value!
                     let plln = item.childSnapshot(forPath: "playerLastName").value!
