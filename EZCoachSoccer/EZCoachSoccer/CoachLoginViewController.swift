@@ -21,6 +21,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
     var dbRef : DatabaseReference?
     var firstLaunch = false
     var teamCode = ""
+    var success = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,15 +82,19 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                 self.teamCode = val?["teamID"] as? String ?? ""
                                 DispatchQueue.main.async {
                                     if (self.teamCode.isEmpty){
-                                        self.performSegue(withIdentifier: "toteamid", sender: self)
+                                        self.success = false
                                     } else {
-                                        self.performSegue(withIdentifier: "loginToSetType", sender: self)
-                                        
+                                        self.success = true
                                     }
-
                                 }
-                                
                             })
+                            if (self.success){
+                                self.performSegue(withIdentifier: "toteamid", sender: self)
+                            } else {
+                                self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                                
+                            }
+
                             
                         }
 

@@ -14,6 +14,7 @@ class PlayerLoginViewController: UIViewController {
     @IBOutlet weak var teamCodeTxt: UITextField!
     var tc = ""
     var ref : DatabaseReference?
+    var success = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +45,11 @@ class PlayerLoginViewController: UIViewController {
                         self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tc)
                         self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("fieldType").setValue(ft)
                         DispatchQueue.main.async {
-                            self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+                            self.success = true
                         }
                     } else {
                         DispatchQueue.main.async {
-                            self.showAlert(alertMessage: "This team has not been registered please try again.")
+                            self.success = false
                         }
                         try! Auth.auth().signOut()
                         Auth.auth().currentUser?.delete(completion: { error in
@@ -58,6 +59,11 @@ class PlayerLoginViewController: UIViewController {
                 })
             }
             })
+            if (success){
+                self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+            } else {
+                self.showAlert(alertMessage: "This team has not been registered please try again.")
+            }
         }
     }else {
             showAlert(alertMessage: "Unable to establish an internet connection")

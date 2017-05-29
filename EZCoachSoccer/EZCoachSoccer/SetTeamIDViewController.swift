@@ -51,19 +51,23 @@ class SetTeamIDViewController: UIViewController {
             self.ref?.child("teams").observe(.value, with: { (snapshot) in
                 if (snapshot.hasChild(self.tid)){
                     DispatchQueue.main.async {
-                        self.showAlert(alertMessage: "Another user has selected this Team ID please try again")
+                        self.success = false
                     }
                 } else {
-                    self.success = true
+                    //self.success = true
                     self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tid)
                     self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("coachName").setValue(self.n)
                     self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
                     DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "fromteamidtofieldtype", sender: self)
+                        self.success = true
                     }
                 }
             })
-
+            if (success){
+                self.performSegue(withIdentifier: "fromteamidtofieldtype", sender: self)
+            } else {
+                self.showAlert(alertMessage: "Another user has selected this Team ID please try again")
+            }
             
         }
         
