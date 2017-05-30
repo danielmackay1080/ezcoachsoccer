@@ -107,26 +107,16 @@
                         <viewControllerLayoutGuide type="top" id="4ne-5p-fxL"/>
                         <viewControllerLayoutGuide type="bottom" id="oQ7-6W-FRG"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Cua-Ee-Guf">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="Cua-Ee-Guf">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ezcoachbg" translatesAutoresizingMaskIntoConstraints="NO" id="AMv-iX-FbF">
-                                <rect key="frame" x="0.0" y="0.0" width="1027" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8g4-Za-88c">
-                                <rect key="frame" x="173" y="223" width="673" height="30"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yQm-Yn-eI4">
-                                <rect key="frame" x="349" y="443" width="329" height="60"/>
+                                <rect key="frame" x="348" y="489" width="329" height="40"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="329" id="5kt-bK-luK"/>
-                                    <constraint firstAttribute="height" constant="60" id="nnB-Zr-his"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.25221472979999998" green="0.35563194749999999" blue="0.16680172090000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -140,25 +130,25 @@
                                     <action selector="playerLoginButton:" destination="z6K-g6-FRS" eventType="touchUpInside" id="An0-xh-hjP"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Team Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8g4-Za-88c">
+                                <rect key="frame" x="207" y="336" width="611" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="8g4-Za-88c" secondAttribute="trailing" constant="158" id="3US-7e-5WJ"/>
-                            <constraint firstItem="8g4-Za-88c" firstAttribute="leading" secondItem="Cua-Ee-Guf" secondAttribute="leadingMargin" constant="153" id="5FW-Qs-NoA"/>
-                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="centerX" secondItem="AMv-iX-FbF" secondAttribute="centerX" id="HZ2-Ip-uC4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yQm-Yn-eI4" secondAttribute="trailing" constant="326" id="HhB-F1-pNv"/>
-                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="leading" secondItem="Cua-Ee-Guf" secondAttribute="leadingMargin" constant="329" id="LKA-rn-BFW"/>
-                            <constraint firstAttribute="bottom" secondItem="AMv-iX-FbF" secondAttribute="bottom" id="Onf-Y8-CUD"/>
-                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="top" secondItem="8g4-Za-88c" secondAttribute="bottom" constant="190" id="Qav-3c-C9K"/>
-                            <constraint firstItem="AMv-iX-FbF" firstAttribute="leading" secondItem="Cua-Ee-Guf" secondAttribute="leading" id="WD2-19-Bfn"/>
-                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="top" secondItem="8g4-Za-88c" secondAttribute="bottom" constant="190" id="Yaf-nE-OMq"/>
-                            <constraint firstItem="AMv-iX-FbF" firstAttribute="top" secondItem="Cua-Ee-Guf" secondAttribute="top" id="YoT-N4-A8v"/>
-                            <constraint firstItem="8g4-Za-88c" firstAttribute="top" secondItem="4ne-5p-fxL" secondAttribute="bottom" constant="159" id="f7q-jT-VCW"/>
-                            <constraint firstItem="oQ7-6W-FRG" firstAttribute="top" secondItem="yQm-Yn-eI4" secondAttribute="bottom" constant="265" id="h6j-g2-dY3"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yQm-Yn-eI4" secondAttribute="trailing" constant="326" id="ic5-2R-yFr"/>
-                            <constraint firstItem="oQ7-6W-FRG" firstAttribute="top" secondItem="yQm-Yn-eI4" secondAttribute="bottom" constant="265" id="qIM-If-UHo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AMv-iX-FbF" secondAttribute="trailing" constant="-23" id="wu6-KP-PTY"/>
-                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="leading" secondItem="Cua-Ee-Guf" secondAttribute="leadingMargin" constant="329" id="ydf-vr-NE6"/>
+                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="leading" secondItem="AMv-iX-FbF" secondAttribute="trailing" constant="-676" id="39z-2Y-liF"/>
+                            <constraint firstItem="AMv-iX-FbF" firstAttribute="bottom" secondItem="oQ7-6W-FRG" secondAttribute="top" id="NLE-ts-JoQ"/>
+                            <constraint firstItem="AMv-iX-FbF" firstAttribute="leading" secondItem="Cua-Ee-Guf" secondAttribute="leading" id="QJ0-WH-tmc"/>
+                            <constraint firstItem="AMv-iX-FbF" firstAttribute="centerX" secondItem="yQm-Yn-eI4" secondAttribute="centerX" id="RkX-ig-jrT"/>
+                            <constraint firstAttribute="trailing" secondItem="AMv-iX-FbF" secondAttribute="trailing" id="aq4-aM-Ecc"/>
+                            <constraint firstItem="AMv-iX-FbF" firstAttribute="top" secondItem="8g4-Za-88c" secondAttribute="bottom" constant="-366" id="dcd-fl-xyZ"/>
+                            <constraint firstItem="AMv-iX-FbF" firstAttribute="top" secondItem="Cua-Ee-Guf" secondAttribute="top" id="iX5-Ue-REb"/>
+                            <constraint firstItem="yQm-Yn-eI4" firstAttribute="top" secondItem="AMv-iX-FbF" secondAttribute="bottom" constant="-279" id="j5k-mI-9v5"/>
+                            <constraint firstItem="8g4-Za-88c" firstAttribute="leading" secondItem="AMv-iX-FbF" secondAttribute="trailing" constant="-817" id="mVs-cW-c3V"/>
+                            <constraint firstItem="AMv-iX-FbF" firstAttribute="centerX" secondItem="8g4-Za-88c" secondAttribute="centerX" id="yVm-Tb-1Hg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Player Login" id="dh9-TV-PYM"/>
@@ -188,7 +178,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" image="ezcoachlogo" translatesAutoresizingMaskIntoConstraints="NO" id="cIY-ta-lyp">
-                                <rect key="frame" x="0.0" y="93" width="570" height="615"/>
+                                <rect key="frame" x="0.0" y="93" width="523" height="615"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cqY-79-Hkr">
@@ -206,7 +196,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qWX-O5-L4A">
-                                <rect key="frame" x="618" y="480" width="308" height="51"/>
+                                <rect key="frame" x="617" y="480" width="311" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.17413800954818726" green="0.66808241605758667" blue="0.32666236162185669" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
@@ -233,26 +223,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CG9-wr-NH0">
-                                <rect key="frame" x="578" y="314" width="198" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="Forgot Password?">
-                                            <attributes>
-                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="21" name="ArialRoundedMTBold"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                </state>
-                                <connections>
-                                    <segue destination="054-T8-4Vq" kind="show" id="7T9-VC-03k"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bQz-fd-8g3">
-                                <rect key="frame" x="618" y="386" width="308" height="51"/>
+                                <rect key="frame" x="617" y="393" width="308" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
@@ -267,6 +239,24 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="loginEmail:" destination="djD-CX-Lsi" eventType="touchUpInside" id="B41-6V-xvc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CG9-wr-NH0">
+                                <rect key="frame" x="578" y="314" width="183" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Forgot Password?">
+                                            <attributes>
+                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <font key="NSFont" size="21" name="ArialRoundedMTBold"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="054-T8-4Vq" kind="show" id="7T9-VC-03k"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -856,23 +846,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2017-05-24 at 3.20.34 PM" translatesAutoresizingMaskIntoConstraints="NO" id="K0C-1V-YTk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="formation442_11" translatesAutoresizingMaskIntoConstraints="NO" id="K0C-1V-YTk">
                                 <rect key="frame" x="79" y="143" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2017-05-24 at 3.20.45 PM" translatesAutoresizingMaskIntoConstraints="NO" id="RPv-E8-2kD">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="formation433_11" translatesAutoresizingMaskIntoConstraints="NO" id="RPv-E8-2kD">
                                 <rect key="frame" x="379" y="143" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2017-05-24 at 3.21.31 PM" translatesAutoresizingMaskIntoConstraints="NO" id="pFP-oF-M23">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="formation343_11" translatesAutoresizingMaskIntoConstraints="NO" id="pFP-oF-M23">
                                 <rect key="frame" x="79" y="412" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2017-05-24 at 3.21.43 PM" translatesAutoresizingMaskIntoConstraints="NO" id="Bep-SK-dfU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="formation532_11" translatesAutoresizingMaskIntoConstraints="NO" id="Bep-SK-dfU">
                                 <rect key="frame" x="379" y="412" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Screen Shot 2017-05-24 at 3.21.03 PM" translatesAutoresizingMaskIntoConstraints="NO" id="p2k-nG-H1n">
+                            <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="formation4231_11" translatesAutoresizingMaskIntoConstraints="NO" id="p2k-nG-H1n">
                                 <rect key="frame" x="683" y="143" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1252,15 +1242,15 @@
     </scenes>
     <resources>
         <image name="FieldInterface" width="1024" height="749"/>
-        <image name="Screen Shot 2017-05-24 at 3.20.34 PM" width="596" height="530"/>
-        <image name="Screen Shot 2017-05-24 at 3.20.45 PM" width="600" height="434"/>
-        <image name="Screen Shot 2017-05-24 at 3.21.03 PM" width="604" height="792"/>
-        <image name="Screen Shot 2017-05-24 at 3.21.31 PM" width="490" height="682"/>
-        <image name="Screen Shot 2017-05-24 at 3.21.43 PM" width="600" height="594"/>
         <image name="ball" width="24" height="23"/>
         <image name="ezcoachbg" width="1921" height="1079"/>
         <image name="ezcoachlogo" width="261" height="282"/>
         <image name="ezcoachsoccerbg" width="461" height="307"/>
+        <image name="formation343_11" width="752" height="655"/>
+        <image name="formation4231_11" width="752" height="655"/>
+        <image name="formation433_11" width="752" height="655"/>
+        <image name="formation442_11" width="752" height="655"/>
+        <image name="formation532_11" width="752" height="655"/>
         <image name="play1" width="462" height="350"/>
         <image name="play2" width="345" height="258"/>
         <image name="play3" width="1280" height="720"/>
