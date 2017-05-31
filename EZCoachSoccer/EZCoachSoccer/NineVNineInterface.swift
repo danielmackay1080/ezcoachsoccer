@@ -17,6 +17,57 @@ public class NineVNineInterface : SKScene{
     var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9 : SKSpriteNode?
     var opgk9, opcb9, oplcb9, oprcb9, oplcm9, oprcm9, oprf9, opstr9, oplf9 : SKSpriteNode?
     
+    // formations
+    // 3-2-3
+    var rcb323 = SKAction.move(to: CGPoint(x: 437.816, y: 207.658), duration: 1)
+    var cb323 = SKAction.move(to: CGPoint(x: 437.816, y: -203.873), duration: 1)
+    var lcb323 = SKAction.move(to: CGPoint(x: 437.816, y: 7.967), duration: 1)
+    var rcm323 = SKAction.move(to: CGPoint(x: 266.743, y: 99.369), duration: 1)
+    var lcm323 = SKAction.move(to: CGPoint(x: 266.743, y: -88.873), duration: 1)
+    var rf323 = SKAction.move(to: CGPoint(x: 103.689, y: 254.404), duration: 1)
+    var str323 = SKAction.move(to: CGPoint(x: 103.689, y: -4.879), duration: 1)
+    var lf323 = SKAction.move(to: CGPoint(x: 103.689, y: -262.008), duration: 1)
+    
+    //2-3-3
+    var rf233 = SKAction.move(to: CGPoint(x: 103.689, y: 254.404), duration: 1)
+    var str233 = SKAction.move(to: CGPoint(x: 103.689, y: -4.879), duration: 1)
+    var lf233 = SKAction.move(to: CGPoint(x: 103.689, y: -262.008), duration: 1)
+    var rcb233 = SKAction.move(to: CGPoint(x: 266.743, y: 178.35), duration: 1)
+    var rcm233 = SKAction.move(to: CGPoint(x: 266.743, y: 0.467), duration: 1)
+    var lcm233 = SKAction.move(to: CGPoint(x: 266.743, y: -196.373), duration: 1)
+    var lcb233 = SKAction.move(to: CGPoint(x: 437.816, y: -107.033), duration: 1)
+    var cb233 = SKAction.move(to: CGPoint(x: 437.816, y: 63.35), duration: 1)
+    
+    // 2-4-2
+    var lcb242 = SKAction.move(to: CGPoint(x: 437.816, y: -107.033), duration: 1)
+    var cb242 = SKAction.move(to: CGPoint(x: 437.816, y: 63.35), duration: 1)
+    var rcb242 = SKAction.move(to: CGPoint(x: 266.743, y: 246.904), duration: 1)
+    var RCM242 = SKAction.move(to: CGPoint(x: 266.743, y: 63.35), duration: 1)
+    var lcm242 = SKAction.move(to: CGPoint(x: 266.743, y: -122.033), duration: 1)
+    var lf242 = SKAction.move(to: CGPoint(x: 266.743, y: -297.942), duration: 1)
+    var rf242 = SKAction.move(to: CGPoint(x: 103.689, y: 63.35), duration: 1)
+    var str242 = SKAction.move(to: CGPoint(x: 103.689, y: -107.033), duration: 1)
+    
+    //2-2-2-2
+    var rf2222 = SKAction.move(to: CGPoint(x: 103.689, y: 63.35), duration: 1)
+    var str2222 = SKAction.move(to: CGPoint(x: 103.689, y: -107.033), duration: 1)
+    var rcb2222 = SKAction.move(to: CGPoint(x: 200.003, y: 246.904), duration: 1)
+    var lf2222 = SKAction.move(to: CGPoint(x: 200.003, y: 289.428), duration: 1)
+    var lcb2222 = SKAction.move(to: CGPoint(x: 437.816, y: -147.008), duration: 1)
+    var cb2222 = SKAction.move(to: CGPoint(x: 437.816, y: 100.158), duration: 1)
+    var rcm2222 = SKAction.move(to: CGPoint(x: 292.907, y: 63.35), duration: 1)
+    var lcm2222 = SKAction.move(to: CGPoint(x: 292.907, y: 289.428), duration: 1)
+    
+    // 3-1-3-1
+    var rcb3131 = SKAction.move(to: CGPoint(x: 200.003, y: 200.158), duration: 1)
+    var lcb3131 = SKAction.move(to: CGPoint(x: 437.816, y: -182.219), duration: 1)
+    var cb3131 = SKAction.move(to: CGPoint(x: 437.816, y: 178.35), duration: 1)
+    var lcm3131 = SKAction.move(to: CGPoint(x: 437.816, y: -7.033), duration: 1)
+    var rcm3131 = SKAction.move(to: CGPoint(x: 322.816, y: -7.033), duration: 1)
+    var rf3131 = SKAction.move(to: CGPoint(x: 200.003, y: -7.033), duration: 1)
+    var str3131 = SKAction.move(to: CGPoint(x: 84.614, y: -7.033), duration: 1)
+    var lf3131 = SKAction.move(to: CGPoint(x: 200.003, y: 234.247), duration: 1)
+    
     public override func didMove(to view: SKView) {
         
         ball9 = childNode(withName: "ball9") as? SKSpriteNode!
@@ -87,6 +138,61 @@ public class NineVNineInterface : SKScene{
                 }
             }
         }
+    }
+    
+    func form3131(){
+        rcb9?.run(rcb3131)
+        lcb9?.run(lcb3131)
+        cb9?.run(cb3131)
+        rcm9?.run(rcm3131)
+        lcm9?.run(lcm3131)
+        rf9?.run(rf3131)
+        lf9?.run(lf3131)
+        str9?.run(str3131)
+    }
+    
+    func form323(){
+        rcb9?.run(rcb323)
+        lcb9?.run(lcb323)
+        cb9?.run(cb323)
+        rcm9?.run(rcm323)
+        lcm9?.run(lcm323)
+        rf9?.run(rf323)
+        lf9?.run(lf323)
+        str9?.run(str323)
+    }
+    
+    func form233(){
+        rcb9?.run(rcb233)
+        lcb9?.run(lcb233)
+        cb9?.run(cb233)
+        rcm9?.run(rcm233)
+        lcm9?.run(lcm233)
+        rf9?.run(rf233)
+        lf9?.run(lf233)
+        str9?.run(str233)
+    }
+    
+    func form242(){
+        rcb9?.run(rcb242)
+        lcb9?.run(lcb242)
+        cb9?.run(cb242)
+        rcm9?.run(RCM242)
+        lcm9?.run(lcm242)
+        rf9?.run(rf242)
+        lf9?.run(lf242)
+        str9?.run(str242)
+    }
+    
+    func form2222(){
+        rcb9?.run(rcb2222)
+        lcb9?.run(lcb2222)
+        cb9?.run(cb2222)
+        rcm9?.run(rcm2222)
+        lcm9?.run(lcm2222)
+        rf9?.run(rf2222)
+        lf9?.run(lf2222)
+        str9?.run(str2222)
     }
     
 }
