@@ -49,18 +49,18 @@ class SetTeamIDViewController: UIViewController {
             showAlert(alertMessage: "Please enter your name and a team ID to continue.")
         } else {
             self.ref?.child("teams").observe(.value, with: { (snapshot) in
+                DispatchQueue.main.async {
                 if (snapshot.hasChild(self.tid)){
-                    DispatchQueue.main.async {
+                   
                         self.success = false
-                    }
                 } else {
                     //self.success = true
                     self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tid)
                     self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("coachName").setValue(self.n)
                     self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
-                    DispatchQueue.main.async {
+                    
                         self.success = true
-                    }
+                }
                 }
             })
             if (success){

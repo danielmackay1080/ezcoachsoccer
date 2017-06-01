@@ -23,6 +23,7 @@ class CreateAccountViewController: UIViewController {
     var n  = ""
     var tid = ""
     var ref : DatabaseReference?
+    var success = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +51,27 @@ class CreateAccountViewController: UIViewController {
                    self.showAlert(alertMessage: err.localizedDescription)
                     return
                 } else {
-                    self.ref?.child("users").child((user?.uid)!).child("teamID").setValue(self.tid)
-                    self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
-                    DispatchQueue.main.async {
-                        self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
+                    self.ref?.child("teams").observe(.value, with: { (snapshot) in
+                        DispatchQueue.main.async {
+                        if (snapshot.hasChild(self.tid)){
+                            self.success = false
+                        } else {
+                            self.ref?.child("users").child((user?.uid)!).child("teamID").setValue(self.tid)
+                            self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
+                            self.success = true
+                        }
+                        }
+                    })
+
                     }
+                if (self.success){
+                    self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
+                } else {
+                    self.showAlert(alertMessage: "Another user has already selected that teamID")
                 }
             })
+            } else {
+                showAlert(alertMessage: "Unable to establish an internet connection.")
             }
         }
     }
