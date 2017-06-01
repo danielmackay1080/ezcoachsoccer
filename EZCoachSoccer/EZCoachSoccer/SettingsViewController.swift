@@ -62,7 +62,7 @@ class SettingsViewController: ViewController {
     
     @IBAction func deleteTeam(_ sender: Any) { // delete team
         if (ConnectionTest.isConnected()){
-        ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
             
             let value = snapshot.value as? NSDictionary
             let tid = value?["teamID"] as? String ?? ""

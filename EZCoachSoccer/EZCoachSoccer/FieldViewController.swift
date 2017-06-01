@@ -31,7 +31,7 @@ class FieldViewController: UIViewController {
             let val = snapshot.value as? NSDictionary
            // print("val \(val)")
             self.tc = val?["teamID"] as? String ?? ""
-            self.ref?.child("teams").child(self.tc).observe(.value, with: {(snapshot) in
+            self.ref?.child("teams").child(self.tc).observeSingleEvent(of:.value, with: {(snapshot) in
                 let val = snapshot.value as? NSDictionary
                 self.ft = val?["fieldType"] as? String ?? ""
                 

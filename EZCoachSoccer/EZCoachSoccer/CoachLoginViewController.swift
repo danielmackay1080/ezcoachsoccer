@@ -38,25 +38,33 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         let user  = Auth.auth().currentUser
         print("users \(user)")
         if (user != nil){
-        self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            DispatchQueue.main.async {
+                //self.dbRef?.child("users").child((user?.uid)!).obs
+                self.dbRef?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+            
             let val = snapshot.value as? NSDictionary
             self.teamCode = val?["teamID"] as? String ?? ""
-            DispatchQueue.main.async {
                 if (self.teamCode.isEmpty){
                     self.success = false
                 } else {
                     self.success = true
             }
-            }
-        })
-            if (success){
-                self.performSegue(withIdentifier: "loginToSetType", sender: self)
-            } else {
-                self.performSegue(withIdentifier: "toteamid", sender: self)
-            }
+                    if (self.success){
+                        self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                    } else {
+                        self.performSegue(withIdentifier: "toteamid", sender: self)
+                    }
+                    
+                })
+            
+        }
+                
         }
         
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+            }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -81,7 +89,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                             
                         //self.dbRef?.child("users").child((FIRAuth.auth()?.currentUser?.uid)!).child("TeamCode").setValue(self.teamCode)
                             //user?.mutableSetValue(forKeyPath: "teamCode")
-                            self.dbRef?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                            self.dbRef?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                                 let val = snapshot.value as? NSDictionary
                                 self.teamCode = val?["teamID"] as? String ?? ""
                                 DispatchQueue.main.async {
@@ -91,14 +99,15 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                         self.success = true
                                     }
                                 }
-                            })
-                            if (self.success){
-                                self.performSegue(withIdentifier: "toteamid", sender: self)
-                            } else {
-                                self.performSegue(withIdentifier: "loginToSetType", sender: self)
-                                
-                            }
+                                if (!self.success){
+                                    self.performSegue(withIdentifier: "toteamid", sender: self)
+                                } else {
+                                    self.performSegue(withIdentifier: "loginToSetType", sender: self)
+                                    
+                                }
 
+                            })
+                            
                             
                         }
 

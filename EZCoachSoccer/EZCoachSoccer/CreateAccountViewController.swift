@@ -51,7 +51,7 @@ class CreateAccountViewController: UIViewController {
                    self.showAlert(alertMessage: err.localizedDescription)
                     return
                 } else {
-                    self.ref?.child("teams").observe(.value, with: { (snapshot) in
+                    self.ref?.child("teams").observeSingleEvent(of:.value, with: { (snapshot) in
                         DispatchQueue.main.async {
                         if (snapshot.hasChild(self.tid)){
                             self.success = false
@@ -60,15 +60,16 @@ class CreateAccountViewController: UIViewController {
                             self.ref?.child("teams").child(self.tid).child("coachName").setValue(self.n)
                             self.success = true
                         }
+                            if (self.success){
+                                self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
+                            } else {
+                                self.showAlert(alertMessage: "Another user has already selected that teamID")
+                            }
                         }
                     })
 
                     }
-                if (self.success){
-                    self.performSegue(withIdentifier: "crAcctoSetType", sender: self)
-                } else {
-                    self.showAlert(alertMessage: "Another user has already selected that teamID")
-                }
+                
             })
             } else {
                 showAlert(alertMessage: "Unable to establish an internet connection.")

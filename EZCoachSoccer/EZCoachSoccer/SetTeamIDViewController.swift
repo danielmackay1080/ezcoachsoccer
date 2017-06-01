@@ -48,7 +48,7 @@ class SetTeamIDViewController: UIViewController {
         if (n.isEmpty || tid.isEmpty){
             showAlert(alertMessage: "Please enter your name and a team ID to continue.")
         } else {
-            self.ref?.child("teams").observe(.value, with: { (snapshot) in
+            self.ref?.child("teams").observeSingleEvent(of:.value, with: { (snapshot) in
                 DispatchQueue.main.async {
                 if (snapshot.hasChild(self.tid)){
                    
@@ -61,13 +61,14 @@ class SetTeamIDViewController: UIViewController {
                     
                         self.success = true
                 }
+                    if (self.success){
+                        self.performSegue(withIdentifier: "fromteamidtofieldtype", sender: self)
+                    } else {
+                        self.showAlert(alertMessage: "Another user has selected this Team ID please try again")
+                    }
+
                 }
             })
-            if (success){
-                self.performSegue(withIdentifier: "fromteamidtofieldtype", sender: self)
-            } else {
-                self.showAlert(alertMessage: "Another user has selected this Team ID please try again")
-            }
             
         }
         

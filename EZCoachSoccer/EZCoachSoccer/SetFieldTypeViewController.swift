@@ -33,7 +33,7 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(false, forKey: "isSeven")
         udef.set(false, forKey: "isEleven")
         ref.child("users").child((user?.uid)!).child("fieldType").setValue("5v5")
-            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            ref.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("5v5")
@@ -52,7 +52,7 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(true, forKey: "isSeven")
         udef.set(false, forKey: "isEleven")
             ref.child("users").child((user?.uid)!).child("fieldType").setValue("7v7")
-            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            ref.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("7v7")
@@ -72,7 +72,7 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(false, forKey: "isSeven")
         udef.set(false, forKey: "isEleven")
             ref.child("users").child((user?.uid)!).child("fieldType").setValue("9v9")
-            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            ref.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("9v9")
@@ -92,7 +92,7 @@ class SetFieldTypeViewController: UIViewController {
         udef.set(false, forKey: "isSeven")
         udef.set(true, forKey: "isEleven")
             ref.child("users").child((user?.uid)!).child("fieldType").setValue("11v11")
-            ref.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+            ref.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
                 self.ref.child("teams").child(tid).child("fieldType").setValue("11v11")
