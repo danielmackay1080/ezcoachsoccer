@@ -11,6 +11,8 @@ import SpriteKit
 import GameplayKit
 import CoreTelephony
 import SystemConfiguration
+import Firebase
+import UIKit
 
 public class FiveVFiveInterface: SKScene{
     
@@ -25,6 +27,13 @@ public class FiveVFiveInterface: SKScene{
     var rf5 : SKSpriteNode?
     var oprf5 : SKSpriteNode?
     var ball5 : SKSpriteNode?
+    var spTitle : SKLabelNode?
+    var savePlays : SKSpriteNode?
+    var ref : DatabaseReference?
+    var storage : StorageReference?
+    var selectForm = ""
+    var user : User?
+    var isPlayer : Bool?
     
     // formations
     // 2-2
@@ -69,9 +78,59 @@ public class FiveVFiveInterface: SKScene{
         lf5 = childNode(withName: "lf5") as! SKSpriteNode!
         oplf5 = childNode(withName: "oplf5") as! SKSpriteNode!
         ball5 = childNode(withName: "ball5") as! SKSpriteNode!
+        spTitle = childNode(withName: "saveplaylabel5") as! SKLabelNode!
+        savePlays = childNode(withName: "saveplaybg5") as! SKSpriteNode!
+        
+        isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
+        
+        spTitle?.isHidden = true
+        savePlays?.isHidden = true
+        
+        ref = Database.database().reference()
+        storage = Storage.storage().reference()
+        
+        user = Auth.auth().currentUser
+        if (user != nil){
+            ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let val2 = snapshot.value as? NSDictionary
+                    self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    if (self.selectForm == "2-2"){
+                        self.form22()
+                    } else if (self.selectForm == "3-1") {
+                        self.form31()
+                    } else if (self.selectForm == "1-3"){
+                        self.form13()
+                    } else if (self.selectForm == "1-2-1"){
+                        self.form121()
+                    } else if (self.selectForm == "1-1-2"){
+                        self.form112()
+                    }
+
+                })
+            })
+        }
+    }
+    
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (!isPlayer!){
+        spTitle?.isHidden = false
+        savePlays?.isHidden = false
+        }
+        for t in touches{
+            let loc = t.location(in: self)
+            if (savePlays?.contains(loc))!{
+                saveSetPlay()
+            }
+        }
+
     }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) { // moves players and ball
+        
+
         for touch in touches{
             let tl = touch.location(in: self)
             if let node = self.atPoint(tl) as? SKSpriteNode{
@@ -97,7 +156,7 @@ public class FiveVFiveInterface: SKScene{
                     oplf5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "ball5"){
                     ball5?.position = CGPoint(x: tl.x, y: tl.y)
-                }
+                } 
             }
         }
     }
@@ -135,6 +194,63 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb112)
         rf5?.run(rf112)
         lf5?.run(lf112)
+    }
+    
+    func saveSetPlay(){
+        print("savesetplay")
+        let scrShot = self.view?.takeScreenShot()
+        UIImageWriteToSavedPhotosAlbum(scrShot!, nil, nil, nil)
+        
+        savePlay(alertMessage: "Save a play", image: scrShot!)
+           }
+    
+    func savePlay(alertMessage: String, image : UIImage){
+        print("show alert")
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textfield) in
+            textfield.text = "Set Play 1"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak alert] (_) in
+            self.ref?.child("users").child((self.user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                let ft = val?["fieldType"] as? String ?? ""
+                let playName = alert?.textFields?[0].text!
+                print("playnAME\(playName)")
+                let sref = Storage.storage().reference().child(teamCode).child(ft).child("plays").child(playName!)
+                if let uploadData = UIImagePNGRepresentation(image){
+                   _ = sref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                        if let err = error{
+                            print("imageerror \(err)")
+                            return
+                        } else {
+                            _ = metadata!.downloadURL()
+                        }
+                    })
+                }
+
+            })
+        
+        }))
+        //self.view?.window.present(alert, animated: true, completion: nil)
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+
+    
+}
+extension UIView{
+    
+    func takeScreenShot () -> UIImage{
+        print("take screen shot")
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
+        
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+        
     }
     
 }

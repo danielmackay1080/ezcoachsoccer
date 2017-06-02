@@ -5,11 +5,16 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.22.1):
+  - DKImagePickerController (3.5.5):
+    - DKImagePickerController/Camera (= 3.5.5)
+    - DKImagePickerController/ImageManager (= 3.5.5)
+  - DKImagePickerController/Camera (3.5.5)
+  - DKImagePickerController/ImageManager (3.5.5)
+  - FBSDKCoreKit (4.23.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.22.1):
+  - FBSDKLoginKit (4.23.0):
     - FBSDKCoreKit
-  - FBSDKShareKit (4.22.1):
+  - FBSDKShareKit (4.23.0):
     - FBSDKCoreKit
   - Firebase/Auth (4.0.0):
     - Firebase/Core
@@ -52,9 +57,11 @@ PODS:
     - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.10)
-  - IQKeyboardManagerSwift (4.0.9)
+  - ImagePicker (2.1.1)
+  - IQKeyboardManagerSwift (4.0.10)
 
 DEPENDENCIES:
+  - DKImagePickerController
   - FBSDKCoreKit
   - FBSDKLoginKit
   - FBSDKShareKit
@@ -62,13 +69,15 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - ImagePicker
   - IQKeyboardManagerSwift
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: 9c2daf0162214d6d2e21cf8208a9c6c2a2e42b9c
-  FBSDKLoginKit: 00cf28916b9f0169763a3d61985d745b579fe304
-  FBSDKShareKit: 1cbd0fdc2bb3277dd3522512855dcf1f4088f734
+  DKImagePickerController: 16f28d10f4384d8c582aa05baab26fc75432a41d
+  FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
+  FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
+  FBSDKShareKit: 65751c3b9937ab9d594e6c37611ecc115ceeb448
   Firebase: 284eea779b73fdff309791817da7c68bff8dd572
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
   FirebaseAuth: ebb6abcbabae00fc47446d690c19ce68d8484fde
@@ -78,8 +87,9 @@ SPEC CHECKSUMS:
   FirebaseStorage: 8110a1ed2034c8fbfd83890d2acc9cdbbd99afec
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
-  IQKeyboardManagerSwift: 2eefe6c429b86aa08bfbc1b5c891164d754adf91
+  ImagePicker: fe4c699abb56ff03994fa98d8b02e3883ee118be
+  IQKeyboardManagerSwift: 75ba21a23794a1e6b6fe6d9a267ea17f80e06771
 
-PODFILE CHECKSUM: c1df46fe2287fb5bd96da31a1429e2c99270b0be
+PODFILE CHECKSUM: f4435545a1780c6fe1996b21fd9cb9a264b00848
 
 COCOAPODS: 1.2.1

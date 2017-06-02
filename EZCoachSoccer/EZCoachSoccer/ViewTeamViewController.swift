@@ -8,25 +8,32 @@
 
 import UIKit
 import Firebase
+import ImagePicker
+import DKImagePickerController
 
-class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    
+    
+    @IBOutlet var teamLogo: UIButton!
     
     @IBOutlet weak var AddplayerButton: UIButton!
     
     @IBOutlet weak var idLabel: UILabel!
-    @IBOutlet weak var teamBadge: UIImageView!
     @IBOutlet weak var teamTable: UITableView!
     @IBOutlet weak var coachName: UILabel!
     var ref : DatabaseReference?
     var arrPlay  = [Players]()
     var tid = ""
     var isPlayer : Bool?
+    var picker : UIImagePickerController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //shouldAutorotate = false
         teamTable.delegate = self
         ref = Database.database().reference()
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
+        //picker?.delegate = self
         if (isPlayer)!{
             AddplayerButton.isHidden = true
         }
@@ -37,6 +44,17 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             self.coachName.text! = val?["coachName"] as? String ?? ""
             self.idLabel.text! = self.tid
             let ref2 = self.ref?.child("teams").child(self.tid).child("players")
+            let storage = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
+                if let error = error {
+                    print("images loading error \(error)")
+                } else {
+                    let im = UIImage(data: data!)
+                    if (im  != nil){
+                        self.teamLogo.setImage(im, for: .normal)
+                    }
+                }
+            })
+            //storage.data
             ref2?.observe(.value, with: { (snapshot) in
                 _ = snapshot.value as? [NSDictionary]
                 //print("val \(String(describing: val))")
@@ -94,6 +112,92 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
 
+    @IBAction func changeCrest(_ sender: Any) {
+        /*
+        picker = UIImagePickerController()
+        picker?.delegate = self
+        picker?.sourceType = .photoLibrary
+       // picker?.preferredInterfaceOrientationForPresentation = .landscapeLeft
+        //picker?.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        picker?.allowsEditing = true
+        present(picker!, animated: true, completion: nil)*/
+        
+        let imPicker = DKImagePickerController()
+        imPicker.singleSelect = true
+        imPicker.maxSelectableCount = 1
+        imPicker.allowsLandscape = true
+        imPicker.allowMultipleTypes = false
+        imPicker.sourceType = .both
+        imPicker.assetType = .allPhotos
+        //imPicker.didCancel
+        imPicker.didSelectAssets = { (assets: [DKAsset]) in
+            print("didSelectAssets")
+            print("assets \(assets)")
+            if (assets.count > 0){
+            let select  = assets[0].fetchOriginalImageWithCompleteBlock({ (selected, _: [AnyHashable : Any]?) in
+                self.teamLogo.setImage(selected, for: .normal)
+                self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let val = snapshot.value as? NSDictionary
+                    self.tid = val?["teamID"] as? String ?? ""
+                    let storage = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png")
+                    if let uploadData = UIImagePNGRepresentation(self.teamLogo.currentImage!){
+                        storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                            if let err = error{
+                                print("imageerror \(err)")
+                                return
+                            } else {
+                                let downloadURL = metadata!.downloadURL()
+                            }
+                        })
+                    }
+                    
+                })
+
+            })
+            }
+            
+        }
+        present(imPicker, animated: true, completion: nil)
+        }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        var selected : UIImage?
+        
+        if let pickedEdit = info["UIImagePickerControllerEditedImage"]{
+            selected = pickedEdit as? UIImage
+            
+        } else if let pickedImage = info["UIImagePickerControllerOriginalImage"]{
+            selected = pickedImage as? UIImage
+        }
+        
+        if let select = selected{
+            teamLogo.setImage(select, for: .normal)
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                self.tid = val?["teamID"] as? String ?? ""
+                let storage = Storage.storage().reference().child(self.tid).child("teamCrest.png")
+                if let uploadData = UIImagePNGRepresentation(self.teamLogo.currentImage!){
+                    storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                        if let err = error{
+                            print("imageerror \(err)")
+                            return
+                        } else {
+                            let downloadURL = metadata!.downloadURL()
+                        }
+                    })
+                }
+
+            })
+                    }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     /*
     // MARK: - Navigation
 

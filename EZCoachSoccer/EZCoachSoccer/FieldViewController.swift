@@ -20,6 +20,8 @@ class FieldViewController: UIViewController {
     var uid = Auth.auth().currentUser?.uid
     var ft = ""
     var tc = ""
+    public static var scn : SKScene?
+    public static var v : SKView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,46 +40,49 @@ class FieldViewController: UIViewController {
                 print("ft \(self.ft)")
                 
                 if (self.ft == "5v5"){ // loads field type depending on what was saved
-                    let scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
-                    let v = self.view as! SKView
-                    v.showsFPS = true
-                    v.showsNodeCount = true
-                    v.ignoresSiblingOrder = true
-                    scn.scaleMode = .aspectFit
+                     FieldViewController.scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
+                    
+                    
+                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v?.showsFPS = true
+                    FieldViewController.v?.showsNodeCount = true
+                    FieldViewController.v?.ignoresSiblingOrder = true
+                    FieldViewController.scn?.scaleMode = .aspectFit
                     //scn.size = self.view.frame.size
-                    v.presentScene(scn)
+                    FieldViewController.v?.presentScene(FieldViewController.scn)
                     
                 } else if (self.ft == "7v7"){
-                    let scn = SevenVSevenInterface(fileNamed: "SevenVSevenInterface")!
-                    let v = self.view as! SKView
-                    v.showsFPS = true
-                    v.showsNodeCount = true
-                    v.ignoresSiblingOrder = true
-                    scn.scaleMode = .aspectFit
+                    FieldViewController.scn = SevenVSevenInterface(fileNamed: "SevenVSevenInterface")!
+                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v?.showsFPS = true
+                    FieldViewController.v?.showsNodeCount = true
+                    FieldViewController.v?.ignoresSiblingOrder = true
+                    FieldViewController.scn?.scaleMode = .aspectFit
                     //scn.size = self.view.frame.size
-                    v.presentScene(scn)
+                    FieldViewController.v?.presentScene(FieldViewController.scn)
                     
                     
                 }else if (self.ft == "9v9"){
-                    let scn = NineVNineInterface(fileNamed: "NineVNineInterface")!
-                    let v = self.view as! SKView
-                    v.showsFPS = true
-                    v.showsNodeCount = true
-                    v.ignoresSiblingOrder = true
-                    scn.scaleMode = .aspectFit
+                    FieldViewController.scn = NineVNineInterface(fileNamed: "NineVNineInterface")!
+                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v?.showsFPS = true
+                    FieldViewController.v?.showsNodeCount = true
+                    FieldViewController.v?.ignoresSiblingOrder = true
+                    FieldViewController.scn?.scaleMode = .aspectFit
                     //scn.size = self.view.frame.size
-                    v.presentScene(scn)
+                    FieldViewController.v?.presentScene(FieldViewController.scn)
                     
                     
                 } else if (self.ft == "11v11"){
-                    let scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
-                    let v = self.view as! SKView
-                    v.showsFPS = true
-                    v.showsNodeCount = true
-                    v.ignoresSiblingOrder = true
-                    scn.scaleMode = .aspectFit
+                     FieldViewController.scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
+                    
+                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v?.showsFPS = true
+                    FieldViewController.v?.showsNodeCount = true
+                    FieldViewController.v?.ignoresSiblingOrder = true
+                    FieldViewController.scn?.scaleMode = .aspectFit
                     //scn.size = self.view.frame.size
-                    v.presentScene(scn)
+                    FieldViewController.v?.presentScene(FieldViewController.scn)
                     
                     
                 }

@@ -14,7 +14,9 @@ target 'EZCoachSoccer' do
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
   pod 'IQKeyboardManagerSwift'
-  
+  pod 'ImagePicker'
+  pod 'DKImagePickerController'
+  use_frameworks!
 
   target 'EZCoachSoccerTests' do
     inherit! :search_paths

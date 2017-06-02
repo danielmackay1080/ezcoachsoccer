@@ -8,6 +8,10 @@
 
 import UIKit
 import Firebase
+import SpriteKit
+import GameplayKit
+import CoreTelephony
+import SystemConfiguration
 
 class ChangeFormationViewController: ViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -32,6 +36,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
         super.viewDidLoad()
         ref = Database.database().reference()
         user = Auth.auth().currentUser
+        
         ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
             let tid = val?["teamID"] as? String ?? ""
@@ -40,7 +45,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
                 let ft = val2?["fieldType"] as? String ?? ""
                 //DispatchQueue.main.async {
                     if (ft == "5v5"){ // loads field type depending on what was saved
-                    self.form1.setImage(#imageLiteral(resourceName: "formation22_5"), for: .selected)
+                    self.form1.setImage(#imageLiteral(resourceName: "formation22_5"), for: .focused)
                     self.form1.setTitle("2-2", for: .normal)
                     self.form2.setImage(#imageLiteral(resourceName: "formation13_5"), for: .normal)
                     self.form2.setTitle("1-3", for: .normal)
@@ -50,6 +55,10 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
                     self.form4.setTitle("1-2-1", for: .normal)
                     self.form5.setImage(#imageLiteral(resourceName: "formation112_5"), for: .normal)
                     self.form5.setTitle("1-1-2", for: .normal)
+                       // FiveVFiveInterface.update(FiveVFiveInterface)
+                        let scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
+                        scn.removeAllChildren()
+                        //FiveVFiveInterface.
                     } else if (ft == "7v7"){
                         self.form1.setImage(#imageLiteral(resourceName: "formation33_7"), for: .normal)
                         self.form1.setTitle("3-3", for: .normal)
@@ -80,7 +89,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
                         self.form3.setImage(#imageLiteral(resourceName: "formation4231_11"), for: .normal)
                         self.form3.setTitle("4-2-3-1", for: .normal)
                         self.form4.setImage(#imageLiteral(resourceName: "formation343_11"), for: .normal)
-                        self.form4.setTitle("1-2-1", for: .normal)
+                        self.form4.setTitle("3-4-3", for: .normal)
                         self.form5.setImage(#imageLiteral(resourceName: "formation532_11"), for: .normal)
                         self.form5.setTitle("5-3-2", for: .normal)
                     }
@@ -141,6 +150,12 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
             let tid = val?["teamID"] as? String ?? ""
             self.ref?.child("teams").child(tid).child("selectedFormation").setValue(title)
         })
+        if (FieldViewController.v != nil && FieldViewController.scn != nil){
+            //FieldViewController.scn?.removeAllChildren()
+            //FieldViewController.scn?.sceneDidLoad()
+            FieldViewController.v?.presentScene(FieldViewController.scn)
+            
+        }
             self.tabBarController?.selectedIndex = 1
     }
     /*
@@ -153,4 +168,13 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
     }
     */
 
+}
+extension ViewController: SKSceneDelegate {
+    func update(_ currentTime: TimeInterval, for scene: SKScene) {
+        //if makeNodeModifications {
+            //makeNodeModifications = false
+            
+            // Make node modifications
+        //}
+    }
 }

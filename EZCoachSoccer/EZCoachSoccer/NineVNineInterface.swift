@@ -11,10 +11,11 @@ import SpriteKit
 import GameplayKit
 import CoreTelephony
 import SystemConfiguration
+import Firebase
 
 public class NineVNineInterface : SKScene{
     
-    var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9 : SKSpriteNode?
+    var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9, savePlays, spTitle : SKSpriteNode?
     var opgk9, opcb9, oplcb9, oprcb9, oplcm9, oprcm9, oprf9, opstr9, oplf9 : SKSpriteNode?
     
     // formations
@@ -68,6 +69,11 @@ public class NineVNineInterface : SKScene{
     var str3131 = SKAction.move(to: CGPoint(x: 84.614, y: -7.033), duration: 1)
     var lf3131 = SKAction.move(to: CGPoint(x: 200.003, y: 234.247), duration: 1)
     
+    var ref : DatabaseReference?
+    var selectForm = ""
+    var user : User?
+    var isPlayer : Bool?
+    
     public override func didMove(to view: SKView) {
         
         ball9 = childNode(withName: "ball9") as? SKSpriteNode!
@@ -90,6 +96,50 @@ public class NineVNineInterface : SKScene{
         oprf9 = childNode(withName: "oprf9") as? SKSpriteNode!
         oplf9 = childNode(withName: "oplf9") as? SKSpriteNode!
         opstr9 = childNode(withName: "opstr9") as? SKSpriteNode!
+        savePlays = childNode(withName: "saveplaybg9") as! SKSpriteNode!
+        spTitle = childNode(withName: "saveplaylabel9") as! SKSpriteNode!
+        savePlays?.isHidden = true
+        spTitle?.isHidden = true
+        isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
+        ref = Database.database().reference()
+        user = Auth.auth().currentUser
+        if (user != nil){
+            ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
+                    let val2 = snapshot.value as? NSDictionary
+                    self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    if (self.selectForm == "3-2-3"){
+                        self.form323()
+                    } else if (self.selectForm == "2-3-3") {
+                        self.form233()
+                    } else if (self.selectForm == "2-4-2"){
+                        self.form242()
+                    } else if (self.selectForm == "2-2-2-2"){
+                        self.form2222()
+                    } else if (self.selectForm == "3-1-3-1"){
+                        self.form3131()
+                    }
+                    
+                })
+            })
+        }
+
+    }
+    
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (!isPlayer!){
+            spTitle?.isHidden = false
+            savePlays?.isHidden = false
+        }
+        for t in touches{
+            let loc = t.location(in: self)
+            if (savePlays?.contains(loc))!{
+                saveSetPlay()
+            }
+        }
+
     }
     
     public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -195,4 +245,62 @@ public class NineVNineInterface : SKScene{
         str9?.run(str2222)
     }
     
+    func saveSetPlay(){
+        print("savesetplay")
+        let scrShot = self.view?.takeScreenShot()
+        UIImageWriteToSavedPhotosAlbum(scrShot!, nil, nil, nil)
+        
+        savePlay(alertMessage: "Save a play", image: scrShot!)
+    }
+    
+    func savePlay(alertMessage: String, image : UIImage){
+        print("show alert")
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textfield) in
+            textfield.text = "Set Play 1"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak alert] (_) in
+            self.ref?.child("users").child((self.user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                let ft = val?["fieldType"] as? String ?? ""
+                let playName = alert?.textFields?[0].text!
+                print("playnAME\(playName)")
+                let sref = Storage.storage().reference().child(teamCode).child(ft).child("plays").child(playName!)
+                if let uploadData = UIImagePNGRepresentation(image){
+                    _ = sref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
+                        if let err = error{
+                            print("imageerror \(err)")
+                            return
+                        } else {
+                            _ = metadata!.downloadURL()
+                        }
+                    })
+                }
+                
+            })
+            
+        }))
+        //self.view?.window.present(alert, animated: true, completion: nil)
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+
+    
 }
+extension UIView{
+    
+    func takeScreenShot () -> UIImage{
+        print("take screen shot")
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
+        
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+        
+    }
+    
+}
+
