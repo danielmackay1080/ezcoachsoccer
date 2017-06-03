@@ -100,8 +100,8 @@ public class SevenVSevenInterface : SKScene{
         oplm7 = childNode(withName: "oplm7") as? SKSpriteNode!
         oprm7 = childNode(withName: "oprm7") as? SKSpriteNode!
         opstr7 = childNode(withName: "opstr7") as? SKSpriteNode!
-        savePlays = childNode(withName: "saveplaylabel7") as! SKSpriteNode!
-        spTitle = childNode(withName: "saveplaybg7") as! SKLabelNode!
+        savePlays = childNode(withName: "saveplaybg7") as! SKSpriteNode!
+        spTitle = childNode(withName: "saveplaylabel7") as! SKLabelNode!
         savePlays?.isHidden = true
         spTitle?.isHidden = true
         
@@ -236,7 +236,7 @@ public class SevenVSevenInterface : SKScene{
     
     func saveSetPlay(){
         print("savesetplay")
-        let scrShot = self.view?.takeScreenShot()
+        let scrShot = self.view?.takeScreenShot7()
         UIImageWriteToSavedPhotosAlbum(scrShot!, nil, nil, nil)
         
         savePlay(alertMessage: "Save a play", image: scrShot!)
@@ -263,7 +263,8 @@ public class SevenVSevenInterface : SKScene{
                             print("imageerror \(err)")
                             return
                         } else {
-                            _ = metadata!.downloadURL()
+                            let url = metadata!.downloadURL()
+                            self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).setValue(url?.absoluteString)
                         }
                     })
                 }
@@ -279,7 +280,7 @@ public class SevenVSevenInterface : SKScene{
 }
 extension UIView{
     
-    func takeScreenShot () -> UIImage{
+    func takeScreenShot7 () -> UIImage{
         print("take screen shot")
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         

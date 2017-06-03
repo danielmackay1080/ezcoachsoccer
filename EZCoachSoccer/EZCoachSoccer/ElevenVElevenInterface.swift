@@ -15,8 +15,9 @@ import Firebase
 
 public class ElevenVElevenInterface: SKScene{
     
-    var gk11, lcb11, rcb11, rb11,lb11,rcm11,cm11,lcm11,rf11,lf11,str11,ball11, savePlays, spTitle: SKSpriteNode?
+    var gk11, lcb11, rcb11, rb11,lb11,rcm11,cm11,lcm11,rf11,lf11,str11,ball11, savePlays: SKSpriteNode?
     var opgk11, oplcb11, oprcb11, oprb11, oplb11,oprcm11,opcm11,oplcm11,oprf11,oplf11,opstr11 : SKSpriteNode?
+    var spTitle : SKLabelNode?
     
     // formation animations
     // 4-3-3
@@ -111,7 +112,7 @@ public class ElevenVElevenInterface: SKScene{
         oplf11 = childNode(withName: "oplf11") as? SKSpriteNode!
         opstr11 = childNode(withName: "opstr11") as? SKSpriteNode!
         savePlays = childNode(withName: "saveplaybg11") as! SKSpriteNode!
-        spTitle = childNode(withName: "saveplaylabel11") as! SKSpriteNode!
+        spTitle = childNode(withName: "saveplaylabel11") as! SKLabelNode!
 
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         ref = Database.database().reference()
@@ -278,7 +279,7 @@ public class ElevenVElevenInterface: SKScene{
     
     func saveSetPlay(){
         print("savesetplay")
-        let scrShot = self.view?.takeScreenShot()
+        let scrShot = self.view?.takeScreenShot11()
         UIImageWriteToSavedPhotosAlbum(scrShot!, nil, nil, nil)
         
         savePlay(alertMessage: "Save a play", image: scrShot!)
@@ -305,7 +306,8 @@ public class ElevenVElevenInterface: SKScene{
                             print("imageerror \(err)")
                             return
                         } else {
-                            _ = metadata!.downloadURL()
+                            let url = metadata!.downloadURL()
+                            self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).setValue(url?.absoluteString)
                         }
                     })
                 }
@@ -320,7 +322,7 @@ public class ElevenVElevenInterface: SKScene{
 }
 extension UIView{
     
-    func takeScreenShot () -> UIImage{
+    func takeScreenShot11 () -> UIImage{
         print("take screen shot")
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         

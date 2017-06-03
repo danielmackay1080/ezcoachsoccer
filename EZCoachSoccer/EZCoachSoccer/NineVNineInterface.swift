@@ -15,8 +15,9 @@ import Firebase
 
 public class NineVNineInterface : SKScene{
     
-    var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9, savePlays, spTitle : SKSpriteNode?
+    var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9, savePlays : SKSpriteNode?
     var opgk9, opcb9, oplcb9, oprcb9, oplcm9, oprcm9, oprf9, opstr9, oplf9 : SKSpriteNode?
+    var spTitle : SKLabelNode?
     
     // formations
     // 3-2-3
@@ -97,7 +98,7 @@ public class NineVNineInterface : SKScene{
         oplf9 = childNode(withName: "oplf9") as? SKSpriteNode!
         opstr9 = childNode(withName: "opstr9") as? SKSpriteNode!
         savePlays = childNode(withName: "saveplaybg9") as! SKSpriteNode!
-        spTitle = childNode(withName: "saveplaylabel9") as! SKSpriteNode!
+        spTitle = childNode(withName: "saveplaylabel9") as! SKLabelNode!
         savePlays?.isHidden = true
         spTitle?.isHidden = true
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
@@ -247,7 +248,7 @@ public class NineVNineInterface : SKScene{
     
     func saveSetPlay(){
         print("savesetplay")
-        let scrShot = self.view?.takeScreenShot()
+        let scrShot = self.view?.takeScreenShot9()
         UIImageWriteToSavedPhotosAlbum(scrShot!, nil, nil, nil)
         
         savePlay(alertMessage: "Save a play", image: scrShot!)
@@ -274,7 +275,8 @@ public class NineVNineInterface : SKScene{
                             print("imageerror \(err)")
                             return
                         } else {
-                            _ = metadata!.downloadURL()
+                            let url = metadata!.downloadURL()
+                            self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).setValue(url?.absoluteString)
                         }
                     })
                 }
@@ -290,7 +292,7 @@ public class NineVNineInterface : SKScene{
 }
 extension UIView{
     
-    func takeScreenShot () -> UIImage{
+    func takeScreenShot9 () -> UIImage{
         print("take screen shot")
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         

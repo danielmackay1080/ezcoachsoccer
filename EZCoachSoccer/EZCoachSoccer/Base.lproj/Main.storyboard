@@ -1017,7 +1017,7 @@
         <!--Plays-->
         <scene sceneID="ZXt-hr-2Ha">
             <objects>
-                <viewController id="hFy-ab-ecg" sceneMemberID="viewController">
+                <viewController id="hFy-ab-ecg" customClass="ViewPlaysViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CkE-DG-IGS"/>
                         <viewControllerLayoutGuide type="bottom" id="vHC-zc-OVY"/>
@@ -1030,38 +1030,51 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play1" translatesAutoresizingMaskIntoConstraints="NO" id="VmS-hA-PM3">
-                                <rect key="frame" x="62" y="139" width="200" height="200"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nQM-mQ-Gq5">
+                                <rect key="frame" x="0.0" y="64" width="1024" height="655"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play2" translatesAutoresizingMaskIntoConstraints="NO" id="a9l-Ac-s6y">
-                                <rect key="frame" x="412" y="139" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play3" translatesAutoresizingMaskIntoConstraints="NO" id="yFG-Gd-bZo">
-                                <rect key="frame" x="761" y="139" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play1" translatesAutoresizingMaskIntoConstraints="NO" id="qUy-rG-436">
-                                <rect key="frame" x="412" y="407" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play4" translatesAutoresizingMaskIntoConstraints="NO" id="z2h-HL-nZ9">
-                                <rect key="frame" x="62" y="407" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="play2" translatesAutoresizingMaskIntoConstraints="NO" id="XD3-FD-yPP">
-                                <rect key="frame" x="761" y="407" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <color key="backgroundColor" white="1" alpha="0.25262164429530204" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vGr-n5-bH1">
+                                    <size key="itemSize" width="236" height="212"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ccell" id="7wp-Xm-VF9" customClass="CollectionViewCell" customModule="EZCoachSoccer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="236" height="212"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="236" height="212"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XpX-5Q-le0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="236" height="212"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <connections>
+                                            <outlet property="playsImage" destination="XpX-5Q-le0" id="Qap-gh-pHC"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="hFy-ab-ecg" id="7D4-76-CQL"/>
+                                    <outlet property="delegate" destination="hFy-ab-ecg" id="oEv-7H-Iyy"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Plays" id="Qk0-G3-rNJ"/>
+                    <connections>
+                        <outlet property="playsView" destination="nQM-mQ-Gq5" id="odb-TO-H2h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jM3-Sv-CQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4840" y="2830"/>
+            <point key="canvasLocation" x="4839.84375" y="2829.6875"/>
         </scene>
         <!--Update Account View Controller-->
         <scene sceneID="UAS-JI-COe">
@@ -1356,10 +1369,6 @@
         <image name="formation433_11" width="752" height="655"/>
         <image name="formation442_11" width="752" height="655"/>
         <image name="formation532_11" width="752" height="655"/>
-        <image name="play1" width="462" height="350"/>
-        <image name="play2" width="345" height="258"/>
-        <image name="play3" width="1280" height="720"/>
-        <image name="play4" width="602" height="425"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aqh-4d-hwj"/>

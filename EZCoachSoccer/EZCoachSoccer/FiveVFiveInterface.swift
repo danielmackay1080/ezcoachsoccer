@@ -198,7 +198,7 @@ public class FiveVFiveInterface: SKScene{
     
     func saveSetPlay(){
         print("savesetplay")
-        let scrShot = self.view?.takeScreenShot()
+        let scrShot = self.view?.takeScreenShot5()
         UIImageWriteToSavedPhotosAlbum(scrShot!, nil, nil, nil)
         
         savePlay(alertMessage: "Save a play", image: scrShot!)
@@ -225,7 +225,8 @@ public class FiveVFiveInterface: SKScene{
                             print("imageerror \(err)")
                             return
                         } else {
-                            _ = metadata!.downloadURL()
+                            let url = metadata!.downloadURL()
+                        self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).setValue(url?.absoluteString)
                         }
                     })
                 }
@@ -241,7 +242,7 @@ public class FiveVFiveInterface: SKScene{
 }
 extension UIView{
     
-    func takeScreenShot () -> UIImage{
+    func takeScreenShot5 () -> UIImage{
         print("take screen shot")
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
         
