@@ -27,8 +27,8 @@ public class FiveVFiveInterface: SKScene{
     var rf5 : SKSpriteNode?
     var oprf5 : SKSpriteNode?
     var ball5 : SKSpriteNode?
-    var spTitle : SKLabelNode?
-    var savePlays : SKSpriteNode?
+    var spTitle, scTitle : SKLabelNode?
+    var savePlays, savecf : SKSpriteNode?
     var ref : DatabaseReference?
     var storage : StorageReference?
     var selectForm = ""
@@ -80,11 +80,15 @@ public class FiveVFiveInterface: SKScene{
         ball5 = childNode(withName: "ball5") as! SKSpriteNode!
         spTitle = childNode(withName: "saveplaylabel5") as! SKLabelNode!
         savePlays = childNode(withName: "saveplaybg5") as! SKSpriteNode!
+        scTitle = childNode(withName: "savecflabel5") as! SKLabelNode!
+        savecf = childNode(withName: "savecfbg5") as! SKSpriteNode!
         
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         
         spTitle?.isHidden = true
         savePlays?.isHidden = true
+        scTitle?.isHidden = true
+        savecf?.isHidden = true
         
         ref = Database.database().reference()
         storage = Storage.storage().reference()
@@ -118,11 +122,16 @@ public class FiveVFiveInterface: SKScene{
         if (!isPlayer!){
         spTitle?.isHidden = false
         savePlays?.isHidden = false
+        scTitle?.isHidden = false
+        savecf?.isHidden = false
         }
         for t in touches{
             let loc = t.location(in: self)
             if (savePlays?.contains(loc))!{
                 saveSetPlay()
+            }
+            if (savecf?.contains(loc))!{
+                SaveCustomFormation(alertMessage: "Save Custom Formation")
             }
         }
 
@@ -233,6 +242,35 @@ public class FiveVFiveInterface: SKScene{
 
             })
         
+        }))
+        //self.view?.window.present(alert, animated: true, completion: nil)
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    func SaveCustomFormation(alertMessage : String){
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textfield) in
+            textfield.text = "Custom Formation 1"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak alert] (_) in
+            self.ref?.child("users").child((self.user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                let ft = val?["fieldType"] as? String ?? ""
+                let fName = alert?.textFields?[0].text!
+                print("cf\(fName)")
+            self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
+            self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb5?.name)!).child("x").setValue(self.lcb5?.position.x)
+            self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb5?.name)!).child("y").setValue(self.lcb5?.position.y)
+            self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb5?.name)!).child("x").setValue(self.rcb5?.position.x)
+            self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb5?.name)!).child("y").setValue(self.rcb5?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lf5?.name)!).child("x").setValue(self.lf5?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lf5?.name)!).child("y").setValue(self.lf5?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rf5?.name)!).child("x").setValue(self.rf5?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rf5?.name)!).child("y").setValue(self.rf5?.position.y)
+            })
+            
         }))
         //self.view?.window.present(alert, animated: true, completion: nil)
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)

@@ -113,6 +113,8 @@ public class ElevenVElevenInterface: SKScene{
         opstr11 = childNode(withName: "opstr11") as? SKSpriteNode!
         savePlays = childNode(withName: "saveplaybg11") as! SKSpriteNode!
         spTitle = childNode(withName: "saveplaylabel11") as! SKLabelNode!
+        savePlays?.isHidden = true
+        spTitle?.isHidden = true
 
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         ref = Database.database().reference()
@@ -318,6 +320,48 @@ public class ElevenVElevenInterface: SKScene{
         //self.view?.window.present(alert, animated: true, completion: nil)
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
+    
+    func SaveCustomFormation(alertMessage : String){
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textfield) in
+            textfield.text = "Custom Formation 1"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak alert] (_) in
+            self.ref?.child("users").child((self.user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                let ft = val?["fieldType"] as? String ?? ""
+                let fName = alert?.textFields?[0].text!
+                print("cf\(fName)")
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb11?.name)!).child("x").setValue(self.lcb11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb11?.name)!).child("y").setValue(self.lcb11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb11?.name)!).child("x").setValue(self.rcb11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb11?.name)!).child("y").setValue(self.rcb11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lb11?.name)!).child("x").setValue(self.lb11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lb11?.name)!).child("y").setValue(self.lb11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rb11?.name)!).child("x").setValue(self.rb11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rb11?.name)!).child("y").setValue(self.rb11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcm11?.name)!).child("x").setValue(self.lcm11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcm11?.name)!).child("y").setValue(self.lcm11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcm11?.name)!).child("x").setValue(self.rcm11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcm11?.name)!).child("y").setValue(self.rcm11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.cm11?.name)!).child("x").setValue(self.cm11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.cm11?.name)!).child("y").setValue(self.cm11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lf11?.name)!).child("x").setValue(self.lf11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lf11?.name)!).child("y").setValue(self.lf11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rf11?.name)!).child("x").setValue(self.rf11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rf11?.name)!).child("y").setValue(self.rf11?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.str11?.name)!).child("x").setValue(self.str11?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.str11?.name)!).child("y").setValue(self.str11?.position.y)
+            })
+            
+        }))
+        //self.view?.window.present(alert, animated: true, completion: nil)
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+
 
 }
 extension UIView{

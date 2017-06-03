@@ -275,6 +275,41 @@ public class SevenVSevenInterface : SKScene{
         //self.view?.window.present(alert, animated: true, completion: nil)
         self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
+    
+    func SaveCustomFormation(alertMessage : String){
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addTextField { (textfield) in
+            textfield.text = "Custom Formation 1"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { [weak alert] (_) in
+            self.ref?.child("users").child((self.user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let teamCode = val?["teamID"] as? String ?? ""
+                let ft = val?["fieldType"] as? String ?? ""
+                let fName = alert?.textFields?[0].text!
+                print("cf\(fName)")
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb7?.name)!).child("x").setValue(self.lcb7?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb7?.name)!).child("y").setValue(self.lcb7?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb7?.name)!).child("x").setValue(self.rcb7?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb7?.name)!).child("y").setValue(self.rcb7?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.cm7?.name)!).child("x").setValue(self.cm7?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.cm7?.name)!).child("y").setValue(self.cm7?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rm7?.name)!).child("x").setValue(self.rm7?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rm7?.name)!).child("y").setValue(self.rm7?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lm7?.name)!).child("x").setValue(self.lm7?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lm7?.name)!).child("y").setValue(self.lm7?.position.y)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.str7?.name)!).child("x").setValue(self.str7?.position.x)
+                self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.str7?.name)!).child("y").setValue(self.str7?.position.y)
+                
+                            })
+            
+        }))
+        //self.view?.window.present(alert, animated: true, completion: nil)
+        self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+
 
     
 }
