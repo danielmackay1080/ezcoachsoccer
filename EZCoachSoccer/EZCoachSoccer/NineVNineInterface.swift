@@ -115,6 +115,7 @@ public class NineVNineInterface : SKScene{
                 self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
                     let val2 = snapshot.value as? NSDictionary
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    let ft = val2?["fieldType"] as? String ?? ""
                     if (self.selectForm == "3-2-3"){
                         self.form323()
                     } else if (self.selectForm == "2-3-3") {
@@ -125,7 +126,38 @@ public class NineVNineInterface : SKScene{
                         self.form2222()
                     } else if (self.selectForm == "3-1-2-1-1"){
                         self.form3131()
+                    } else if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).hasChild(self.selectForm)){
+                        
+                        let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let lfx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lf9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lfy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lf9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rfx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rf9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rfy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rf9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let cbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.cb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let cby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.cb9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let strx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.str9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let stry = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.str9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let lcmx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcm9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lcmy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcm9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rcmx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcm9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rcmy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcm9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        
+                        print("lcbx \(lcbx)")
+                        
+                        self.lcb9?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                        self.rcb9?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
+                        self.rf9?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
+                        self.lf9?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                        self.cb9?.run(SKAction.move(to: CGPoint(x: cbx, y: cby), duration: 0.5))
+                        self.str9?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                        self.rcm9?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
+                        self.lcm9?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
+                        
                     }
+
                     
                 })
             })

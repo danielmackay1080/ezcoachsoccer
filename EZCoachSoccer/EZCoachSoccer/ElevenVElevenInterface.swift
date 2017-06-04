@@ -131,6 +131,7 @@ public class ElevenVElevenInterface: SKScene{
                 self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
                     let val2 = snapshot.value as? NSDictionary
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    let ft = val2?["fieldType"] as? String ?? ""
                     if (self.selectForm == "4-3-3"){
                         self.form433()
                     } else if (self.selectForm == "4-2-3-1") {
@@ -141,7 +142,44 @@ public class ElevenVElevenInterface: SKScene{
                         self.form343()
                     } else if (self.selectForm == "5-3-2"){
                         self.form532()
+                    } else if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).hasChild(self.selectForm)){
+                        
+                        let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let lfx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lf11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lfy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lf11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rfx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rf11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rfy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rf11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let cmx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.cm11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let cmy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.cm11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let strx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.str11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let stry = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.str11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let lcmx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcm11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lcmy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcm11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rcmx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcm11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rcmy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcm11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let lbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lb11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rb11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        
+                        print("lcbx \(lcbx)")
+                        
+                        self.lcb11?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                        self.rcb11?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
+                        self.rf11?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
+                        self.lf11?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                        self.cm11?.run(SKAction.move(to: CGPoint(x: cmx, y: cmy), duration: 0.5))
+                        self.str11?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                        self.rcm11?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
+                        self.lcm11?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
+                        self.rb11?.run(SKAction.move(to: CGPoint(x: rbx, y: rby), duration: 0.5))
+                        self.lb11?.run(SKAction.move(to: CGPoint(x: lbx, y: lby), duration: 0.5))
+                        
                     }
+
                     
                 })
             })
@@ -153,6 +191,8 @@ public class ElevenVElevenInterface: SKScene{
         if (!isPlayer!){
             spTitle?.isHidden = false
             savePlays?.isHidden = false
+            savcf?.isHidden = false
+            scTitle?.isHidden = false
         }
         for t in touches{
             let loc = t.location(in: self)

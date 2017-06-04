@@ -121,6 +121,7 @@ public class SevenVSevenInterface : SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
                     let val2 = snapshot.value as? NSDictionary
+                    let ft = val2?["fieldType"] as? String ?? ""
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
                     if (self.selectForm == "3-3"){
                         self.form33()
@@ -132,7 +133,32 @@ public class SevenVSevenInterface : SKScene{
                         self.form2121()
                     } else if (self.selectForm == "1-3-2"){
                         self.form132()
+                    }else if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).hasChild(self.selectForm)){
+                        
+                        let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let lfx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lm7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let lfy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lm7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let rfx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rm7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let rfy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rm7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let cmx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.cm7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let cmy = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.cm7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        let strx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.str7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
+                        let stry = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.str7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
+                        
+                        print("lcbx \(lcbx)")
+                        
+                        self.lcb7?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                        self.rcb7?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
+                        self.rm7?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
+                        self.lm7?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                        self.cm7?.run(SKAction.move(to: CGPoint(x: cmx, y: cmy), duration: 0.5))
+                        self.str7?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                        
                     }
+
                     
                 })
             })
