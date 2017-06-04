@@ -30,8 +30,8 @@ public class SevenVSevenInterface : SKScene{
     var oplm7: SKSpriteNode?
     var oprm7 : SKSpriteNode?
     var opstr7: SKSpriteNode?
-    var spTitle : SKLabelNode?
-    var savePlays : SKSpriteNode?
+    var spTitle, scTitle : SKLabelNode?
+    var savePlays,savecf : SKSpriteNode?
     
     var ball7 : SKSpriteNode?
     var ref : DatabaseReference?
@@ -102,8 +102,12 @@ public class SevenVSevenInterface : SKScene{
         opstr7 = childNode(withName: "opstr7") as? SKSpriteNode!
         savePlays = childNode(withName: "saveplaybg7") as! SKSpriteNode!
         spTitle = childNode(withName: "saveplaylabel7") as! SKLabelNode!
+        scTitle = childNode(withName: "savecflabel7") as! SKLabelNode!
+        savecf = childNode(withName: "savecfbg7") as! SKSpriteNode!
         savePlays?.isHidden = true
         spTitle?.isHidden = true
+        scTitle?.isHidden = true
+        savecf?.isHidden = true
         
         ball7 = childNode(withName: "ball7") as? SKSpriteNode!
         
@@ -140,11 +144,16 @@ public class SevenVSevenInterface : SKScene{
         if (!isPlayer!){
             savePlays?.isHidden = false
             spTitle?.isHidden = false
+            scTitle?.isHidden = false
+            savecf?.isHidden = false
         }
         for t in touches{
             let loc = t.location(in: self)
             if (savePlays?.contains(loc))!{
                 saveSetPlay()
+            }
+            if (savecf?.contains(loc))!{
+                SaveCustomFormation(alertMessage: "Save Custom Formation")
             }
         }
         
@@ -255,7 +264,7 @@ public class SevenVSevenInterface : SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let playName = alert?.textFields?[0].text!
-                print("playnAME\(playName)")
+                print("playnAME\(String(describing: playName))")
                 let sref = Storage.storage().reference().child(teamCode).child(ft).child("plays").child(playName!)
                 if let uploadData = UIImagePNGRepresentation(image){
                     _ = sref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -288,7 +297,7 @@ public class SevenVSevenInterface : SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let fName = alert?.textFields?[0].text!
-                print("cf\(fName)")
+                print("cf\(String(describing: fName))")
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb7?.name)!).child("x").setValue(self.lcb7?.position.x)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb7?.name)!).child("y").setValue(self.lcb7?.position.y)

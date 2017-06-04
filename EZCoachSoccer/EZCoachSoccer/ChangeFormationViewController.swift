@@ -15,7 +15,7 @@ import SystemConfiguration
 
 class ChangeFormationViewController: ViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var arr = ["4-1-4-1" , "3-1-4-2"]
+    var arr = [String]()
     
     
     @IBOutlet weak var form1: UIButton!
@@ -95,6 +95,15 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
                     }
  
                 //}
+                self.ref?.child("teams").child(tid).child("customFormations").child(ft).observe(.value, with: { (snapshot) in
+                    for child in snapshot.children{
+                        let item = child as! DataSnapshot
+                        print("cf snaps \(String(describing: item.value))")
+                        let cftitle = item.childSnapshot(forPath: "title").value
+                        self.arr.append(cftitle as! String)
+                    }
+                    self.cFormationTable.reloadData()
+                })
             })
             
         })
@@ -112,7 +121,8 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        saveLoadedFormation(title: arr[indexPath.row])
+        //self.tabBarController?.selectedIndex = 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

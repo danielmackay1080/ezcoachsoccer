@@ -36,7 +36,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         }
         dbRef = Database.database().reference()
         let user  = Auth.auth().currentUser
-        print("users \(user)")
+        print("users \(String(describing: user))")
         if (user != nil){
             DispatchQueue.main.async {
                 //self.dbRef?.child("users").child((user?.uid)!).obs

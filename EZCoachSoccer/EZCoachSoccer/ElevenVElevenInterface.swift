@@ -15,9 +15,9 @@ import Firebase
 
 public class ElevenVElevenInterface: SKScene{
     
-    var gk11, lcb11, rcb11, rb11,lb11,rcm11,cm11,lcm11,rf11,lf11,str11,ball11, savePlays: SKSpriteNode?
+    var gk11, lcb11, rcb11, rb11,lb11,rcm11,cm11,lcm11,rf11,lf11,str11,ball11, savePlays, savcf: SKSpriteNode?
     var opgk11, oplcb11, oprcb11, oprb11, oplb11,oprcm11,opcm11,oplcm11,oprf11,oplf11,opstr11 : SKSpriteNode?
-    var spTitle : SKLabelNode?
+    var spTitle, scTitle : SKLabelNode?
     
     // formation animations
     // 4-3-3
@@ -51,16 +51,16 @@ public class ElevenVElevenInterface: SKScene{
     var lcb4231 = SKAction.move(to: CGPoint(x: 429.25, y: -101.214), duration: 1)
     var cm4231 = SKAction.move(to: CGPoint(x: 302.203, y: -77.689), duration: 1)
     var lcm4231 = SKAction.move(to: CGPoint(x: 302.203, y: 72.311), duration: 1)
-    var rf4231 = SKAction.move(to: CGPoint(x: 174.547, y: -101.214), duration: 1)
+    var rf4231 = SKAction.move(to: CGPoint(x: 174.547, y: 201.214), duration: 1)
     var lf4231 = SKAction.move(to: CGPoint(x: 175.474, y: -2.689), duration: 1)
-    var rcm4231 = SKAction.move(to: CGPoint(x: 175.474, y: -101.214), duration: 1)
+    var rcm4231 = SKAction.move(to: CGPoint(x: 175.474, y: -201.214), duration: 1)
     var str4231 = SKAction.move(to: CGPoint(x: 75.474, y: -2.689), duration: 1)
     
     // 3-4-3
     var rb343 = SKAction.move(to: CGPoint(x: 429.25, y: 198.786), duration: 1)
     var rcb343 = SKAction.move(to: CGPoint(x: 429.25, y: -15.739), duration: 1)
     var lcb343 = SKAction.move(to: CGPoint(x: 429.25, y: -215.739), duration: 1)
-    var lf343 = SKAction.move(to: CGPoint(x: 266.727, y: 298.786), duration: 1)
+    var lf343 = SKAction.move(to: CGPoint(x: 266.727, y: -298.786), duration: 1)
     var lcm343 = SKAction.move(to: CGPoint(x: 266.727, y: 72.311), duration: 1)
     var cm343 = SKAction.move(to: CGPoint(x: 266.727, y: -102.689), duration: 1)
     var lb343 = SKAction.move(to: CGPoint(x: 266.727, y: 315.739), duration: 1)
@@ -100,6 +100,7 @@ public class ElevenVElevenInterface: SKScene{
         lf11 = childNode(withName: "lf11") as? SKSpriteNode!
         str11 = childNode(withName: "str11") as? SKSpriteNode!
         
+        
         opgk11 = childNode(withName: "opgk11") as? SKSpriteNode!
         oplcb11 = childNode(withName: "oplcb11") as? SKSpriteNode!
         oprcb11 = childNode(withName: "oprcb11") as? SKSpriteNode!
@@ -113,8 +114,12 @@ public class ElevenVElevenInterface: SKScene{
         opstr11 = childNode(withName: "opstr11") as? SKSpriteNode!
         savePlays = childNode(withName: "saveplaybg11") as! SKSpriteNode!
         spTitle = childNode(withName: "saveplaylabel11") as! SKLabelNode!
+        scTitle = childNode(withName: "savecflabel11") as! SKLabelNode!
+        savcf = childNode(withName: "savecfbg11") as! SKSpriteNode!
         savePlays?.isHidden = true
         spTitle?.isHidden = true
+        scTitle?.isHidden = true
+        savcf?.isHidden = true
 
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         ref = Database.database().reference()
@@ -153,6 +158,9 @@ public class ElevenVElevenInterface: SKScene{
             let loc = t.location(in: self)
             if (savePlays?.contains(loc))!{
                 saveSetPlay()
+            }
+            if (savcf?.contains(loc))!{
+                SaveCustomFormation(alertMessage: "Save Custom Formation")
             }
         }
         
@@ -300,7 +308,7 @@ public class ElevenVElevenInterface: SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let playName = alert?.textFields?[0].text!
-                print("playnAME\(playName)")
+                print("playnAME\(String(describing: playName))")
                 let sref = Storage.storage().reference().child(teamCode).child(ft).child("plays").child(playName!)
                 if let uploadData = UIImagePNGRepresentation(image){
                     _ = sref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -333,7 +341,7 @@ public class ElevenVElevenInterface: SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let fName = alert?.textFields?[0].text!
-                print("cf\(fName)")
+                print("cf\(String(describing: fName))")
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb11?.name)!).child("x").setValue(self.lcb11?.position.x)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb11?.name)!).child("y").setValue(self.lcb11?.position.y)

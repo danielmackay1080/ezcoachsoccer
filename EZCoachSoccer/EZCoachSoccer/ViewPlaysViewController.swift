@@ -47,7 +47,7 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
                             })
 
                             
-                            print("collection child \(item.value)")
+                            print("collection child \(String(describing: item.value))")
                         }
                     })
                 })

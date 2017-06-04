@@ -15,9 +15,9 @@ import Firebase
 
 public class NineVNineInterface : SKScene{
     
-    var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9, savePlays : SKSpriteNode?
+    var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9, savePlays, savecf : SKSpriteNode?
     var opgk9, opcb9, oplcb9, oprcb9, oplcm9, oprcm9, oprf9, opstr9, oplf9 : SKSpriteNode?
-    var spTitle : SKLabelNode?
+    var spTitle, scTitle : SKLabelNode?
     
     // formations
     // 3-2-3
@@ -54,11 +54,11 @@ public class NineVNineInterface : SKScene{
     var rf2222 = SKAction.move(to: CGPoint(x: 103.689, y: 63.35), duration: 1)
     var str2222 = SKAction.move(to: CGPoint(x: 103.689, y: -107.033), duration: 1)
     var rcb2222 = SKAction.move(to: CGPoint(x: 200.003, y: 246.904), duration: 1)
-    var lf2222 = SKAction.move(to: CGPoint(x: 200.003, y: 289.428), duration: 1)
+    var lf2222 = SKAction.move(to: CGPoint(x: 200.003, y: -289.428), duration: 1)
     var lcb2222 = SKAction.move(to: CGPoint(x: 437.816, y: -147.008), duration: 1)
     var cb2222 = SKAction.move(to: CGPoint(x: 437.816, y: 100.158), duration: 1)
     var rcm2222 = SKAction.move(to: CGPoint(x: 292.907, y: 63.35), duration: 1)
-    var lcm2222 = SKAction.move(to: CGPoint(x: 292.907, y: 289.428), duration: 1)
+    var lcm2222 = SKAction.move(to: CGPoint(x: 292.907, y: -93.929), duration: 1)
     
     // 3-1-3-1
     var rcb3131 = SKAction.move(to: CGPoint(x: 200.003, y: 200.158), duration: 1)
@@ -68,7 +68,7 @@ public class NineVNineInterface : SKScene{
     var rcm3131 = SKAction.move(to: CGPoint(x: 322.816, y: -7.033), duration: 1)
     var rf3131 = SKAction.move(to: CGPoint(x: 200.003, y: -7.033), duration: 1)
     var str3131 = SKAction.move(to: CGPoint(x: 84.614, y: -7.033), duration: 1)
-    var lf3131 = SKAction.move(to: CGPoint(x: 200.003, y: 234.247), duration: 1)
+    var lf3131 = SKAction.move(to: CGPoint(x: 200.003, y: -234.247), duration: 1)
     
     var ref : DatabaseReference?
     var selectForm = ""
@@ -99,6 +99,10 @@ public class NineVNineInterface : SKScene{
         opstr9 = childNode(withName: "opstr9") as? SKSpriteNode!
         savePlays = childNode(withName: "saveplaybg9") as! SKSpriteNode!
         spTitle = childNode(withName: "saveplaylabel9") as! SKLabelNode!
+        scTitle = childNode(withName: "savecflabel9") as! SKLabelNode!
+        savecf = childNode(withName: "savecfbg9") as! SKSpriteNode!
+        savecf?.isHidden = true
+        scTitle?.isHidden = true
         savePlays?.isHidden = true
         spTitle?.isHidden = true
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
@@ -119,7 +123,7 @@ public class NineVNineInterface : SKScene{
                         self.form242()
                     } else if (self.selectForm == "2-2-2-2"){
                         self.form2222()
-                    } else if (self.selectForm == "3-1-3-1"){
+                    } else if (self.selectForm == "3-1-2-1-1"){
                         self.form3131()
                     }
                     
@@ -133,11 +137,16 @@ public class NineVNineInterface : SKScene{
         if (!isPlayer!){
             spTitle?.isHidden = false
             savePlays?.isHidden = false
+            savecf?.isHidden = false
+            scTitle?.isHidden = false
         }
         for t in touches{
             let loc = t.location(in: self)
             if (savePlays?.contains(loc))!{
                 saveSetPlay()
+            }
+            if (savecf?.contains(loc))!{
+                SaveCustomFormation(alertMessage: "Save Custom Formation")
             }
         }
 
@@ -267,7 +276,7 @@ public class NineVNineInterface : SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let playName = alert?.textFields?[0].text!
-                print("playnAME\(playName)")
+                print("playnAME\(String(describing: playName))")
                 let sref = Storage.storage().reference().child(teamCode).child(ft).child("plays").child(playName!)
                 if let uploadData = UIImagePNGRepresentation(image){
                     _ = sref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -300,7 +309,7 @@ public class NineVNineInterface : SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let fName = alert?.textFields?[0].text!
-                print("cf\(fName)")
+                print("cf\(String(describing: fName))")
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb9?.name)!).child("x").setValue(self.lcb9?.position.x)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb9?.name)!).child("y").setValue(self.lcb9?.position.y)

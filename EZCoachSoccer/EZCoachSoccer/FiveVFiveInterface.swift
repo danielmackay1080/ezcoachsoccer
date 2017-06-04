@@ -64,7 +64,7 @@ public class FiveVFiveInterface: SKScene{
     var rf112 = SKAction.move(to: CGPoint(x: 370.922, y: 5.447), duration: 1)
     var rcb112 = SKAction.move(to: CGPoint(x: 208.71, y: 0.16), duration: 1)
     var lcb112 = SKAction.move(to: CGPoint(x: 70.922, y: -147.937), duration: 1)
-    var lf112 = SKAction.move(to: CGPoint(x: 70.922, y: -152.063), duration: 1)
+    var lf112 = SKAction.move(to: CGPoint(x: 70.922, y: 152.063), duration: 1)
     
     public override func didMove(to view: SKView) {
         gk5 = childNode(withName: "gk5") as! SKSpriteNode!
@@ -226,7 +226,7 @@ public class FiveVFiveInterface: SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let playName = alert?.textFields?[0].text!
-                print("playnAME\(playName)")
+                print("playnAME\(String(describing: playName))")
                 let sref = Storage.storage().reference().child(teamCode).child(ft).child("plays").child(playName!)
                 if let uploadData = UIImagePNGRepresentation(image){
                    _ = sref.putData(uploadData, metadata: nil, completion: { (metadata, error) in
@@ -259,7 +259,7 @@ public class FiveVFiveInterface: SKScene{
                 let teamCode = val?["teamID"] as? String ?? ""
                 let ft = val?["fieldType"] as? String ?? ""
                 let fName = alert?.textFields?[0].text!
-                print("cf\(fName)")
+                print("cf\(String(describing: fName))")
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb5?.name)!).child("x").setValue(self.lcb5?.position.x)
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb5?.name)!).child("y").setValue(self.lcb5?.position.y)

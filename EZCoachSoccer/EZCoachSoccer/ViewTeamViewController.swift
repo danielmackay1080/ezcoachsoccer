@@ -44,7 +44,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             self.coachName.text! = val?["coachName"] as? String ?? ""
             self.idLabel.text! = self.tid
             let ref2 = self.ref?.child("teams").child(self.tid).child("players")
-            let storage = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
+            _ = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
                 if let error = error {
                     print("images loading error \(error)")
                 } else {
@@ -134,7 +134,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             print("didSelectAssets")
             print("assets \(assets)")
             if (assets.count > 0){
-            let select  = assets[0].fetchOriginalImageWithCompleteBlock({ (selected, _: [AnyHashable : Any]?) in
+            _  = assets[0].fetchOriginalImageWithCompleteBlock({ (selected, _: [AnyHashable : Any]?) in
                 self.teamLogo.setImage(selected, for: .normal)
                 self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
                     let val = snapshot.value as? NSDictionary
@@ -146,7 +146,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                                 print("imageerror \(err)")
                                 return
                             } else {
-                                let downloadURL = metadata!.downloadURL()
+                                _ = metadata!.downloadURL()
                             }
                         })
                     }
@@ -160,43 +160,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
         present(imPicker, animated: true, completion: nil)
         }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        var selected : UIImage?
-        
-        if let pickedEdit = info["UIImagePickerControllerEditedImage"]{
-            selected = pickedEdit as? UIImage
-            
-        } else if let pickedImage = info["UIImagePickerControllerOriginalImage"]{
-            selected = pickedImage as? UIImage
-        }
-        
-        if let select = selected{
-            teamLogo.setImage(select, for: .normal)
-            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-                let val = snapshot.value as? NSDictionary
-                self.tid = val?["teamID"] as? String ?? ""
-                let storage = Storage.storage().reference().child(self.tid).child("teamCrest.png")
-                if let uploadData = UIImagePNGRepresentation(self.teamLogo.currentImage!){
-                    storage.putData(uploadData, metadata: nil, completion: { (metadata, error) in
-                        if let err = error{
-                            print("imageerror \(err)")
-                            return
-                        } else {
-                            let downloadURL = metadata!.downloadURL()
-                        }
-                    })
-                }
-
-            })
-                    }
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true, completion: nil)
-    }
-    
     
     /*
     // MARK: - Navigation

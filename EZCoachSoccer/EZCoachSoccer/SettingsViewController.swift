@@ -29,7 +29,7 @@ class SettingsViewController: ViewController {
         if (FBSDKAccessToken.current() != nil){
             editAccountButton.isHidden = true
         }
-        let user = Auth.auth().currentUser
+        _ = Auth.auth().currentUser
         //print("user provide \(user?.providerID)")
        
         // Do any additional setup after loading the view.
