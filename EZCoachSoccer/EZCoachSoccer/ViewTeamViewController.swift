@@ -93,7 +93,8 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        //teamTable.setEditing(true, animated: true)
+        //tableView.isEditing = true
     }
     
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -109,6 +110,23 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrPlay.count
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete){
+            if (arrPlay.count > 0){
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                self.tid = val?["teamID"] as? String ?? ""
+                self.ref?.child("teams").child(self.tid).child("players").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
+                self.arrPlay.remove(at: indexPath.row)
+                tableView.reloadData()
+            })
+            }
+        }
     }
     
 
