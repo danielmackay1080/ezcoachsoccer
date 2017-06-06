@@ -37,6 +37,8 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
         ref = Database.database().reference()
         user = Auth.auth().currentUser
         
+        print("anon \(user?.uid)")
+        if (user != nil){
         ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
             let tid = val?["teamID"] as? String ?? ""
@@ -107,6 +109,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
             })
             
         })
+        }
 
         // Do any additional setup after loading the view.
     }
@@ -155,6 +158,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
     }
     
     func saveLoadedFormation (title : String){
+        if (user != nil || !(Auth.auth().currentUser?.isAnonymous)!){
         ref?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
             let tid = val?["teamID"] as? String ?? ""
@@ -165,6 +169,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
             //FieldViewController.scn?.sceneDidLoad()
             FieldViewController.v?.presentScene(FieldViewController.scn)
             
+        }
         }
             self.tabBarController?.selectedIndex = 1
     }

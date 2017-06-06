@@ -84,6 +84,9 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 self.teamTable.reloadData()
             })
         })
+        if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){
+            teamTable.setEditing(false, animated: false)
+        }
     }
 
     override func didReceiveMemoryWarning() {

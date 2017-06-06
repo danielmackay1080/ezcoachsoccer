@@ -92,9 +92,9 @@ class FieldViewController: UIViewController {
             
         })
         { (error) in
-            print(error.localizedDescription)
+            print("field error \(error.localizedDescription)")
         }
-         print("ft \(ft)")
+         //print("ft \(ft)")
         
         
     }

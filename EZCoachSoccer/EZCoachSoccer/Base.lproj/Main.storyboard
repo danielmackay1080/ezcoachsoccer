@@ -691,7 +691,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="Ock-8W-1du"/>
+                    <tabBarItem key="tabBarItem" title="" image="icons8-Player Shirt-50" id="Ock-8W-1du">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-5"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="AddplayerButton" destination="R6k-LC-Mhd" id="HU3-xQ-Svq"/>
                         <outlet property="coachName" destination="FZJ-lb-903" id="PBm-6R-siT"/>
@@ -704,7 +707,7 @@
             </objects>
             <point key="canvasLocation" x="4839.84375" y="-787.5"/>
         </scene>
-        <!--Field-->
+        <!--Field View Controller-->
         <scene sceneID="6Z5-ug-JGV">
             <objects>
                 <viewController id="oKy-ub-c7f" customClass="FieldViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -717,7 +720,8 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Field" image="ball" id="s39-GE-0K0">
+                    <tabBarItem key="tabBarItem" title="" image="icons8-Stadium-50" id="s39-GE-0K0">
+                        <inset key="imageInsets" minX="0.0" minY="8" maxX="0.0" maxY="-6"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems>
@@ -730,7 +734,7 @@
             </objects>
             <point key="canvasLocation" x="4840" y="74"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller-->
         <scene sceneID="FJs-wj-b1p">
             <objects>
                 <viewController id="Wlf-zU-JW1" customClass="SettingsViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -829,7 +833,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="85C-V7-6ub"/>
+                    <tabBarItem key="tabBarItem" title="" image="icons8-Settings-50" id="85C-V7-6ub">
+                        <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="deleteTeamButton" destination="bD7-S4-cXc" id="YF0-96-3Gc"/>
@@ -841,7 +847,7 @@
             </objects>
             <point key="canvasLocation" x="4840" y="945"/>
         </scene>
-        <!--Change Formations-->
+        <!--Change Formation View Controller-->
         <scene sceneID="FVy-QB-2PG">
             <objects>
                 <viewController id="c1d-mf-E2j" customClass="ChangeFormationViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -971,7 +977,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Change Formations" id="a8P-XJ-X29"/>
+                    <tabBarItem key="tabBarItem" title="" image="icons8-Player Change-50" id="a8P-XJ-X29">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="cFormationTable" destination="buK-l4-r3I" id="0xZ-xU-uss"/>
                         <outlet property="form1" destination="5Ed-Xj-VcI" id="B8b-4S-eLU"/>
@@ -1038,7 +1046,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Plays" id="Qk0-G3-rNJ"/>
+                    <tabBarItem key="tabBarItem" title="Plays" image="icons8-Soccer Corner-50" id="Qk0-G3-rNJ">
+                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-3"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="playsView" destination="nQM-mQ-Gq5" id="odb-TO-H2h"/>
                     </connections>
@@ -1315,6 +1325,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.016947948890000002" green="0.2480846095" blue="0.03052519851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="C72-cF-Eff" kind="relationship" relationship="viewControllers" id="fNM-F1-5JA"/>
@@ -1331,7 +1342,6 @@
     </scenes>
     <resources>
         <image name="FieldInterface" width="1024" height="749"/>
-        <image name="ball" width="24" height="23"/>
         <image name="ezcoachbg" width="1921" height="1079"/>
         <image name="ezcoachlogo" width="261" height="282"/>
         <image name="ezcoachsoccerbg" width="461" height="307"/>
@@ -1340,6 +1350,11 @@
         <image name="formation433_11" width="752" height="655"/>
         <image name="formation442_11" width="752" height="655"/>
         <image name="formation532_11" width="752" height="655"/>
+        <image name="icons8-Player Change-50" width="50" height="50"/>
+        <image name="icons8-Player Shirt-50" width="50" height="50"/>
+        <image name="icons8-Settings-50" width="50" height="50"/>
+        <image name="icons8-Soccer Corner-50" width="50" height="50"/>
+        <image name="icons8-Stadium-50" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aqh-4d-hwj"/>

@@ -98,9 +98,9 @@ public class FiveVFiveInterface: SKScene{
             ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let teamCode = val?["teamID"] as? String ?? ""
-                let ft = val?["fieldType"] as? String ?? ""
                 self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
                     let val2 = snapshot.value as? NSDictionary
+                    let ft = val2?["fieldType"] as? String ?? ""
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
                     if (self.selectForm == "2-2"){
                         self.form22()
@@ -137,7 +137,7 @@ public class FiveVFiveInterface: SKScene{
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (!isPlayer!){
+        if (!isPlayer! || !(Auth.auth().currentUser?.isAnonymous)!){
         spTitle?.isHidden = false
         savePlays?.isHidden = false
         scTitle?.isHidden = false
@@ -253,7 +253,8 @@ public class FiveVFiveInterface: SKScene{
                             return
                         } else {
                             let url = metadata!.downloadURL()
-                        self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).setValue(url?.absoluteString)
+                        self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).child("url").setValue(url?.absoluteString)
+                        self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).child("title").setValue(playName!)
                         }
                     })
                 }

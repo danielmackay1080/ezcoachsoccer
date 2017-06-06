@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewTeamAndFormationsViewController: UITabBarController {
+    
+    var isPlayer : Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
+                // Do any additional setup after loading the view.
+        if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){
+            print("this is a player")
+            self.viewControllers?.remove(at: 3)
+        }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

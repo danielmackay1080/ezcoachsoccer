@@ -317,7 +317,8 @@ public class NineVNineInterface : SKScene{
                             return
                         } else {
                             let url = metadata!.downloadURL()
-                            self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).setValue(url?.absoluteString)
+                            self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).child("url").setValue(url?.absoluteString)
+                            self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).child("title").setValue(playName!)
                         }
                     })
                 }

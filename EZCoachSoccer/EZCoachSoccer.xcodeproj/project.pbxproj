@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2973D17E1EE731C40006596F /* ViewPlaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3461EE21975006F7A14 /* ViewPlaysViewController.swift */; };
 		298EA3331ED0DA84006F7A14 /* SetTeamIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */; };
 		298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */; };
 		298EA3371ED33958006F7A14 /* Players.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3361ED33958006F7A14 /* Players.swift */; };
@@ -16,7 +17,6 @@
 		298EA33F1ED4BEE4006F7A14 /* UpdateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA33E1ED4BEE4006F7A14 /* UpdateAccountViewController.swift */; };
 		298EA3411ED615DB006F7A14 /* ChangeFormationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3401ED615DB006F7A14 /* ChangeFormationViewController.swift */; };
 		298EA3431ED616DA006F7A14 /* FormationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3421ED616DA006F7A14 /* FormationTableViewCell.swift */; };
-		298EA3471EE21975006F7A14 /* ViewPlaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3461EE21975006F7A14 /* ViewPlaysViewController.swift */; };
 		298EA3491EE21A13006F7A14 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3481EE21A13006F7A14 /* CollectionViewCell.swift */; };
 		29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B4701A1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift */; };
 		29B4701D1ECCDD06003BC32A /* FiveVFiveInterface.sks in Resources */ = {isa = PBXBuildFile; fileRef = 29B4701C1ECCDD06003BC32A /* FiveVFiveInterface.sks */; };
@@ -557,7 +557,6 @@
 				29B4702D1ECE038F003BC32A /* ViewTeamViewController.swift in Sources */,
 				29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */,
 				298EA33B1ED3DB06006F7A14 /* ForgotPasswordViewController.swift in Sources */,
-				298EA3471EE21975006F7A14 /* ViewPlaysViewController.swift in Sources */,
 				298EA3371ED33958006F7A14 /* Players.swift in Sources */,
 				298EA3391ED3736D006F7A14 /* TeamCell.swift in Sources */,
 				29FABB401EC9FC1D008857E4 /* ViewController.swift in Sources */,
@@ -568,6 +567,7 @@
 				29FABB3E1EC9FC1D008857E4 /* AppDelegate.swift in Sources */,
 				298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */,
 				29BD53281ECB482E00E0824B /* CoachLoginViewController.swift in Sources */,
+				2973D17E1EE731C40006596F /* ViewPlaysViewController.swift in Sources */,
 				298EA3431ED616DA006F7A14 /* FormationTableViewCell.swift in Sources */,
 				29BD532A1ECB48AB00E0824B /* PlayerLoginViewController.swift in Sources */,
 			);
