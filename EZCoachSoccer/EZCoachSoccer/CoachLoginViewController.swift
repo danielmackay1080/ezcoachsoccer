@@ -98,14 +98,14 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                                     } else {
                                         self.success = true
                                     }
-                                }
+                                
                                 if (!self.success){
                                     self.performSegue(withIdentifier: "toteamid", sender: self)
                                 } else {
                                     self.performSegue(withIdentifier: "loginToSetType", sender: self)
                                     
                                 }
-
+                                }
                             })
                             
                             

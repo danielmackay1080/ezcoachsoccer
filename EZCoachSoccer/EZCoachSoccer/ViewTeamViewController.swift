@@ -44,7 +44,12 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             self.tid = val?["teamID"] as? String ?? ""
             self.coachName.text! = val?["coachName"] as? String ?? ""
             self.idLabel.text! = self.tid
-            let ref2 = self.ref?.child("teams").child(self.tid).child("players")
+            self.ref?.observeSingleEvent(of: .value, with: { (snapshot1) in
+                if (snapshot1.childSnapshot(forPath: "teams").exists()){
+            
+            let ref2 = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
+                if (snapshot.childSnapshot(forPath: "players").exists()){
+            
             _ = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
                 if let error = error {
                     print("images loading error \(error)")
@@ -56,7 +61,8 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 }
             })
             //storage.data
-            ref2?.observe(.value, with: { (snapshot) in
+            let ref3 = self.ref?.child("teams").child(self.tid).child("players")
+            ref3?.observe(.value, with: { (snapshot) in
                 _ = snapshot.value as? [NSDictionary]
                 //print("val \(String(describing: val))")
                 //self.arrPlay = val?["players"] as? [NSDictionary] ?? ["":""]
@@ -84,6 +90,11 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 }
                 self.teamTable.reloadData()
             })
+                }
+        })
+                }
+        })
+        
         })
         }
         if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){

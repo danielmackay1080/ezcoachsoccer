@@ -66,7 +66,7 @@ class SettingsViewController: ViewController {
             
             let value = snapshot.value as? NSDictionary
             let tid = value?["teamID"] as? String ?? ""
-            self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child(tid).removeValue()
+            self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").removeValue()
             self.ref?.child("teams").child(tid).removeValue()
             UserDefaults.standard.set(true, forKey: "teamDeleted")
             DispatchQueue.main.async {
