@@ -38,6 +38,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             AddplayerButton.isHidden = true
         }
         // Do any additional setup after loading the view.
+        if (Auth.auth().currentUser != nil){
         ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in // reads data for tableview
             let val = snapshot.value as? NSDictionary
             self.tid = val?["teamID"] as? String ?? ""
@@ -84,9 +85,11 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 self.teamTable.reloadData()
             })
         })
+        }
         if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){
             teamTable.setEditing(false, animated: false)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,6 +101,23 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //teamTable.setEditing(true, animated: true)
         //tableView.isEditing = true
+        if (!isPlayer!){
+            let alert = UIAlertController(title: "Alert", message: "Add or remove player from starting line up", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
+                self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in // reads data for tableview
+                    let val = snapshot.value as? NSDictionary
+                    self.tid = val?["teamID"] as? String ?? ""
+                    let playersDict = ["playerFirstName" : self.arrPlay[indexPath.row].pfName, "playerLastName":self.arrPlay[indexPath.row].plName, "position1" : self.arrPlay[indexPath.row].pos1, "position2": self.arrPlay[indexPath.row].pos2, "parentName":self.arrPlay[indexPath.row].parentFN, "playerEmail" : self.arrPlay[indexPath.row].playerEm, "kitNumber" : self.arrPlay[indexPath.row].kitNum, "parentEmail":self.arrPlay[indexPath.row].parentEm, "phoneNumber": self.arrPlay[indexPath.row].phoneNum]
+                    self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).setValue(playersDict)
+                })
+                
+            }))
+            alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (action) in
+                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -129,6 +149,14 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 tableView.reloadData()
             })
             }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if (isPlayer)!{
+            return .none
+        } else {
+            return .delete
         }
     }
     

@@ -28,18 +28,24 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         ref = Database.database().reference()
         user = Auth.auth().currentUser
                 if (user != nil){
-            ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+            ref?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let teamCode = val?["teamID"] as? String ?? ""
-                self.ref?.child("teams").child(teamCode).observeSingleEvent(of:.value, with: { (snapshot) in
+                
+                self.ref?.child("teams").child(teamCode).observe(.value, with: { (snapshot) in
                     let ft = val?["fieldType"] as? String ?? ""
                     self.ref?.child("teams").child(teamCode).child("plays").child(ft).observe(.value, with: { (snapshot) in
                         print("view plays \(self.playsArr.count)")
-                        if (self.playsArr.count > 0 && self.urlArr.count > 0 && self.plaTitles.count > 0){
+                        if (self.playsArr.count > 0 ){
                             self.playsArr.removeAll()
-                            self.urlArr.removeAll()
+                        }
+                        if (self.plaTitles.count > 0 ){
                             self.plaTitles.removeAll()
                         }
+                        if (self.urlArr.count > 0){
+                            self.urlArr.removeAll()
+                        }
+
                         for child in snapshot.children{
                             let item = child as! DataSnapshot
                             let url = item.childSnapshot(forPath: "url").value!
@@ -57,17 +63,19 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
                                     if (playImage != nil){
                                         self.playsArr.append(playImage!)
                                         self.playsView.reloadData()
+
                                     }
                                 }
                             })
                             }
-                            
+
                             
                             print("collection child \(String(describing: title))")
                         }
                     })
                 })
             })
+
         }
         
         // Do any additional setup after loading the view.
@@ -77,6 +85,8 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = playsView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionViewCell
@@ -118,24 +128,21 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
                         if let error = error{
                             print("deleteplays error \(error)")
                         } else {
-                            print("play deleted")
+                            print("play deleted \(self.ip?.row)")
                             self.plaTitles.remove(at: (self.ip?.row)!)
                             self.urlArr.remove(at: (self.ip?.row)!)
+                            self.playsArr.remove(at: (self.ip?.row)!)
                             let cp = self.playsView.indexPath(for: cell)
                             if (cp != nil){
-                            self.playsView.performBatchUpdates({
-                                //self.playsView.numberOfItemsInSection(0)
-                                self.playsView.deleteItems(at: [cp!])
-                            }, completion: nil)
-                            }
-                            self.playsView.reloadData()
+                             self.playsView.deleteItems(at: [self.ip!])
+                        }
                         }
                     })
                 }
             })
             
         })
-       
+        //self.playsView.reloadData()
         
         
     }

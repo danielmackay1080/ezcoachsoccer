@@ -70,6 +70,7 @@ class SettingsViewController: ViewController {
             self.ref?.child("teams").child(tid).removeValue()
             UserDefaults.standard.set(true, forKey: "teamDeleted")
             DispatchQueue.main.async {
+                self.navigationController?.popToRootViewController(animated: true)
                 self.showAlert(alertMessage: "Your team has been deleted.")
             }
             //self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)

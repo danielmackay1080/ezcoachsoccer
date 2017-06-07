@@ -124,8 +124,9 @@ public class ElevenVElevenInterface: SKScene{
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         ref = Database.database().reference()
         user = Auth.auth().currentUser
-        if (user != nil){
-            ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+        if (Auth.auth().currentUser != nil){
+            print(" to field formations")
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let teamCode = val?["teamID"] as? String ?? ""
                 self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -142,8 +143,8 @@ public class ElevenVElevenInterface: SKScene{
                         self.form343()
                     } else if (self.selectForm == "5-3-2"){
                         self.form532()
-                    } else if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).hasChild(self.selectForm)){
-                        
+                    } else  if (snapshot.childSnapshot(forPath: "customFormations").exists()){
+                        if (snapshot.childSnapshot(forPath: "customFormations").hasChild(self.selectForm)){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -177,7 +178,7 @@ public class ElevenVElevenInterface: SKScene{
                         self.lcm11?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
                         self.rb11?.run(SKAction.move(to: CGPoint(x: rbx, y: rby), duration: 0.5))
                         self.lb11?.run(SKAction.move(to: CGPoint(x: lbx, y: lby), duration: 0.5))
-                        
+                        }
                     }
 
                     
@@ -359,6 +360,7 @@ public class ElevenVElevenInterface: SKScene{
                             let url = metadata!.downloadURL()
                             self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).child("url").setValue(url?.absoluteString)
                             self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(playName!).child("title").setValue(playName!)
+                            
                         }
                     })
                 }

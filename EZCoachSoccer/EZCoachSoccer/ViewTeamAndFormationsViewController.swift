@@ -17,7 +17,7 @@ class ViewTeamAndFormationsViewController: UITabBarController {
         super.viewDidLoad()
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
                 // Do any additional setup after loading the view.
-        if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){
+        if (isPlayer!){
             print("this is a player")
             self.viewControllers?.remove(at: 3)
         }

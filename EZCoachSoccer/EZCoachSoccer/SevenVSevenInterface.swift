@@ -133,8 +133,8 @@ public class SevenVSevenInterface : SKScene{
                         self.form2121()
                     } else if (self.selectForm == "1-3-2"){
                         self.form132()
-                    }else if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).hasChild(self.selectForm)){
-                        
+                    }else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
+                        if (snapshot.childSnapshot(forPath: ft).hasChild(self.selectForm)){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -159,7 +159,7 @@ public class SevenVSevenInterface : SKScene{
                         
                     }
 
-                    
+                    }
                 })
             })
         }

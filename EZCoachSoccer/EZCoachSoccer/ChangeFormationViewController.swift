@@ -31,12 +31,13 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var cFormationTable: UITableView!
     var ref : DatabaseReference?
     var user : User?
+    var isPlayer : Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
         user = Auth.auth().currentUser
-        
+        isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         print("anon \(user?.uid)")
         if (user != nil){
         ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
@@ -57,10 +58,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
                     self.form4.setTitle("1-2-1", for: .normal)
                     self.form5.setImage(#imageLiteral(resourceName: "formation112_5"), for: .normal)
                     self.form5.setTitle("1-1-2", for: .normal)
-                       // FiveVFiveInterface.update(FiveVFiveInterface)
-                        let scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
-                        scn.removeAllChildren()
-                        //FiveVFiveInterface.
+                      
                     } else if (ft == "7v7"){
                         self.form1.setImage(#imageLiteral(resourceName: "formation33_7"), for: .normal)
                         self.form1.setTitle("3-3", for: .normal)
@@ -98,6 +96,9 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
  
                 //}
                 self.ref?.child("teams").child(tid).child("customFormations").child(ft).observe(.value, with: { (snapshot) in
+                    if (self.arr.count > 0){
+                        self.arr.removeAll()
+                    }
                     for child in snapshot.children{
                         let item = child as! DataSnapshot
                         print("cf snaps \(String(describing: item.value))")
@@ -119,6 +120,10 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -135,6 +140,19 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
         let cell = tableView.dequeueReusableCell(withIdentifier: "cformationcell") as! FormationTableViewCell
         cell.Ftitle.text = arr[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete){
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+                let val = snapshot.value as? NSDictionary
+                let tid = val?["teamID"] as? String ?? ""
+                self.ref?.child("teams").child(tid).child("customFormations").child(self.arr[indexPath.row]).removeValue()
+                self.arr.remove(at: indexPath.row)
+                tableView.reloadData()
+            })
+
+        }
     }
     
     @IBAction func savef1(_ sender: Any) {

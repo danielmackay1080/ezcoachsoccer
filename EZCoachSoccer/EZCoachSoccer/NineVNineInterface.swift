@@ -126,8 +126,8 @@ public class NineVNineInterface : SKScene{
                         self.form2222()
                     } else if (self.selectForm == "3-1-2-1-1"){
                         self.form3131()
-                    } else if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).hasChild(self.selectForm)){
-                        
+                    } else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
+                        if (snapshot.childSnapshot(forPath:"customFormations").hasChild(self.selectForm)){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -155,9 +155,9 @@ public class NineVNineInterface : SKScene{
                         self.str9?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
                         self.rcm9?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
                         self.lcm9?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
+                        }
+                        }
                         
-                    }
-
                     
                 })
             })
