@@ -147,7 +147,8 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
             ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let tid = val?["teamID"] as? String ?? ""
-                self.ref?.child("teams").child(tid).child("customFormations").child(self.arr[indexPath.row]).removeValue()
+                let ft = val?["fieldType"] as? String ?? ""
+                self.ref?.child("teams").child(tid).child("customFormations").child(ft).child(self.arr[indexPath.row]).removeValue()
                 self.arr.remove(at: indexPath.row)
                 tableView.reloadData()
             })

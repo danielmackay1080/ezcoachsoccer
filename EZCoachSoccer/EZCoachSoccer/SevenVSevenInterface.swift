@@ -123,6 +123,7 @@ public class SevenVSevenInterface : SKScene{
                     let val2 = snapshot.value as? NSDictionary
                     let ft = val2?["fieldType"] as? String ?? ""
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    if (!self.selectForm.isEmpty){
                     if (self.selectForm == "3-3"){
                         self.form33()
                     } else if (self.selectForm == "3-1-2") {
@@ -134,7 +135,7 @@ public class SevenVSevenInterface : SKScene{
                     } else if (self.selectForm == "1-3-2"){
                         self.form132()
                     }else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if (snapshot.childSnapshot(forPath: ft).hasChild(self.selectForm)){
+                        if (snapshot.childSnapshot(forPath: ft).childSnapshot(forPath:(self.selectForm)).exists()){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -159,6 +160,7 @@ public class SevenVSevenInterface : SKScene{
                         
                     }
 
+                    }
                     }
                 })
             })

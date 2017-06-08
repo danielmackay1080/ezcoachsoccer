@@ -132,6 +132,7 @@ public class ElevenVElevenInterface: SKScene{
                 self.ref?.child("teams").child(teamCode).observeSingleEvent(of: .value, with: { (snapshot) in
                     let val2 = snapshot.value as? NSDictionary
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    if (!self.selectForm.isEmpty){
                     let ft = val2?["fieldType"] as? String ?? ""
                     if (self.selectForm == "4-3-3"){
                         self.form433()
@@ -144,7 +145,7 @@ public class ElevenVElevenInterface: SKScene{
                     } else if (self.selectForm == "5-3-2"){
                         self.form532()
                     } else  if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if (snapshot.childSnapshot(forPath: "customFormations").hasChild(self.selectForm)){
+                        if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: self.selectForm).exists()){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb11?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb11?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -180,7 +181,7 @@ public class ElevenVElevenInterface: SKScene{
                         self.lb11?.run(SKAction.move(to: CGPoint(x: lbx, y: lby), duration: 0.5))
                         }
                     }
-
+                    }
                     
                 })
             })

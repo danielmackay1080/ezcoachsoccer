@@ -102,6 +102,7 @@ public class FiveVFiveInterface: SKScene{
                     let val2 = snapshot.value as? NSDictionary
                     let ft = val2?["fieldType"] as? String ?? ""
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
+                    if (!self.selectForm.isEmpty){
                     if (self.selectForm == "2-2"){
                         self.form22()
                     } else if (self.selectForm == "3-1") {
@@ -113,7 +114,7 @@ public class FiveVFiveInterface: SKScene{
                     } else if (self.selectForm == "1-1-2"){
                         self.form112()
                     } else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if (snapshot.childSnapshot(forPath: ft).hasChild(self.selectForm)){
+                        if (snapshot.childSnapshot(forPath: ft).childSnapshot(forPath:(self.selectForm)).exists()){
                        let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb5?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb5?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb5?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -129,6 +130,7 @@ public class FiveVFiveInterface: SKScene{
                         self.rcb5?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
                         self.rf5?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
                         self.lf5?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                    }
                     }
                     }
                 })

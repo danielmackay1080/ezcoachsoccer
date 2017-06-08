@@ -116,6 +116,7 @@ public class NineVNineInterface : SKScene{
                     let val2 = snapshot.value as? NSDictionary
                     self.selectForm = val2?["selectedFormation"] as? String ?? ""
                     let ft = val2?["fieldType"] as? String ?? ""
+                    if (!self.selectForm.isEmpty){
                     if (self.selectForm == "3-2-3"){
                         self.form323()
                     } else if (self.selectForm == "2-3-3") {
@@ -127,7 +128,7 @@ public class NineVNineInterface : SKScene{
                     } else if (self.selectForm == "3-1-2-1-1"){
                         self.form3131()
                     } else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if (snapshot.childSnapshot(forPath:"customFormations").hasChild(self.selectForm)){
+                        if(snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: (self.selectForm)).exists()){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -157,7 +158,7 @@ public class NineVNineInterface : SKScene{
                         self.lcm9?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
                         }
                         }
-                        
+                    }
                     
                 })
             })

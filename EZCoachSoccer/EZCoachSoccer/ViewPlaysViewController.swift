@@ -92,6 +92,7 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = playsView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionViewCell
         ipr = indexPath.row
        //cell.deletePl.isHidden = false
+        performSegue(withIdentifier: "toZoom", sender: self)
         
     }
     
@@ -104,58 +105,19 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         ip = indexPath
         cell.playsImage.image = playsArr[indexPath.row]
         //cell.deletePl.isHidden = true
-        if (!(user?.isAnonymous)!){
-        let selector = #selector(self.delete(sender:))
-        let swipe = UISwipeGestureRecognizer(target: self, action: selector )
-        swipe.direction = UISwipeGestureRecognizerDirection.up
-        cell.addGestureRecognizer(swipe)
-        }
-        return cell
-    }
-    
-    func delete(sender: UISwipeGestureRecognizer) {
-        let cell = sender.view as! UICollectionViewCell
-        ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
-            let val = snapshot.value as? NSDictionary
-            let teamCode = val?["teamID"] as? String ?? ""
-            self.ref?.child("teams").child(teamCode).observeSingleEvent(of:.value, with: { (snapshot) in
-                let ft = val?["fieldType"] as? String ?? ""
-                if (self.plaTitles.count > 0){
-                //print("selector\(self.plaTitles[(self.ip?.row)!])")
-                self.ref?.child("teams").child(teamCode).child("plays").child(ft).child(self.plaTitles[(self.ip?.row)!]).removeValue()
-                self.storage = Storage.storage().reference(forURL: self.urlArr[(self.ip?.row)!] as! String)
-                    self.storage?.delete(completion: { (error) in
-                        if let error = error{
-                            print("deleteplays error \(error)")
-                        } else {
-                            print("play deleted \(self.ip?.row)")
-                            self.plaTitles.remove(at: (self.ip?.row)!)
-                            self.urlArr.remove(at: (self.ip?.row)!)
-                            self.playsArr.remove(at: (self.ip?.row)!)
-                            let cp = self.playsView.indexPath(for: cell)
-                            if (cp != nil){
-                             self.playsView.deleteItems(at: [self.ip!])
-                        }
-                        }
-                    })
-                }
-            })
-            
-        })
-        //self.playsView.reloadData()
-        
-        
+                return cell
     }
     
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        let dest = segue.destination as! ViewPlayZoomViewController
+        if let paths = self.playsView.indexPathsForSelectedItems{
+            let index = paths[0] 
+            dest.url = urlArr[index.row] as? String
+            dest.bigPlay = playsArr[index.row]
+            dest.playTitle = plaTitles[index.row]
+        }
     }
-    */
+    
     
 }

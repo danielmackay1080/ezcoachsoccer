@@ -13,6 +13,7 @@ import DKImagePickerController
 
 class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
+    @IBOutlet weak var ftLabel: UILabel!
     
     @IBOutlet var teamLogo: UIButton!
     
@@ -26,6 +27,8 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     var tid = ""
     var isPlayer : Bool?
     var picker : UIImagePickerController?
+    var udef = UserDefaults.standard
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,25 +45,30 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
         ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in // reads data for tableview
             let val = snapshot.value as? NSDictionary
             self.tid = val?["teamID"] as? String ?? ""
-            self.coachName.text! = val?["coachName"] as? String ?? ""
-            self.idLabel.text! = self.tid
+            //self.coachName.text! = val?["coachName"] as? String ?? ""
+            self.idLabel.text! = "Team ID: \(self.tid)"
             self.ref?.observeSingleEvent(of: .value, with: { (snapshot1) in
                 if (snapshot1.childSnapshot(forPath: "teams").exists()){
+                    _ = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
+                        if let error = error {
+                            print("images loading error \(error)")
+                        } else {
+                            let im = UIImage(data: data!)
+                            if (im  != nil){
+                                self.teamLogo.setImage(im, for: .normal)
+                            }
+                        }
+                    })
+
             
-            let ref2 = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
+            _ = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
+                let cn = snapshot.childSnapshot(forPath: "coachName").value
+                let f = snapshot.childSnapshot(forPath: "fieldType").value
+                self.coachName.text = cn as? String
+                self.ftLabel.text = "Fielst Type: \(f as! String)"
                 if (snapshot.childSnapshot(forPath: "players").exists()){
             
-            _ = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
-                if let error = error {
-                    print("images loading error \(error)")
-                } else {
-                    let im = UIImage(data: data!)
-                    if (im  != nil){
-                        self.teamLogo.setImage(im, for: .normal)
-                    }
-                }
-            })
-            //storage.data
+                        //storage.data
             let ref3 = self.ref?.child("teams").child(self.tid).child("players")
             ref3?.observe(.value, with: { (snapshot) in
                 _ = snapshot.value as? [NSDictionary]
@@ -125,6 +133,11 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             }))
             alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (action) in
                 self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
+            }))
+            alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
+                self.udef.set(true, forKey: "isUpdated")
+                self.performSegue(withIdentifier: "toAddPlayer", sender: self)
+                
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -221,15 +234,22 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
         }
     
         
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func addPlayer(_ sender: Any) {
+        self.udef.set(false, forKey: "isUpdated")
+        performSegue(withIdentifier: "toAddPlayer", sender: self)
     }
-    */
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let isUpdated = UserDefaults.standard.bool(forKey: "isUpdated")
+        let dest = segue.destination as! AddPlayerViewController
+        if (isUpdated){
+            if let ip = self.teamTable.indexPathForSelectedRow{
+                let selPlayer = arrPlay[ip.row]
+                dest.updatedPlayer = selPlayer
+            }
+        }
+            }
+    
 
 }

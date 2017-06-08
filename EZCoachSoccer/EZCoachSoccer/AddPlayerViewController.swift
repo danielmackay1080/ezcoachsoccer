@@ -44,10 +44,24 @@ class AddPlayerViewController: UIViewController {
     var players = [Players]()
     var pld = [NSDictionary]()
     var udef = UserDefaults.standard
+    var isUpdated : Bool?
+    var updatedPlayer : Players?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        let isUpdated = UserDefaults.standard.bool(forKey: "isUpdated")
+        if (isUpdated){
+            pfName.text = updatedPlayer?.pfName
+            plName.text = updatedPlayer?.plName
+            pos1.text = updatedPlayer?.pos1
+            pos2.text = updatedPlayer?.pos2
+            kitNum.text = updatedPlayer?.kitNum
+            parentFN.text = updatedPlayer?.parentFN
+            playerEM.text = updatedPlayer?.playerEm
+            parentEm.text = updatedPlayer?.parentEm
+            phoneNum.text = updatedPlayer?.phoneNum
+        }
         // Do any additional setup after loading the view.
     }
 

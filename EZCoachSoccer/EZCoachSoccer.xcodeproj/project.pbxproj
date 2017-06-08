@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294B42511EE9ED00000C337E /* ViewPlayZoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294B42501EE9ED00000C337E /* ViewPlayZoomViewController.swift */; };
 		2973D17E1EE731C40006596F /* ViewPlaysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3461EE21975006F7A14 /* ViewPlaysViewController.swift */; };
 		298EA3331ED0DA84006F7A14 /* SetTeamIDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */; };
 		298EA3351ED3370C006F7A14 /* AddPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */; };
@@ -68,6 +69,7 @@
 		156563835E128CD7B95E91A2 /* Pods_EZCoachSoccerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EZCoachSoccerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		20E9E5F430CE210E68D20BFF /* Pods-EZCoachSoccerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerTests/Pods-EZCoachSoccerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		22BE2832CEBB169FED9D6CE5 /* Pods-EZCoachSoccerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EZCoachSoccerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EZCoachSoccerUITests/Pods-EZCoachSoccerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		294B42501EE9ED00000C337E /* ViewPlayZoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewPlayZoomViewController.swift; sourceTree = "<group>"; };
 		298EA3321ED0DA84006F7A14 /* SetTeamIDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTeamIDViewController.swift; sourceTree = "<group>"; };
 		298EA3341ED3370C006F7A14 /* AddPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPlayerViewController.swift; sourceTree = "<group>"; };
 		298EA3361ED33958006F7A14 /* Players.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Players.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				298EA3421ED616DA006F7A14 /* FormationTableViewCell.swift */,
 				298EA3461EE21975006F7A14 /* ViewPlaysViewController.swift */,
 				298EA3481EE21A13006F7A14 /* CollectionViewCell.swift */,
+				294B42501EE9ED00000C337E /* ViewPlayZoomViewController.swift */,
 			);
 			path = EZCoachSoccer;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				298EA3491EE21A13006F7A14 /* CollectionViewCell.swift in Sources */,
 				29BD53301ECB79AD00E0824B /* SetFieldTypeViewController.swift in Sources */,
 				298EA33F1ED4BEE4006F7A14 /* UpdateAccountViewController.swift in Sources */,
+				294B42511EE9ED00000C337E /* ViewPlayZoomViewController.swift in Sources */,
 				29B470271ECCE0E1003BC32A /* SevenVSevenInterface.swift in Sources */,
 				29B4702D1ECE038F003BC32A /* ViewTeamViewController.swift in Sources */,
 				29B4701B1ECCC987003BC32A /* ViewTeamAndFormationsViewController.swift in Sources */,

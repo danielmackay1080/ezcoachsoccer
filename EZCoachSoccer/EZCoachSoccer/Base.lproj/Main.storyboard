@@ -633,27 +633,8 @@
                                     <outlet property="delegate" destination="C72-cF-Eff" id="aPj-0v-aZI"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7b-Io-IvV">
-                                <rect key="frame" x="20" y="286" width="253" height="65"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6k-LC-Mhd">
-                                <rect key="frame" x="857" y="339" width="128" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
-                                <state key="normal" title="Add Player">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" red="0.1480683623603741" green="0.21160247387843437" blue="0.53216604948043822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="GzV-gs-u9M" kind="show" id="IZi-ag-Iy2"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emc-Jt-dhM">
-                                <rect key="frame" x="431" y="287" width="149" height="32"/>
+                                <rect key="frame" x="431" y="319" width="149" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
                                 <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -666,6 +647,13 @@
                                 <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AlT-SP-7ar">
+                                <rect key="frame" x="20" y="336" width="253" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZJ-lb-903">
                                 <rect key="frame" x="253" y="362" width="505" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -673,21 +661,44 @@
                                 <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tap image to change picture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WW7-Sy-SZO">
-                                <rect key="frame" x="431" y="64" width="171" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="12"/>
-                                <color key="textColor" red="0.14806836239999999" green="0.2116024739" blue="0.53216604950000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dih-zf-ZFq">
                                 <rect key="frame" x="417" y="89" width="190" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="ezcoachlogo"/>
+                                <state key="normal" image="tapImage"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="changeCrest:" destination="C72-cF-Eff" eventType="touchUpInside" id="o4u-YE-dqr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6k-LC-Mhd">
+                                <rect key="frame" x="863" y="349" width="161" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                <state key="normal" title="Add Player">
+                                    <color key="titleColor" red="0.016947948890000002" green="0.2480846095" blue="0.03052519851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.1480683623603741" green="0.21160247387843437" blue="0.53216604948043822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addPlayer:" destination="C72-cF-Eff" eventType="touchUpInside" id="Cuk-fc-A6R"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7b-Io-IvV">
+                                <rect key="frame" x="20" y="263" width="253" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -698,9 +709,11 @@
                     <connections>
                         <outlet property="AddplayerButton" destination="R6k-LC-Mhd" id="HU3-xQ-Svq"/>
                         <outlet property="coachName" destination="FZJ-lb-903" id="PBm-6R-siT"/>
+                        <outlet property="ftLabel" destination="AlT-SP-7ar" id="gCt-h3-zei"/>
                         <outlet property="idLabel" destination="GkJ-uC-zpX" id="kBy-gL-8xl"/>
                         <outlet property="teamLogo" destination="Dih-zf-ZFq" id="VY9-E5-oAa"/>
                         <outlet property="teamTable" destination="eSd-3W-ruR" id="mPn-yq-o9c"/>
+                        <segue destination="GzV-gs-u9M" kind="show" identifier="toAddPlayer" id="e7o-R6-cCS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1rr-0g-h4O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -859,7 +872,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachsoccerbg" translatesAutoresizingMaskIntoConstraints="NO" id="8Kx-td-oVI">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="changfplaysbg" translatesAutoresizingMaskIntoConstraints="NO" id="8Kx-td-oVI">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -867,6 +880,7 @@
                                 <rect key="frame" x="683" y="412" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexBackgroundColor" red="0.06957087648690978" green="0.40549826383590704" blue="0.16327371370199031" alpha="0.56894924496644295" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cformationcell" id="bN1-sJ-k6Y" customClass="FormationTableViewCell" customModule="EZCoachSoccer" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="200" height="44"/>
@@ -884,6 +898,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.038285773609731726" green="0.56042835950851444" blue="0.068957066542115947" alpha="0.55943267617449666" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="Ftitle" destination="fu7-Mv-4Cu" id="GHa-4T-BMg"/>
                                         </connections>
@@ -993,7 +1008,7 @@
             </objects>
             <point key="canvasLocation" x="4839.84375" y="1883.59375"/>
         </scene>
-        <!--Plays-->
+        <!--View Plays View Controller-->
         <scene sceneID="ZXt-hr-2Ha">
             <objects>
                 <viewController id="hFy-ab-ecg" customClass="ViewPlaysViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -1005,15 +1020,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ezcoachsoccerbg" translatesAutoresizingMaskIntoConstraints="NO" id="jHz-90-IAb">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="changfplaysbg" translatesAutoresizingMaskIntoConstraints="NO" id="jHz-90-IAb">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nQM-mQ-Gq5">
-                                <rect key="frame" x="0.0" y="64" width="1024" height="655"/>
+                                <rect key="frame" x="82" y="64" width="861" height="655"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="0.25262164429530204" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vGr-n5-bH1">
+                                <color key="backgroundColor" red="0.06957087648690978" green="0.40549826383590704" blue="0.16327371370199031" alpha="0.28418624161073824" colorSpace="custom" customColorSpace="sRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="15" id="vGr-n5-bH1">
                                     <size key="itemSize" width="236" height="212"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -1046,16 +1061,55 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Plays" image="icons8-Soccer Corner-50" id="Qk0-G3-rNJ">
+                    <tabBarItem key="tabBarItem" title="" image="icons8-Soccer Corner-50" id="Qk0-G3-rNJ">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-3"/>
                     </tabBarItem>
                     <connections>
                         <outlet property="playsView" destination="nQM-mQ-Gq5" id="odb-TO-H2h"/>
+                        <segue destination="m15-2b-mPv" kind="show" identifier="toZoom" id="pSo-US-HQd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jM3-Sv-CQz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4839.84375" y="2829.6875"/>
+        </scene>
+        <!--View Play Zoom View Controller-->
+        <scene sceneID="NBj-RM-MFn">
+            <objects>
+                <viewController id="m15-2b-mPv" customClass="ViewPlayZoomViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RF6-dO-1rg"/>
+                        <viewControllerLayoutGuide type="bottom" id="Vwd-YB-ucS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pL9-nD-jKp">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ykm-yu-xvQ">
+                                <rect key="frame" x="0.0" y="72" width="1024" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pI-pX-amv">
+                                <rect key="frame" x="0.0" y="651" width="1024" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.95532161000000004" green="0.25042110680000002" blue="0.25225731730000001" alpha="0.73395553690000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                                <state key="normal" title="Delete"/>
+                                <connections>
+                                    <action selector="deletePlay:" destination="m15-2b-mPv" eventType="touchUpInside" id="geI-Fm-FMI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="delButton" destination="5pI-pX-amv" id="OBT-Wu-ZOd"/>
+                        <outlet property="zoomPlay" destination="Ykm-yu-xvQ" id="aCb-B8-BXX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xzq-um-K3I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5673.6328125" y="2829.6875"/>
         </scene>
         <!--Update Account View Controller-->
         <scene sceneID="UAS-JI-COe">
@@ -1342,9 +1396,9 @@
     </scenes>
     <resources>
         <image name="FieldInterface" width="1024" height="749"/>
+        <image name="changfplaysbg" width="461" height="308"/>
         <image name="ezcoachbg" width="1921" height="1079"/>
         <image name="ezcoachlogo" width="261" height="282"/>
-        <image name="ezcoachsoccerbg" width="461" height="307"/>
         <image name="formation343_11" width="752" height="655"/>
         <image name="formation4231_11" width="752" height="655"/>
         <image name="formation433_11" width="752" height="655"/>
@@ -1355,6 +1409,7 @@
         <image name="icons8-Settings-50" width="50" height="50"/>
         <image name="icons8-Soccer Corner-50" width="50" height="50"/>
         <image name="icons8-Stadium-50" width="50" height="50"/>
+        <image name="tapImage" width="262" height="283"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="aqh-4d-hwj"/>
