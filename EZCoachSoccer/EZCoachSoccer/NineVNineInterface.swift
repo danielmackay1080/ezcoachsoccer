@@ -17,7 +17,7 @@ public class NineVNineInterface : SKScene{
     
     var gk9, cb9, lcb9, rcb9, lcm9, rcm9, rf9, str9, lf9, ball9, savePlays, savecf : SKSpriteNode?
     var opgk9, opcb9, oplcb9, oprcb9, oplcm9, oprcm9, oprf9, opstr9, oplf9 : SKSpriteNode?
-    var spTitle, scTitle : SKLabelNode?
+    var spTitle, scTitle, gkkn, cbkn, lcbkn, rcbkn, lcmkn, rcmkn, rfkn, lfkn, stkn : SKLabelNode?
     
     // formations
     // 3-2-3
@@ -101,6 +101,43 @@ public class NineVNineInterface : SKScene{
         spTitle = childNode(withName: "saveplaylabel9") as! SKLabelNode!
         scTitle = childNode(withName: "savecflabel9") as! SKLabelNode!
         savecf = childNode(withName: "savecfbg9") as! SKSpriteNode!
+        gkkn = childNode(withName: "gkkn9") as! SKLabelNode!
+        cbkn = childNode(withName: "cbkn9") as! SKLabelNode!
+        rcbkn = childNode(withName: "rcbkn9") as! SKLabelNode!
+        lcbkn = childNode(withName: "lcbkn9") as! SKLabelNode!
+        lcmkn = childNode(withName: "lcmkn9") as! SKLabelNode!
+        rcmkn = childNode(withName: "rcmkn9") as! SKLabelNode!
+        lfkn = childNode(withName: "lfkn9") as! SKLabelNode!
+        rfkn = childNode(withName: "rfkn9") as! SKLabelNode!
+        stkn = childNode(withName: "stkn9") as! SKLabelNode!
+        gk9?.addChild(gkkn!)
+        cb9?.addChild(cbkn!)
+        lcb9?.addChild(lcbkn!)
+        rcb9?.addChild(rcbkn!)
+        lcm9?.addChild(lcmkn!)
+        rcm9?.addChild(rcmkn!)
+        lf9?.addChild(lfkn!)
+        rf9?.addChild(rfkn!)
+        str9?.addChild(stkn!)
+        gkkn?.verticalAlignmentMode = .center
+        gkkn?.horizontalAlignmentMode = .center
+        cbkn?.horizontalAlignmentMode = .center
+        cbkn?.verticalAlignmentMode = .center
+        lcbkn?.horizontalAlignmentMode = .center
+        lcbkn?.verticalAlignmentMode = .center
+        rcbkn?.horizontalAlignmentMode = .center
+        rcbkn?.verticalAlignmentMode = .center
+        lcmkn?.horizontalAlignmentMode = .center
+        lcmkn?.verticalAlignmentMode = .center
+        rcmkn?.horizontalAlignmentMode = .center
+        rcmkn?.verticalAlignmentMode = .center
+        lfkn?.horizontalAlignmentMode = .center
+        lfkn?.verticalAlignmentMode = .center
+        rfkn?.horizontalAlignmentMode = .center
+        rfkn?.verticalAlignmentMode = .center
+        stkn?.horizontalAlignmentMode = .center
+        stkn?.verticalAlignmentMode = .center
+        
         savecf?.isHidden = true
         scTitle?.isHidden = true
         savePlays?.isHidden = true

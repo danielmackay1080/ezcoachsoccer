@@ -28,11 +28,11 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         ref = Database.database().reference()
         user = Auth.auth().currentUser
                 if (user != nil){
-            ref?.child("users").child((user?.uid)!).observe(.value, with: { (snapshot) in
+                    ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 let teamCode = val?["teamID"] as? String ?? ""
                 
-                self.ref?.child("teams").child(teamCode).observe(.value, with: { (snapshot) in
+                self.ref?.child("teams").child(teamCode).observeSingleEvent(of:.value, with: { (snapshot) in
                     let ft = val?["fieldType"] as? String ?? ""
                     self.ref?.child("teams").child(teamCode).child("plays").child(ft).observe(.value, with: { (snapshot) in
                         print("view plays \(self.playsArr.count)")
@@ -62,16 +62,20 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
                                     let playImage = UIImage(data: data!)
                                     if (playImage != nil){
                                         self.playsArr.append(playImage!)
-                                        self.playsView.reloadData()
-
+                                        DispatchQueue.main.async {
+                                            self.playsView.reloadData()
+                                            //self.playsView.re
+                                        }
                                     }
                                 }
                             })
                             }
 
                             
+
                             print("collection child \(String(describing: title))")
                         }
+                        
                     })
                 })
             })

@@ -9,8 +9,10 @@
 import UIKit
 import Firebase
 
-class AddPlayerViewController: UIViewController {
+class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var addpl: UIButton!
+    @IBOutlet weak var positionsTable: UITableView!
     @IBOutlet weak var pfName: UITextField!
     
     @IBOutlet weak var plName: UITextField!
@@ -46,6 +48,9 @@ class AddPlayerViewController: UIViewController {
     var udef = UserDefaults.standard
     var isUpdated : Bool?
     var updatedPlayer : Players?
+    var section = ["Defenders", "Midfielders", "Atackers"]
+    var posArr = [["GK", "LCB", "RCB", "CB", "RB", "LB" , "RWB", "LWB"], ["CM", "CDM" , "CAM", "LCM", "RCM", "LM", "RM", "LW", "RW"], ["ST", "CF", "LF", "RF", "LAM", "RAM"]]
+    var firstSelect = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +73,37 @@ class AddPlayerViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return section.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (!firstSelect){
+            pos1.text = posArr[indexPath.section][indexPath.row]
+            posArr[indexPath.section].remove(at: indexPath.row)
+            tableView.reloadData()
+            firstSelect = true
+        } else {
+            pos2.text = posArr[indexPath.section][indexPath.row]
+            posArr[indexPath.section].remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posArr[section].count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.section[section]
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "positionsCell") as! PositionsTableViewCell
+        cell.poslabel.text = posArr[indexPath.section][indexPath.row]
+        return cell
     }
     
     @IBAction func addPlayer(_ sender: Any) { // adds player

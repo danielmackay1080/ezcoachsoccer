@@ -27,7 +27,7 @@ public class FiveVFiveInterface: SKScene{
     var rf5 : SKSpriteNode?
     var oprf5 : SKSpriteNode?
     var ball5 : SKSpriteNode?
-    var spTitle, scTitle : SKLabelNode?
+    var spTitle, scTitle, gkkn, lcbkn, rcbkn, rfkn, lfkn : SKLabelNode?
     var savePlays, savecf : SKSpriteNode?
     var ref : DatabaseReference?
     var storage : StorageReference?
@@ -82,6 +82,27 @@ public class FiveVFiveInterface: SKScene{
         savePlays = childNode(withName: "saveplaybg5") as! SKSpriteNode!
         scTitle = childNode(withName: "savecflabel5") as! SKLabelNode!
         savecf = childNode(withName: "savecfbg5") as! SKSpriteNode!
+        gkkn = childNode(withName: "gkkn5") as! SKLabelNode!
+        lcbkn = childNode(withName: "lcbkn5") as! SKLabelNode!
+        rcbkn = childNode(withName: "rcb5") as! SKLabelNode!
+        rfkn = childNode(withName: "rfkn5") as! SKLabelNode!
+        lfkn = childNode(withName: "lfkn5") as! SKLabelNode!
+        gk5?.addChild(gkkn!)
+        lcb5?.addChild(lcbkn!)
+        rcb5?.addChild(rcbkn!)
+        lf5?.addChild(lfkn!)
+        rf5?.addChild(rfkn!)
+        gkkn?.horizontalAlignmentMode = .center
+        gkkn?.verticalAlignmentMode = .center
+        lcbkn?.horizontalAlignmentMode = .center
+        lcbkn?.verticalAlignmentMode = .center
+        rcbkn?.verticalAlignmentMode = .center
+        rcbkn?.horizontalAlignmentMode = .center
+        lfkn?.horizontalAlignmentMode = .center
+        lfkn?.verticalAlignmentMode = .center
+        rfkn?.horizontalAlignmentMode = .center
+        rfkn?.verticalAlignmentMode = .center
+        
         
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         

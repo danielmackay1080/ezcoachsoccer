@@ -38,6 +38,7 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
         let user  = Auth.auth().currentUser
         print("users \(String(describing: user))")
         if (user != nil){
+            if (!(user?.isAnonymous)!){
             DispatchQueue.main.async {
                 //self.dbRef?.child("users").child((user?.uid)!).obs
                 self.dbRef?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
@@ -57,7 +58,8 @@ class CoachLoginViewController: UIViewController, FBSDKLoginButtonDelegate {
                     
                 })
             
-        }
+                }
+            }
                 
         }
         

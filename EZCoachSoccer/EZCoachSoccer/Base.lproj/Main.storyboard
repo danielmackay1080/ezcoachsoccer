@@ -330,7 +330,7 @@
             </objects>
             <point key="canvasLocation" x="1157" y="1703"/>
         </scene>
-        <!--Set Field Type View Controller-->
+        <!--Field Type-->
         <scene sceneID="GrT-mX-830">
             <objects>
                 <viewController id="kes-UJ-ni8" customClass="SetFieldTypeViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -422,6 +422,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Field Type" id="fy2-o1-USp"/>
                     <connections>
                         <segue destination="ta2-hE-FAP" kind="show" identifier="selecttypetofield" id="dms-JR-nd1"/>
                     </connections>
@@ -447,28 +448,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1eH-gw-qYw">
-                                <rect key="frame" x="61" y="150" width="427" height="30"/>
+                                <rect key="frame" x="61" y="112" width="427" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Parent Full Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TnH-OS-SsT">
-                                <rect key="frame" x="61" y="350" width="427" height="30"/>
+                                <rect key="frame" x="61" y="369" width="427" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Parent Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="v4E-ML-vBM">
-                                <rect key="frame" x="61" y="435" width="427" height="30"/>
+                                <rect key="frame" x="61" y="450" width="427" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Player Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zx0-MS-CXJ">
-                                <rect key="frame" x="61" y="524" width="427" height="30"/>
+                                <rect key="frame" x="61" y="533" width="427" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
@@ -482,35 +483,28 @@
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dFX-kj-8un">
-                                <rect key="frame" x="538" y="150" width="427" height="30"/>
+                                <rect key="frame" x="61" y="188" width="427" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position 1 *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FyH-2X-ppZ">
-                                <rect key="frame" x="61" y="258" width="285" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVo-KI-O55">
-                                <rect key="frame" x="409" y="258" width="285" height="30"/>
+                                <rect key="frame" x="598" y="112" width="170" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kit Number *" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W9w-NX-H6j">
-                                <rect key="frame" x="766" y="258" width="199" height="30"/>
+                                <rect key="frame" x="61" y="284" width="427" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" keyboardType="numberPad" returnKeyType="continue"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dmm-jj-rtR">
-                                <rect key="frame" x="657" y="504" width="308" height="70"/>
+                                <rect key="frame" x="627" y="596" width="308" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
@@ -526,10 +520,55 @@
                                     <action selector="addPlayer:" destination="GzV-gs-u9M" eventType="touchUpInside" id="AJQ-vb-qPU"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRp-u3-Jt3">
+                                <rect key="frame" x="598" y="188" width="367" height="346"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.065821468829999993" green="0.2250571847" blue="0.74960058929999995" alpha="0.31829383389999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="positionsCell" id="a1n-hc-uhf" customClass="PositionsTableViewCell" customModule="EZCoachSoccer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="367" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a1n-hc-uhf" id="OeS-KT-iCa">
+                                            <rect key="frame" x="0.0" y="0.0" width="367" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mI-4l-4IO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="367" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.077221848070000002" green="0.2816444635" blue="0.93685460089999995" alpha="0.23104551170000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="poslabel" destination="7mI-4l-4IO" id="f77-Ch-Yhg"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="GzV-gs-u9M" id="nYp-jd-sp7"/>
+                                    <outlet property="delegate" destination="GzV-gs-u9M" id="VGb-6C-Y3c"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Position 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zVo-KI-O55">
+                                <rect key="frame" x="795" y="112" width="170" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="19"/>
+                                <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="continue"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="addpl" destination="Dmm-jj-rtR" id="GU6-NP-l4Q"/>
                         <outlet property="kitNum" destination="W9w-NX-H6j" id="6QR-Fl-wE4"/>
                         <outlet property="parentEm" destination="v4E-ML-vBM" id="W8F-vj-ee4"/>
                         <outlet property="parentFN" destination="TnH-OS-SsT" id="2d4-2A-rdE"/>
@@ -539,13 +578,14 @@
                         <outlet property="playerEM" destination="zx0-MS-CXJ" id="bgx-MB-EDW"/>
                         <outlet property="pos1" destination="FyH-2X-ppZ" id="f7p-aT-GcF"/>
                         <outlet property="pos2" destination="zVo-KI-O55" id="2Ng-Oq-jPH"/>
+                        <outlet property="positionsTable" destination="aRp-u3-Jt3" id="0SR-3r-dOM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxz-d0-iQY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6498" y="-570"/>
+            <point key="canvasLocation" x="6112.5" y="-788.28125"/>
         </scene>
-        <!--View Team View Controller-->
+        <!--Team-->
         <scene sceneID="S5l-ZI-hpv">
             <objects>
                 <viewController id="C72-cF-Eff" customClass="ViewTeamViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -615,6 +655,10 @@
                                                     <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UMn-7h-EXB">
+                                                    <rect key="frame" x="477" y="15" width="70" height="70"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.069123782217502594" green="0.25351923704147339" blue="0.84123271703720093" alpha="0.32000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
@@ -625,6 +669,7 @@
                                             <outlet property="phoneNumber" destination="Cel-Az-S8e" id="Qgg-0V-Yz2"/>
                                             <outlet property="playerFullName" destination="nGe-X3-gop" id="8T6-0z-776"/>
                                             <outlet property="playerPositions" destination="G11-g1-dth" id="CSc-Ec-42J"/>
+                                            <outlet property="startingIm" destination="UMn-7h-EXB" id="P8M-3E-cfZ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -633,8 +678,15 @@
                                     <outlet property="delegate" destination="C72-cF-Eff" id="aPj-0v-aZI"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7b-Io-IvV">
+                                <rect key="frame" x="20" y="263" width="253" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emc-Jt-dhM">
-                                <rect key="frame" x="431" y="319" width="149" height="32"/>
+                                <rect key="frame" x="438" y="322" width="149" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
                                 <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -654,13 +706,6 @@
                                 <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZJ-lb-903">
-                                <rect key="frame" x="253" y="362" width="505" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="23"/>
-                                <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dih-zf-ZFq">
                                 <rect key="frame" x="417" y="89" width="190" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -675,10 +720,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6k-LC-Mhd">
-                                <rect key="frame" x="863" y="349" width="161" height="53"/>
+                                <rect key="frame" x="863" y="364" width="161" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="21"/>
                                 <state key="normal" title="Add Player">
                                     <color key="titleColor" red="0.016947948890000002" green="0.2480846095" blue="0.03052519851" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.1480683623603741" green="0.21160247387843437" blue="0.53216604948043822" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -692,11 +737,11 @@
                                     <action selector="addPlayer:" destination="C72-cF-Eff" eventType="touchUpInside" id="Cuk-fc-A6R"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Team Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7b-Io-IvV">
-                                <rect key="frame" x="20" y="263" width="253" height="65"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coach" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZJ-lb-903">
+                                <rect key="frame" x="260" y="359" width="505" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="28"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="23"/>
+                                <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -706,6 +751,7 @@
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-5"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="Team" id="maA-dP-CXb"/>
                     <connections>
                         <outlet property="AddplayerButton" destination="R6k-LC-Mhd" id="HU3-xQ-Svq"/>
                         <outlet property="coachName" destination="FZJ-lb-903" id="PBm-6R-siT"/>
@@ -720,7 +766,7 @@
             </objects>
             <point key="canvasLocation" x="4839.84375" y="-787.5"/>
         </scene>
-        <!--Field View Controller-->
+        <!--Field-->
         <scene sceneID="6Z5-ug-JGV">
             <objects>
                 <viewController id="oKy-ub-c7f" customClass="FieldViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -741,13 +787,13 @@
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Gja-vB-XQa"/>
                         <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="sQm-gE-RzR"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="Af2-KC-ueG"/>
+                    <navigationItem key="navigationItem" title="Field" id="ShQ-G5-bdn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULv-eu-93F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4840" y="74"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="FJs-wj-b1p">
             <objects>
                 <viewController id="Wlf-zU-JW1" customClass="SettingsViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -849,6 +895,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icons8-Settings-50" id="85C-V7-6ub">
                         <inset key="imageInsets" minX="0.0" minY="9" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="Settings" id="8xF-0x-717"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="deleteTeamButton" destination="bD7-S4-cXc" id="YF0-96-3Gc"/>
@@ -860,7 +907,7 @@
             </objects>
             <point key="canvasLocation" x="4840" y="945"/>
         </scene>
-        <!--Change Formation View Controller-->
+        <!--Change Formation-->
         <scene sceneID="FVy-QB-2PG">
             <objects>
                 <viewController id="c1d-mf-E2j" customClass="ChangeFormationViewController" customModule="EZCoachSoccer" customModuleProvider="target" sceneMemberID="viewController">
@@ -879,7 +926,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="buK-l4-r3I">
                                 <rect key="frame" x="683" y="412" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.069570876490000003" green="0.40549826379999998" blue="0.16327371369999999" alpha="0.56894924499999999" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.06957087648690978" green="0.40549826383590704" blue="0.16327371370199031" alpha="0.56894924496644295" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cformationcell" id="bN1-sJ-k6Y" customClass="FormationTableViewCell" customModule="EZCoachSoccer" customModuleProvider="target">
@@ -892,8 +939,8 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fu7-Mv-4Cu">
                                                     <rect key="frame" x="8" y="11" width="184" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -904,13 +951,18 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="c1d-mf-E2j" id="UHs-Z5-mC9"/>
                                     <outlet property="delegate" destination="c1d-mf-E2j" id="Do2-8L-X9W"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QcG-vq-zg8">
-                                <rect key="frame" x="379" y="412" width="200" height="200"/>
+                                <rect key="frame" x="398" y="412" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="35"/>
                                 <state key="normal" title="5-3-2" backgroundImage="formation532_11">
@@ -957,22 +1009,6 @@
                                     <action selector="savef1:" destination="c1d-mf-E2j" eventType="touchUpInside" id="Jef-l6-SRp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjY-Fb-vHp">
-                                <rect key="frame" x="379" y="136" width="200" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="35"/>
-                                <state key="normal" title="4-3-3" backgroundImage="formation433_11">
-                                    <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="savef2:" destination="c1d-mf-E2j" eventType="touchUpInside" id="sYD-ed-e9P"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dV7-Qe-hES">
                                 <rect key="frame" x="683" y="136" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -989,12 +1025,29 @@
                                     <action selector="savef3:" destination="c1d-mf-E2j" eventType="touchUpInside" id="1hz-64-qDD"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjY-Fb-vHp">
+                                <rect key="frame" x="398" y="136" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="35"/>
+                                <state key="normal" title="4-3-3" backgroundImage="formation433_11">
+                                    <color key="titleColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="savef2:" destination="c1d-mf-E2j" eventType="touchUpInside" id="sYD-ed-e9P"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="icons8-Player Change-50" id="a8P-XJ-X29">
                         <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="Change Formation" id="jia-oV-3ny"/>
                     <connections>
                         <outlet property="cFormationTable" destination="buK-l4-r3I" id="0xZ-xU-uss"/>
                         <outlet property="form1" destination="5Ed-Xj-VcI" id="B8b-4S-eLU"/>
@@ -1092,7 +1145,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5pI-pX-amv">
                                 <rect key="frame" x="0.0" y="651" width="1024" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.95532161000000004" green="0.25042110680000002" blue="0.25225731730000001" alpha="0.73395553690000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.95532161000000004" green="0.25042110680000002" blue="0.25225731730000001" alpha="0.91893875837651018" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
                                 <state key="normal" title="Delete"/>
                                 <connections>
@@ -1412,7 +1465,7 @@
         <image name="tapImage" width="262" height="283"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aqh-4d-hwj"/>
-        <segue reference="y2z-Bj-ZSf"/>
+        <segue reference="AnT-EC-gn9"/>
+        <segue reference="dms-JR-nd1"/>
     </inferredMetricsTieBreakers>
 </document>

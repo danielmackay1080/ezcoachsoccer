@@ -28,6 +28,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     var isPlayer : Bool?
     var picker : UIImagePickerController?
     var udef = UserDefaults.standard
+    var ft = ""
 
     
     override func viewDidLoad() {
@@ -63,9 +64,9 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
             
             _ = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
                 let cn = snapshot.childSnapshot(forPath: "coachName").value
-                let f = snapshot.childSnapshot(forPath: "fieldType").value
+                 self.ft = snapshot.childSnapshot(forPath: "fieldType").value as! String
                 self.coachName.text = cn as? String
-                self.ftLabel.text = "Fielst Type: \(f as! String)"
+                self.ftLabel.text = "Fielst Type: \(self.ft )"
                 if (snapshot.childSnapshot(forPath: "players").exists()){
             
                         //storage.data
@@ -120,6 +121,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //teamTable.setEditing(true, animated: true)
         //tableView.isEditing = true
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tcell") as! TeamCell
         if (!isPlayer!){
             let alert = UIAlertController(title: "Alert", message: "Add or remove player from starting line up", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Add", style: .default, handler: { (action) in
@@ -127,7 +129,9 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                     let val = snapshot.value as? NSDictionary
                     self.tid = val?["teamID"] as? String ?? ""
                     let playersDict = ["playerFirstName" : self.arrPlay[indexPath.row].pfName, "playerLastName":self.arrPlay[indexPath.row].plName, "position1" : self.arrPlay[indexPath.row].pos1, "position2": self.arrPlay[indexPath.row].pos2, "parentName":self.arrPlay[indexPath.row].parentFN, "playerEmail" : self.arrPlay[indexPath.row].playerEm, "kitNumber" : self.arrPlay[indexPath.row].kitNum, "parentEmail":self.arrPlay[indexPath.row].parentEm, "phoneNumber": self.arrPlay[indexPath.row].phoneNum]
-                    self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).setValue(playersDict)
+                    self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).setValue(playersDict)
+                    //cell.contentView.backgroundColor = UIColor(
+                    tableView.reloadData()
                 })
                 
             }))
@@ -146,6 +150,17 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tcell") as! TeamCell
+        ref?.child("teams").child(tid).child("players").observeSingleEvent(of: .value, with: { (snaps1) in
+            self.ref?.child("teams").child(self.tid).child("startingLineUp").observeSingleEvent(of: .value, with: { (snaps2) in
+                if (!self.arrPlay[indexPath.row].pfName.isEmpty && self.arrPlay[indexPath.row].kitNum.isEmpty){
+                if (snaps1.hasChild(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum) && snaps2.childSnapshot(forPath: self.ft).hasChild(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)){
+                    print("set image for cell")
+                    cell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
+                }
+                }
+            })
+
+        })
         cell.playerFullName.text = arrPlay[indexPath.row].pfName + " "+arrPlay[indexPath.row].plName
         cell.kitNumber.text = arrPlay[indexPath.row].kitNum
         cell.emailAddresses.text = arrPlay[indexPath.row].playerEm + " "+arrPlay[indexPath.row].parentEm
@@ -169,6 +184,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 let val = snapshot.value as? NSDictionary
                 self.tid = val?["teamID"] as? String ?? ""
                 self.ref?.child("teams").child(self.tid).child("players").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
+                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
                 self.arrPlay.remove(at: indexPath.row)
                 tableView.reloadData()
             })

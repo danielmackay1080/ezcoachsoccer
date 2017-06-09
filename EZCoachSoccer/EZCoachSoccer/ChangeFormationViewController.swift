@@ -48,7 +48,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
                 let ft = val2?["fieldType"] as? String ?? ""
                 //DispatchQueue.main.async {
                     if (ft == "5v5"){ // loads field type depending on what was saved
-                    self.form1.setImage(#imageLiteral(resourceName: "formation22_5"), for: .focused)
+                    self.form1.setImage(#imageLiteral(resourceName: "formation22_5"), for: .normal)
                     self.form1.setTitle("2-2", for: .normal)
                     self.form2.setImage(#imageLiteral(resourceName: "formation13_5"), for: .normal)
                     self.form2.setTitle("1-3", for: .normal)

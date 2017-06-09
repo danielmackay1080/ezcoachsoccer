@@ -9,6 +9,7 @@
 import UIKit
 
 class TeamCell: UITableViewCell {
+    @IBOutlet weak var startingIm: UIImageView!
 
     @IBOutlet weak var playerFullName: UILabel!
     

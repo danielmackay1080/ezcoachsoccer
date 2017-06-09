@@ -30,7 +30,7 @@ public class SevenVSevenInterface : SKScene{
     var oplm7: SKSpriteNode?
     var oprm7 : SKSpriteNode?
     var opstr7: SKSpriteNode?
-    var spTitle, scTitle : SKLabelNode?
+    var spTitle, scTitle, gkkn, lcbkn, rcbkn, cmkn, rmkn, lmkn, stkn : SKLabelNode?
     var savePlays,savecf : SKSpriteNode?
     
     var ball7 : SKSpriteNode?
@@ -104,10 +104,38 @@ public class SevenVSevenInterface : SKScene{
         spTitle = childNode(withName: "saveplaylabel7") as! SKLabelNode!
         scTitle = childNode(withName: "savecflabel7") as! SKLabelNode!
         savecf = childNode(withName: "savecfbg7") as! SKSpriteNode!
+        gkkn = childNode(withName: "gkkn7") as! SKLabelNode!
+        lcbkn = childNode(withName: "lcbkn7") as! SKLabelNode!
+        rcbkn = childNode(withName: "rcbkn7") as! SKLabelNode!
+        cmkn = childNode(withName: "cmkn7") as! SKLabelNode!
+        lmkn = childNode(withName: "lmkn7") as! SKLabelNode!
+        rmkn = childNode(withName: "rmkn7") as! SKLabelNode!
+        stkn = childNode(withName: "stkn7") as! SKLabelNode!
         savePlays?.isHidden = true
         spTitle?.isHidden = true
         scTitle?.isHidden = true
         savecf?.isHidden = true
+        lcb7?.addChild(lcbkn!)
+        rcb7?.addChild(rcbkn!)
+        gk7?.addChild(gkkn!)
+        cm7?.addChild(cmkn!)
+        rm7?.addChild(rmkn!)
+        lm7?.addChild(lmkn!)
+        str7?.addChild(stkn!)
+        lcbkn?.horizontalAlignmentMode = .center
+        lcbkn?.verticalAlignmentMode = .center
+        rcbkn?.horizontalAlignmentMode = .center
+        rcbkn?.verticalAlignmentMode = .center
+        gkkn?.horizontalAlignmentMode = .center
+        gkkn?.verticalAlignmentMode = .center
+        cmkn?.horizontalAlignmentMode = .center
+        cmkn?.verticalAlignmentMode = .center
+        rmkn?.horizontalAlignmentMode = .center
+        rmkn?.verticalAlignmentMode = .center
+        lmkn?.horizontalAlignmentMode = .center
+        lmkn?.verticalAlignmentMode = .center
+        stkn?.horizontalAlignmentMode = .center
+        stkn?.verticalAlignmentMode = .center
         
         ball7 = childNode(withName: "ball7") as? SKSpriteNode!
         
