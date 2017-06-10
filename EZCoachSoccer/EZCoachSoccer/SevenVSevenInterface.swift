@@ -38,6 +38,7 @@ public class SevenVSevenInterface : SKScene{
     var selectForm = ""
     var user : User?
     var isPlayer : Bool?
+    var players = [Players]()
     
     // formations
     // 3-3
@@ -115,7 +116,7 @@ public class SevenVSevenInterface : SKScene{
         spTitle?.isHidden = true
         scTitle?.isHidden = true
         savecf?.isHidden = true
-        lcb7?.addChild(lcbkn!)
+       /* lcb7?.addChild(lcbkn!)
         rcb7?.addChild(rcbkn!)
         gk7?.addChild(gkkn!)
         cm7?.addChild(cmkn!)
@@ -135,7 +136,7 @@ public class SevenVSevenInterface : SKScene{
         lmkn?.horizontalAlignmentMode = .center
         lmkn?.verticalAlignmentMode = .center
         stkn?.horizontalAlignmentMode = .center
-        stkn?.verticalAlignmentMode = .center
+        stkn?.verticalAlignmentMode = .center*/
         
         ball7 = childNode(withName: "ball7") as? SKSpriteNode!
         
@@ -163,7 +164,7 @@ public class SevenVSevenInterface : SKScene{
                     } else if (self.selectForm == "1-3-2"){
                         self.form132()
                     }else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if (snapshot.childSnapshot(forPath: ft).childSnapshot(forPath:(self.selectForm)).exists()){
+                        if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).childSnapshot(forPath:(self.selectForm)).exists()){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb7?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb7?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -185,11 +186,61 @@ public class SevenVSevenInterface : SKScene{
                         self.lm7?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
                         self.cm7?.run(SKAction.move(to: CGPoint(x: cmx, y: cmy), duration: 0.5))
                         self.str7?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                            
+                            self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                            self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
+                            self.rmkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
+                            self.lmkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                            self.cmkn?.run(SKAction.move(to: CGPoint(x: cmx, y: cmy), duration: 0.5))
+                            self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+
                         
                     }
 
                     }
                     }
+                    
+                    self.ref?.child("teams").child(teamCode).child("startingLineUp").child(ft).observeSingleEvent(of: .value, with: { (snaps) in
+                        print("starte snap \(snaps)")
+                        for child in snaps.children {
+                            let items = child as! DataSnapshot
+                            print("kn item \(items)")
+                            let plfn = items.childSnapshot(forPath: "playerFirstName").value!
+                            let plln = items.childSnapshot(forPath: "playerLastName").value!
+                            let kn = items.childSnapshot(forPath: "kitNumber").value!
+                            let pn = items.childSnapshot(forPath: "phoneNumber").value!
+                            let ps1 = items.childSnapshot(forPath: "position1").value!
+                            let ps2 = items.childSnapshot(forPath: "position2").value!
+                            let plem = items.childSnapshot(forPath: "playerEmail").value!
+                            let parem = items.childSnapshot(forPath: "parentEmail").value!
+                            let parn = items.childSnapshot(forPath: "parentName").value!
+                            self.players.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
+                        }
+                        
+                        for pls in self.players{
+                            print("players arr \(pls)")
+                            if (self.players.count == 9){
+                                if (pls.pos1 == "GK"){
+                                    self.gkkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "LCB" ){
+                                    self.lcbkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RCB" ){
+                                    self.rcbkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "LAM" || pls.pos1 == "LW"){
+                                    self.lmkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RM"){
+                                    self.rmkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "ST" || pls.pos1 == "CF"){
+                                    self.stkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "CM" || pls.pos1 == "CDM" || pls.pos1 == "CAM"){
+                                    self.cmkn?.text = pls.kitNum
+                                }
+                            }
+                        }
+                        
+                        
+                    })
+
                 })
             })
         }
@@ -223,18 +274,25 @@ public class SevenVSevenInterface : SKScene{
                     ball7?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "gk7"){
                     gk7?.position = CGPoint(x: tl.x, y: tl.y)
+                    gkkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lcb7"){
                     lcb7?.position = CGPoint(x: tl.x, y: tl.y)
+                    lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rcb7"){
                     rcb7?.position = CGPoint(x: tl.x, y: tl.y)
+                    rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "cm7"){
                     cm7?.position = CGPoint(x: tl.x, y: tl.y)
+                    cmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lm7"){
                     lm7?.position = CGPoint(x: tl.x, y: tl.y)
+                    lmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rm7"){
                     rm7?.position = CGPoint(x: tl.x, y: tl.y)
+                    rmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "str7"){
                     str7?.position = CGPoint(x: tl.x, y: tl.y)
+                    stkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "opgk7"){
                     opgk7?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "oplcb7"){
@@ -261,6 +319,13 @@ public class SevenVSevenInterface : SKScene{
         lm7?.run(lm33)
         cm7?.run(cm33)
         str7?.run(st33)
+        
+        lcbkn?.run(lcb33)
+        rcbkn?.run(rcb33)
+        cmkn?.run(cm33)
+        rmkn?.run(rm33)
+        lmkn?.run(lm33)
+        stkn?.run(st33)
     }
     
     func form312(){
@@ -270,6 +335,13 @@ public class SevenVSevenInterface : SKScene{
         lm7?.run(lm312)
         cm7?.run(cm312)
         str7?.run(st312)
+        
+        lcbkn?.run(lcb312)
+        rcbkn?.run(rcb312)
+        cmkn?.run(cm312)
+        rmkn?.run(rm312)
+        lmkn?.run(lm312)
+        stkn?.run(st312)
     }
     
     func form231(){
@@ -279,6 +351,13 @@ public class SevenVSevenInterface : SKScene{
         lm7?.run(lm231)
         rm7?.run(rm231)
         str7?.run(st231)
+        
+        lcbkn?.run(lcb231)
+        rcbkn?.run(rcb231)
+        cmkn?.run(cm231)
+        rmkn?.run(rm231)
+        lmkn?.run(lm231)
+        stkn?.run(st231)
     }
     
     func form2121(){
@@ -288,6 +367,13 @@ public class SevenVSevenInterface : SKScene{
         lm7?.run(lm2121)
         rm7?.run(rm2121)
         str7?.run(st2121)
+        
+        lcbkn?.run(lcb2121)
+        rcbkn?.run(rcb2121)
+        cmkn?.run(cm2121)
+        rmkn?.run(rm2121)
+        lmkn?.run(lm2121)
+        stkn?.run(st2121)
     }
     
     func form132(){
@@ -297,6 +383,13 @@ public class SevenVSevenInterface : SKScene{
         lm7?.run(lm132)
         rm7?.run(rm132)
         str7?.run(st132)
+        
+        lcbkn?.run(lcb132)
+        rcbkn?.run(rcb132)
+        cmkn?.run(cm132)
+        rmkn?.run(rm132)
+        lmkn?.run(lm132)
+        stkn?.run(st132)
     }
     
     func saveSetPlay(){

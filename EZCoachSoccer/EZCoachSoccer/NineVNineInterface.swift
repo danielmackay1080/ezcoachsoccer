@@ -74,6 +74,7 @@ public class NineVNineInterface : SKScene{
     var selectForm = ""
     var user : User?
     var isPlayer : Bool?
+    var players = [Players]()
     
     public override func didMove(to view: SKView) {
         
@@ -110,7 +111,7 @@ public class NineVNineInterface : SKScene{
         lfkn = childNode(withName: "lfkn9") as! SKLabelNode!
         rfkn = childNode(withName: "rfkn9") as! SKLabelNode!
         stkn = childNode(withName: "stkn9") as! SKLabelNode!
-        gk9?.addChild(gkkn!)
+        /*gk9?.addChild(gkkn!)
         cb9?.addChild(cbkn!)
         lcb9?.addChild(lcbkn!)
         rcb9?.addChild(rcbkn!)
@@ -136,7 +137,7 @@ public class NineVNineInterface : SKScene{
         rfkn?.horizontalAlignmentMode = .center
         rfkn?.verticalAlignmentMode = .center
         stkn?.horizontalAlignmentMode = .center
-        stkn?.verticalAlignmentMode = .center
+        stkn?.verticalAlignmentMode = .center*/
         
         savecf?.isHidden = true
         scTitle?.isHidden = true
@@ -165,7 +166,7 @@ public class NineVNineInterface : SKScene{
                     } else if (self.selectForm == "3-1-2-1-1"){
                         self.form3131()
                     } else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if(snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: (self.selectForm)).exists()){
+                        if(snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: (self.selectForm)).exists()){
                         let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb9?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb9?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -193,9 +194,63 @@ public class NineVNineInterface : SKScene{
                         self.str9?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
                         self.rcm9?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
                         self.lcm9?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
+                            
+                            self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                            self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
+                            self.rfkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
+                            self.lfkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                            self.cbkn?.run(SKAction.move(to: CGPoint(x: cbx, y: cby), duration: 0.5))
+                            self.rcmkn?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
+                            self.lcmkn?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
+                            self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
                         }
                         }
                     }
+                    self.ref?.child("teams").child(teamCode).child("startingLineUp").child(ft).observeSingleEvent(of: .value, with: { (snaps) in
+                        print("starte snap \(snaps)")
+                        for child in snaps.children {
+                            let items = child as! DataSnapshot
+                            print("kn item \(items)")
+                            let plfn = items.childSnapshot(forPath: "playerFirstName").value!
+                            let plln = items.childSnapshot(forPath: "playerLastName").value!
+                            let kn = items.childSnapshot(forPath: "kitNumber").value!
+                            let pn = items.childSnapshot(forPath: "phoneNumber").value!
+                            let ps1 = items.childSnapshot(forPath: "position1").value!
+                            let ps2 = items.childSnapshot(forPath: "position2").value!
+                            let plem = items.childSnapshot(forPath: "playerEmail").value!
+                            let parem = items.childSnapshot(forPath: "parentEmail").value!
+                            let parn = items.childSnapshot(forPath: "parentName").value!
+                            self.players.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
+                        }
+                        
+                        for pls in self.players{
+                            print("players arr \(pls)")
+                            if (self.players.count == 9){
+                                if (pls.pos1 == "GK"){
+                                    self.gkkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "LCB" ){
+                                    self.lcbkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RCB" ){
+                                    self.rcbkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "LAM" || pls.pos1 == "LW"){
+                                    self.lfkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RM"){
+                                    self.rfkn?.text = pls.kitNum
+                                }  else if (pls.pos1 == "LCM" || pls.pos1 == "CM" ){
+                                    self.lcmkn?.text = pls.pos1
+                                } else if (pls.pos1 == "RCM" || pls.pos1 == "CM"){
+                                    self.rcmkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "ST" || pls.pos1 == "CF"){
+                                    self.stkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "CB" || pls.pos1 == "CDM"){
+                                    self.cbkn?.text = pls.kitNum
+                                }
+                            }
+                        }
+                        
+                        
+                    })
+
                     
                 })
             })
@@ -231,22 +286,31 @@ public class NineVNineInterface : SKScene{
                     ball9?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "gk9"){
                     gk9?.position = CGPoint(x: tl.x, y: tl.y)
+                    gkkn?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "lcb9"){
                     lcb9?.position = CGPoint(x: tl.x, y: tl.y)
+                    lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "cb9"){
                     cb9?.position = CGPoint(x: tl.x, y: tl.y)
+                    cbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rcb9"){
                     rcb9?.position = CGPoint(x: tl.x, y: tl.y)
+                    rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lcm9"){
                     lcm9?.position = CGPoint(x: tl.x, y: tl.y)
+                    lcmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "rcm9"){
                     rcm9?.position = CGPoint(x: tl.x, y: tl.y)
+                    rcmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rf9"){
                     rf9?.position = CGPoint(x: tl.x, y: tl.y)
+                    rfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lf9"){
                     lf9?.position = CGPoint(x: tl.x, y: tl.y)
+                    lfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if(node.name == "str9"){
                     str9?.position = CGPoint(x: tl.x, y: tl.y)
+                    stkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "opgk9"){
                     opgk9?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oplcb9"){
@@ -279,6 +343,15 @@ public class NineVNineInterface : SKScene{
         rf9?.run(rf3131)
         lf9?.run(lf3131)
         str9?.run(str3131)
+        
+        lcbkn?.run(lcb3131)
+        rcbkn?.run(rcb3131)
+        cbkn?.run(cb3131)
+        rcmkn?.run(rcm3131)
+        lcmkn?.run(lcm3131)
+        rfkn?.run(rf3131)
+        lfkn?.run(lf3131)
+        stkn?.run(str3131)
     }
     
     func form323(){
@@ -290,6 +363,15 @@ public class NineVNineInterface : SKScene{
         rf9?.run(rf323)
         lf9?.run(lf323)
         str9?.run(str323)
+        
+        lcbkn?.run(lcb323)
+        rcbkn?.run(rcb323)
+        cbkn?.run(cb323)
+        rcmkn?.run(rcm323)
+        lcmkn?.run(lcm323)
+        rfkn?.run(rf323)
+        lfkn?.run(lf323)
+        stkn?.run(str323)
     }
     
     func form233(){
@@ -301,6 +383,15 @@ public class NineVNineInterface : SKScene{
         rf9?.run(rf233)
         lf9?.run(lf233)
         str9?.run(str233)
+        
+        lcbkn?.run(lcb233)
+        rcbkn?.run(rcb233)
+        cbkn?.run(cb233)
+        rcmkn?.run(rcm233)
+        lcmkn?.run(lcm233)
+        rfkn?.run(rf233)
+        lfkn?.run(lf233)
+        stkn?.run(str233)
     }
     
     func form242(){
@@ -312,6 +403,15 @@ public class NineVNineInterface : SKScene{
         rf9?.run(rf242)
         lf9?.run(lf242)
         str9?.run(str242)
+        
+        lcbkn?.run(lcb242)
+        rcbkn?.run(rcb242)
+        cbkn?.run(cb242)
+        rcmkn?.run(RCM242)
+        lcmkn?.run(lcm242)
+        rfkn?.run(rf242)
+        lfkn?.run(lf242)
+        stkn?.run(str242)
     }
     
     func form2222(){
@@ -323,6 +423,15 @@ public class NineVNineInterface : SKScene{
         rf9?.run(rf2222)
         lf9?.run(lf2222)
         str9?.run(str2222)
+        
+        lcbkn?.run(lcb2222)
+        rcbkn?.run(rcb2222)
+        cbkn?.run(cb2222)
+        rcmkn?.run(rcm2222)
+        lcmkn?.run(lcm2222)
+        rfkn?.run(rf2222)
+        lfkn?.run(lf2222)
+        stkn?.run(str2222)
     }
     
     func saveSetPlay(){

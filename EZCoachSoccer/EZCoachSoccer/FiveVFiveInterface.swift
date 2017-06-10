@@ -34,6 +34,7 @@ public class FiveVFiveInterface: SKScene{
     var selectForm = ""
     var user : User?
     var isPlayer : Bool?
+    var players = [Players]()
     
     // formations
     // 2-2
@@ -84,10 +85,10 @@ public class FiveVFiveInterface: SKScene{
         savecf = childNode(withName: "savecfbg5") as! SKSpriteNode!
         gkkn = childNode(withName: "gkkn5") as! SKLabelNode!
         lcbkn = childNode(withName: "lcbkn5") as! SKLabelNode!
-        rcbkn = childNode(withName: "rcb5") as! SKLabelNode!
+        rcbkn = childNode(withName: "rcbkn5") as! SKLabelNode!
         rfkn = childNode(withName: "rfkn5") as! SKLabelNode!
         lfkn = childNode(withName: "lfkn5") as! SKLabelNode!
-        gk5?.addChild(gkkn!)
+       /* gk5?.addChild(gkkn!)
         lcb5?.addChild(lcbkn!)
         rcb5?.addChild(rcbkn!)
         lf5?.addChild(lfkn!)
@@ -101,7 +102,7 @@ public class FiveVFiveInterface: SKScene{
         lfkn?.horizontalAlignmentMode = .center
         lfkn?.verticalAlignmentMode = .center
         rfkn?.horizontalAlignmentMode = .center
-        rfkn?.verticalAlignmentMode = .center
+        rfkn?.verticalAlignmentMode = .center*/
         
         
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
@@ -135,7 +136,7 @@ public class FiveVFiveInterface: SKScene{
                     } else if (self.selectForm == "1-1-2"){
                         self.form112()
                     } else if (snapshot.childSnapshot(forPath: "customFormations").exists()){
-                        if (snapshot.childSnapshot(forPath: ft).childSnapshot(forPath:(self.selectForm)).exists()){
+                        if (snapshot.childSnapshot(forPath: "customFormations").childSnapshot(forPath: ft).childSnapshot(forPath:(self.selectForm)).exists()){
                        let lcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb5?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
                         let lcby = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.lcb5?.name)!).childSnapshot(forPath: "y") .value as! CGFloat
                         let rcbx = snapshot.childSnapshot(forPath:"customFormations").childSnapshot(forPath: ft).childSnapshot(forPath: self.selectForm).childSnapshot(forPath: (self.rcb5?.name)!).childSnapshot(forPath: "x") .value as! CGFloat
@@ -151,9 +152,49 @@ public class FiveVFiveInterface: SKScene{
                         self.rcb5?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
                         self.rf5?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
                         self.lf5?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                            
+                        self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                        self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
+                        self.rfkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
+                        self.lfkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
                     }
                     }
                     }
+                    
+                    self.ref?.child("teams").child(teamCode).child("startingLineUp").child(ft).observeSingleEvent(of: .value, with: { (snaps) in
+                        print("starte snap \(snaps)")
+                        for child in snaps.children {
+                            let items = child as! DataSnapshot
+                            print("kn item \(items)")
+                            let plfn = items.childSnapshot(forPath: "playerFirstName").value!
+                            let plln = items.childSnapshot(forPath: "playerLastName").value!
+                            let kn = items.childSnapshot(forPath: "kitNumber").value!
+                            let pn = items.childSnapshot(forPath: "phoneNumber").value!
+                            let ps1 = items.childSnapshot(forPath: "position1").value!
+                            let ps2 = items.childSnapshot(forPath: "position2").value!
+                            let plem = items.childSnapshot(forPath: "playerEmail").value!
+                            let parem = items.childSnapshot(forPath: "parentEmail").value!
+                            let parn = items.childSnapshot(forPath: "parentName").value!
+                            self.players.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
+                        }
+                        
+                        for pls in self.players{
+                            print("players arr \(pls)")
+                            if (self.players.count == 5){
+                                if (pls.pos1 == "GK"){
+                                    self.gkkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "LCB" || pls.pos1 == "LB"){
+                                    self.lcbkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RCB" || pls.pos1 == "RB"){
+                                    self.rcbkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "ST"){
+                                    self.lfkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "ST"){
+                                    self.rfkn?.text = pls.kitNum
+                                }
+                            }
+                        }
+                    })
                 })
             })
         }
@@ -186,22 +227,27 @@ public class FiveVFiveInterface: SKScene{
             if let node = self.atPoint(tl) as? SKSpriteNode{
                 if (node.name == "gk5"){
                     gk5?.position = CGPoint(x: tl.x, y: tl.y)
+                    gkkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "opgk5"){
                     opGk5?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "lcb5"){
                     lcb5?.position = CGPoint(x: tl.x, y: tl.y)
+                    lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oplcb5"){
                     oplcb5?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "rcb5"){
                     rcb5?.position = CGPoint(x: tl.x, y: tl.y)
+                    rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oprcb5"){
                     oprcb5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rf5"){
                     rf5?.position = CGPoint(x: tl.x, y: tl.y)
+                    rfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oprf5"){
                     oprf5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lf5"){
                     lf5?.position = CGPoint(x: tl.x, y: tl.y)
+                    lfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oplf5"){
                     oplf5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "ball5"){
@@ -213,9 +259,13 @@ public class FiveVFiveInterface: SKScene{
     
     func form22(){
         lcb5?.run(lcb22)
+        lcbkn?.run(lcb22)
         rcb5?.run(rcb22)
+        rcbkn?.run(rcb22)
         lf5?.run(lf22)
+        lfkn?.run(lf22)
         rf5?.run(rf22)
+        rfkn?.run(rf22)
     }
     
     func form31(){
@@ -223,6 +273,10 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb31)
         lf5?.run(lf31)
         rf5?.run(rf31)
+        lcbkn?.run(lcb31)
+        rcbkn?.run(rcb31)
+        lfkn?.run(lf31)
+        rfkn?.run(rf31)
     }
     
     func form13(){
@@ -230,6 +284,10 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb13)
         rf5?.run(rf13)
         lf5?.run(lf13)
+        lcbkn?.run(lcb13)
+        rcbkn?.run(rcb13)
+        lfkn?.run(lf13)
+        rfkn?.run(rf13)
     }
     
     func form121(){
@@ -237,6 +295,10 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb121)
         lf5?.run(lf121)
         rf5?.run(rf121)
+        lcbkn?.run(lcb121)
+        rcbkn?.run(rcb121)
+        lfkn?.run(lf121)
+        rfkn?.run(rf121)
     }
     
     func form112(){
@@ -244,6 +306,10 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb112)
         rf5?.run(rf112)
         lf5?.run(lf112)
+        lcbkn?.run(lcb112)
+        rcbkn?.run(rcb112)
+        lfkn?.run(lf112)
+        rfkn?.run(rf112)
     }
     
     func saveSetPlay(){
@@ -304,6 +370,7 @@ public class FiveVFiveInterface: SKScene{
                 print("cf\(String(describing: fName))")
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child("title").setValue(fName!)
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb5?.name)!).child("x").setValue(self.lcb5?.position.x)
+                
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lcb5?.name)!).child("y").setValue(self.lcb5?.position.y)
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb5?.name)!).child("x").setValue(self.rcb5?.position.x)
             self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rcb5?.name)!).child("y").setValue(self.rcb5?.position.y)
@@ -311,6 +378,7 @@ public class FiveVFiveInterface: SKScene{
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.lf5?.name)!).child("y").setValue(self.lf5?.position.y)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rf5?.name)!).child("x").setValue(self.rf5?.position.x)
                 self.ref?.child("teams").child(teamCode).child("customFormations").child(ft).child(fName!).child((self.rf5?.name)!).child("y").setValue(self.rf5?.position.y)
+                
             })
             
         }))
