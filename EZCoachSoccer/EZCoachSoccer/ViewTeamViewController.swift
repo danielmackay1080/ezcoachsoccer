@@ -160,11 +160,14 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 if (!self.arrPlay[indexPath.row].pfName.isEmpty && !self.arrPlay[indexPath.row].kitNum.isEmpty){
                     //print("cell snaps2 \(snaps2)")
                     
-                        
-                    if( snaps2.childSnapshot(forPath:(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)).exists()){
-                        print("set image for cell \(snaps2.childSnapshot(forPath:(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)).value)")
-                        tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
-                        
+                    for snaps in snaps2.children{
+                        let item = snaps as! DataSnapshot
+                        if( item.key == self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum){
+                            print("set image for cell \(item.key)")
+                            tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
+                            
+                        }
+
                     }
                     
                 }
