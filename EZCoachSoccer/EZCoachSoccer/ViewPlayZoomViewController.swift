@@ -53,6 +53,7 @@ class ViewPlayZoomViewController: ViewController {
                         print("deleteplays error \(error)")
                     } else {
                         self.navigationController?.popViewController(animated: true)
+                        //self.navigationController.
                     }
                 })
 

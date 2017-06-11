@@ -150,24 +150,37 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tcell") as! TeamCell
+                return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let tcell = cell as! TeamCell
         ref?.child("teams").child(tid).child("players").observeSingleEvent(of: .value, with: { (snaps1) in
-            self.ref?.child("teams").child(self.tid).child("startingLineUp").observeSingleEvent(of: .value, with: { (snaps2) in
-                if (!self.arrPlay[indexPath.row].pfName.isEmpty && self.arrPlay[indexPath.row].kitNum.isEmpty){
-                if (snaps1.hasChild(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum) && snaps2.childSnapshot(forPath: self.ft).hasChild(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)){
-                    print("set image for cell")
-                    cell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
+            self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).observeSingleEvent(of: .value, with: { (snaps2) in
+                if (!self.arrPlay[indexPath.row].pfName.isEmpty && !self.arrPlay[indexPath.row].kitNum.isEmpty){
+                    //print("cell snaps2 \(snaps2)")
+                    
+                        
+                    if( snaps2.childSnapshot(forPath:(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)).exists()){
+                        print("set image for cell \(snaps2.childSnapshot(forPath:(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)).value)")
+                        tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
+                        
+                    }
+                    
                 }
-                }
-            })
+                tcell.playerFullName.text = self.arrPlay[indexPath.row].pfName + " "+self.arrPlay[indexPath.row].plName
+                tcell.kitNumber.text = self.arrPlay[indexPath.row].kitNum
+                tcell.emailAddresses.text = self.arrPlay[indexPath.row].playerEm + " "+self.arrPlay[indexPath.row].parentEm
+                tcell.phoneNumber.text = self.arrPlay[indexPath.row].phoneNum
+                tcell.playerPositions.text = "Positions: "+self.arrPlay[indexPath.row].pos1+" "+self.arrPlay[indexPath.row].pos2
+                tcell.parentName.text = self.arrPlay[indexPath.row].parentFN
+                
+                //tableView.reloadData()
 
+            })
+            
         })
-        cell.playerFullName.text = arrPlay[indexPath.row].pfName + " "+arrPlay[indexPath.row].plName
-        cell.kitNumber.text = arrPlay[indexPath.row].kitNum
-        cell.emailAddresses.text = arrPlay[indexPath.row].playerEm + " "+arrPlay[indexPath.row].parentEm
-        cell.phoneNumber.text = arrPlay[indexPath.row].phoneNum
-        cell.playerPositions.text = "Positions: "+arrPlay[indexPath.row].pos1+" "+arrPlay[indexPath.row].pos2
-        cell.parentName.text = arrPlay[indexPath.row].parentFN
-        return cell
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
