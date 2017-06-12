@@ -8,8 +8,9 @@
 
 import UIKit
 import Firebase
+import MessageUI
 
-class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var addpl: UIButton!
     @IBOutlet weak var positionsTable: UITableView!
@@ -133,7 +134,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
                 //let par = self.udef.object(forKey: "plarrDict") as? [NSDictionary] ?? [NSDictionary]()
             
                 self.ref?.child("teams").child(self.tid).child("players").child(self.plfn+self.kn).setValue(playersDict)
-                self.navigationController?.popViewController(animated: true)
+                self.sendEmail(em1: self.plem, em2: self.parem, teamID: self.tid)
                 
             })
         }
@@ -144,7 +145,22 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func sendEmail(em1 : String, em2 : String, teamID : String){
+        if (MFMailComposeViewController.canSendMail()){
+           let email  = MFMailComposeViewController()
+            email.mailComposeDelegate = self
+            email.setToRecipients([em1, em2])
+            email.setSubject("You have been added to a team via EZ Coach Soccer")
+            email.setMessageBody("Hello your coach is using EZ Coach Soccer and has added you to his team, please download and sign in with this password \(self.tid)", isHTML: false)
+            present(email, animated: true, completion: nil)
+        }
+    }
 
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+    }
 
     /*
     // MARK: - Navigation
