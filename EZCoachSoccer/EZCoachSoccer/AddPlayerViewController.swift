@@ -47,7 +47,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
     var players = [Players]()
     var pld = [NSDictionary]()
     var udef = UserDefaults.standard
-    var isUpdated : Bool?
+    let isUpdated = UserDefaults.standard.bool(forKey: "isUpdated")
     var updatedPlayer : Players?
     var section = ["Defenders", "Midfielders", "Atackers"]
     var posArr = [["GK", "LCB", "RCB", "CB", "RB", "LB" , "RWB", "LWB"], ["CM", "CDM" , "CAM", "LCM", "RCM", "LM", "RM", "LW", "RW"], ["ST", "CF", "LF", "RF", "LAM", "RAM"]]
@@ -56,7 +56,6 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        let isUpdated = UserDefaults.standard.bool(forKey: "isUpdated")
         if (isUpdated){
             pfName.text = updatedPlayer?.pfName
             plName.text = updatedPlayer?.plName
@@ -67,6 +66,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
             playerEM.text = updatedPlayer?.playerEm
             parentEm.text = updatedPlayer?.parentEm
             phoneNum.text = updatedPlayer?.phoneNum
+            addpl.setTitle("Update Player", for: .normal)
         }
         // Do any additional setup after loading the view.
     }
@@ -132,10 +132,17 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
                 //self.pld.append(playersDict as NSDictionary)
                 //self.udef.set(self.pld, forKey: "plarrDict")
                 //let par = self.udef.object(forKey: "plarrDict") as? [NSDictionary] ?? [NSDictionary]()
+                
             
                 self.ref?.child("teams").child(self.tid).child("players").child(self.plfn+self.kn).setValue(playersDict)
+                if (self.isUpdated){
+                    if (self.plfn !=  self.updatedPlayer?.pfName || self.kn != self.updatedPlayer?.kitNum){
+                        self.ref?.child("teams").child(self.tid).child((self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!).removeValue()
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                } else {
                 self.sendEmail(em1: self.plem, em2: self.parem, teamID: self.tid)
-                
+                }
             })
         }
     }
@@ -161,6 +168,8 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
         dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
 
     /*
     // MARK: - Navigation
