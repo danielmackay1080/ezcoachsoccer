@@ -117,17 +117,17 @@ public class ElevenVElevenInterface: SKScene{
         spTitle = childNode(withName: "saveplaylabel11") as! SKLabelNode!
         scTitle = childNode(withName: "savecflabel11") as! SKLabelNode!
         savcf = childNode(withName: "savecfbg11") as! SKSpriteNode!
-        gkkn = childNode(withName: "gkkn11") as! SKLabelNode!
-        lcbkn = childNode(withName: "lcbkn11") as! SKLabelNode!
-        rcbkn = childNode(withName: "rcbkn11") as! SKLabelNode!
-        rbkn = childNode(withName: "rbkn11") as! SKLabelNode!
-        lbkn = childNode(withName: "lbkn11") as! SKLabelNode!
-        cmkn = childNode(withName: "cmkn11") as! SKLabelNode!
-        rcmkn = childNode(withName: "rcmkn11") as! SKLabelNode!
-        lcmkn = childNode(withName: "lcmkn11") as! SKLabelNode!
-        rfkn = childNode(withName: "rfkn11") as! SKLabelNode!
-        lfkn = childNode(withName: "lfkn11") as! SKLabelNode!
-        stkn = childNode(withName: "stkn11") as! SKLabelNode!
+        gkkn = gk11?.childNode(withName: "gkkn11") as! SKLabelNode!
+        lcbkn = lcb11?.childNode(withName: "lcbkn11") as! SKLabelNode!
+        rcbkn = rcb11?.childNode(withName: "rcbkn11") as! SKLabelNode!
+        rbkn = rb11?.childNode(withName: "rbkn11") as! SKLabelNode!
+        lbkn = lb11?.childNode(withName: "lbkn11") as! SKLabelNode!
+        cmkn = cm11?.childNode(withName: "cmkn11") as! SKLabelNode!
+        rcmkn = rcm11?.childNode(withName: "rcmkn11") as! SKLabelNode!
+        lcmkn = lcm11?.childNode(withName: "lcmkn11") as! SKLabelNode!
+        rfkn = rf11?.childNode(withName: "rfkn11") as! SKLabelNode!
+        lfkn = lf11?.childNode(withName: "lfkn11") as! SKLabelNode!
+        stkn = str11?.childNode(withName: "stkn11") as! SKLabelNode!
         /*str11?.addChild(stkn!)
         rf11?.addChild(rfkn!)
         lf11?.addChild(lfkn!)
@@ -138,7 +138,7 @@ public class ElevenVElevenInterface: SKScene{
         lb11?.addChild(lbkn!)
         rcb11?.addChild(rcbkn!)
         lcb11?.addChild(lcbkn!)
-        gk11?.addChild(gkkn!)
+        gk11?.addChild(gkkn!)*/
         stkn?.horizontalAlignmentMode = .center
         stkn?.verticalAlignmentMode = .center
         rfkn?.horizontalAlignmentMode = .center
@@ -160,7 +160,7 @@ public class ElevenVElevenInterface: SKScene{
         lcbkn?.horizontalAlignmentMode = .center
         lcbkn?.verticalAlignmentMode = .center
         gkkn?.horizontalAlignmentMode = .center
-        gkkn?.verticalAlignmentMode = .center*/
+        gkkn?.verticalAlignmentMode = .center
         savePlays?.isHidden = true
         spTitle?.isHidden = true
         scTitle?.isHidden = true
@@ -225,7 +225,7 @@ public class ElevenVElevenInterface: SKScene{
                         self.rb11?.run(SKAction.move(to: CGPoint(x: rbx, y: rby), duration: 0.5))
                         self.lb11?.run(SKAction.move(to: CGPoint(x: lbx, y: lby), duration: 0.5))
                             
-                        self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                        /*self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
                         self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
                         self.rfkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
                         self.lfkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
@@ -234,7 +234,7 @@ public class ElevenVElevenInterface: SKScene{
                         self.lcmkn?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
                         self.rbkn?.run(SKAction.move(to: CGPoint(x: rbx, y: rby), duration: 0.5))
                         self.lbkn?.run(SKAction.move(to: CGPoint(x: lbx, y: lby), duration: 0.5))
-                        self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                        self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))*/
                             
                         }
                     }
@@ -265,17 +265,17 @@ public class ElevenVElevenInterface: SKScene{
                                     self.lcbkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "RCB" || pls.pos1 == "CB" || pls.pos1 == "CDM"){
                                     self.rcbkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "LAM" || pls.pos1 == "LW" || pls.pos1 == "CF" || pls.pos1 == "ST"){
+                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "LAM" || pls.pos1 == "LW" || pls.pos1 == "CF" ){
                                     self.lfkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RM" || pls.pos1 == "CF" || pls.pos1 == "ST"){
+                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RM" || pls.pos1 == "CF" ){
                                     self.rfkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "LB" || pls.pos1 == "LWB" || pls.pos1 == "LM"){
                                     self.lbkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "RB" || pls.pos1 == "RWB" || pls.pos1 == "RM"){
                                     self.rbkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "LCM" || pls.pos1 == "CM" || pls.pos1 == "CAM"){
-                                    self.lcmkn?.text = pls.pos1
-                                } else if (pls.pos1 == "RCM" || pls.pos1 == "CM" || pls.pos1 == "CAM"){
+                                } else if (pls.pos1 == "LCM" ||  pls.pos1 == "CAM"){
+                                    self.lcmkn?.text = pls.kitNum
+                                } else if (pls.pos1 == "RCM" ||  pls.pos1 == "CAM"){
                                     self.rcmkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "ST" || pls.pos1 == "CF"){
                                     self.stkn?.text = pls.kitNum
@@ -284,7 +284,7 @@ public class ElevenVElevenInterface: SKScene{
                                 }
                             }
                         } else {
-                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 5 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 11 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                             self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
                         }
@@ -325,37 +325,37 @@ public class ElevenVElevenInterface: SKScene{
                     ball11?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == gk11?.name){
                     gk11?.position = CGPoint(x: tl.x, y: tl.y)
-                    gkkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //gkkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == lcb11?.name){
                     lcb11?.position = CGPoint(x: tl.x, y: tl.y)
-                    lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == rcb11?.name){
                     rcb11?.position = CGPoint(x: tl.x, y: tl.y)
-                    rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == lb11?.name){
                     lb11?.position = CGPoint(x: tl.x, y: tl.y)
-                    lbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == rb11?.name){
                     rb11?.position = CGPoint(x: tl.x, y: tl.y)
-                    rbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                   // rbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == rcm11?.name){
                     rcm11?.position = CGPoint(x: tl.x, y: tl.y)
-                    rcmkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //rcmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == lcm11?.name){
                     lcm11?.position = CGPoint(x: tl.x, y: tl.y)
-                    lcmkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lcmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == cm11?.name){
                     cm11?.position = CGPoint(x: tl.x, y: tl.y)
-                    cmkn?.position = CGPoint(x: tl.x, y: tl.y)
+                   // cmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == rf11?.name){
                     rf11?.position = CGPoint(x: tl.x, y: tl.y)
-                    rfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                   // rfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == lf11?.name){
                     lf11?.position = CGPoint(x: tl.x, y: tl.y)
-                    lfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                   // lfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == str11?.name){
                     str11?.position = CGPoint(x: tl.x, y: tl.y)
-                    stkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //stkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == opgk11?.name){
                     opgk11?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == oplcb11?.name){
@@ -395,17 +395,7 @@ public class ElevenVElevenInterface: SKScene{
         rf11?.run(rf433)
         str11?.run(STR433)
         
-        lcbkn?.run(lcb433)
-        rcbkn?.run(rcb433)
-        lbkn?.run(lb433)
-        rbkn?.run(rb433)
-        cmkn?.run(cm433)
-        rcmkn?.run(rcm433)
-        lcmkn?.run(lcm433)
-        rfkn?.run(rf433)
-        lfkn?.run(lf433)
-        stkn?.run(STR433)
-    }
+            }
     
     func form442(){
         lcb11?.run(lcb442)
@@ -419,16 +409,7 @@ public class ElevenVElevenInterface: SKScene{
         rf11?.run(rf442)
         str11?.run(str442)
         
-        lcbkn?.run(lcb442)
-        rcbkn?.run(rcb442)
-        lbkn?.run(lb442)
-        rbkn?.run(rcb442)
-        cmkn?.run(cm442)
-        rcmkn?.run(rcm442)
-        lcmkn?.run(lcm442)
-        rfkn?.run(rf442)
-        lfkn?.run(lf442)
-        stkn?.run(str442)
+        
 
     }
     
@@ -444,17 +425,7 @@ public class ElevenVElevenInterface: SKScene{
         lf11?.run(lf4231)
         str11?.run(str4231)
         
-        lcbkn?.run(lcb4231)
-        rcbkn?.run(rcb4231)
-        lbkn?.run(lb4231)
-        rbkn?.run(rb4231)
-        cmkn?.run(cm4231)
-        rcmkn?.run(rcm4231)
-        lcmkn?.run(lcm4231)
-        rfkn?.run(rf4231)
-        lfkn?.run(lf4231)
-        stkn?.run(str4231)
-
+        
     }
     
     func form343(){
@@ -469,17 +440,7 @@ public class ElevenVElevenInterface: SKScene{
         lf11?.run(lf343)
         str11?.run(str343)
         
-        lcbkn?.run(lcb343)
-        rcbkn?.run(rcb343)
-        lbkn?.run(lb343)
-        rbkn?.run(rb343)
-        cmkn?.run(cm343)
-        rcmkn?.run(rcm343)
-        lcmkn?.run(lcm343)
-        rfkn?.run(rf343)
-        lfkn?.run(lf343)
-        stkn?.run(str343)
-
+       
     }
     
     func form532(){
@@ -494,17 +455,7 @@ public class ElevenVElevenInterface: SKScene{
         lf11?.run(lf532)
         str11?.run(str532)
         
-        lcbkn?.run(lcb532)
-        rcbkn?.run(rcb532)
-        lbkn?.run(lb532)
-        rbkn?.run(rb532)
-        cmkn?.run(cm532)
-        rcmkn?.run(rcm532)
-        lcmkn?.run(lcm532)
-        rfkn?.run(rf532)
-        lfkn?.run(lf532)
-        stkn?.run(str532)
-
+    
     }
     
     func saveSetPlay(){

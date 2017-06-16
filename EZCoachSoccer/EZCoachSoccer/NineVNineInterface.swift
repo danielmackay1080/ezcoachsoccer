@@ -61,12 +61,12 @@ public class NineVNineInterface : SKScene{
     var lcm2222 = SKAction.move(to: CGPoint(x: 292.907, y: -93.929), duration: 1)
     
     // 3-1-3-1
-    var rcb3131 = SKAction.move(to: CGPoint(x: 200.003, y: 200.158), duration: 1)
+    var rf3131 = SKAction.move(to: CGPoint(x: 200.003, y: 200.158), duration: 1)
     var lcb3131 = SKAction.move(to: CGPoint(x: 437.816, y: -182.219), duration: 1)
-    var cb3131 = SKAction.move(to: CGPoint(x: 437.816, y: 178.35), duration: 1)
-    var lcm3131 = SKAction.move(to: CGPoint(x: 437.816, y: -7.033), duration: 1)
+    var rcb3131 = SKAction.move(to: CGPoint(x: 437.816, y: 178.35), duration: 1)
+    var cb3131 = SKAction.move(to: CGPoint(x: 437.816, y: -7.033), duration: 1)
     var rcm3131 = SKAction.move(to: CGPoint(x: 322.816, y: -7.033), duration: 1)
-    var rf3131 = SKAction.move(to: CGPoint(x: 200.003, y: -7.033), duration: 1)
+    var lcm3131 = SKAction.move(to: CGPoint(x: 200.003, y: -7.033), duration: 1)
     var str3131 = SKAction.move(to: CGPoint(x: 84.614, y: -7.033), duration: 1)
     var lf3131 = SKAction.move(to: CGPoint(x: 200.003, y: -234.247), duration: 1)
     
@@ -102,15 +102,15 @@ public class NineVNineInterface : SKScene{
         spTitle = childNode(withName: "saveplaylabel9") as! SKLabelNode!
         scTitle = childNode(withName: "savecflabel9") as! SKLabelNode!
         savecf = childNode(withName: "savecfbg9") as! SKSpriteNode!
-        gkkn = childNode(withName: "gkkn9") as! SKLabelNode!
-        cbkn = childNode(withName: "cbkn9") as! SKLabelNode!
-        rcbkn = childNode(withName: "rcbkn9") as! SKLabelNode!
-        lcbkn = childNode(withName: "lcbkn9") as! SKLabelNode!
-        lcmkn = childNode(withName: "lcmkn9") as! SKLabelNode!
-        rcmkn = childNode(withName: "rcmkn9") as! SKLabelNode!
-        lfkn = childNode(withName: "lfkn9") as! SKLabelNode!
-        rfkn = childNode(withName: "rfkn9") as! SKLabelNode!
-        stkn = childNode(withName: "stkn9") as! SKLabelNode!
+        gkkn = gk9?.childNode(withName: "gkkn9") as! SKLabelNode!
+        cbkn = cb9?.childNode(withName: "cbkn9") as! SKLabelNode!
+        rcbkn = rcb9?.childNode(withName: "rcbkn9") as! SKLabelNode!
+        lcbkn = lcb9?.childNode(withName: "lcbkn9") as! SKLabelNode!
+        lcmkn = lcm9?.childNode(withName: "lcmkn9") as! SKLabelNode!
+        rcmkn = rcm9?.childNode(withName: "rcmkn9") as! SKLabelNode!
+        lfkn = lf9?.childNode(withName: "lfkn9") as! SKLabelNode!
+        rfkn = rf9?.childNode(withName: "rfkn9") as! SKLabelNode!
+        stkn = str9?.childNode(withName: "stkn9") as! SKLabelNode!
         /*gk9?.addChild(gkkn!)
         cb9?.addChild(cbkn!)
         lcb9?.addChild(lcbkn!)
@@ -119,7 +119,7 @@ public class NineVNineInterface : SKScene{
         rcm9?.addChild(rcmkn!)
         lf9?.addChild(lfkn!)
         rf9?.addChild(rfkn!)
-        str9?.addChild(stkn!)
+        str9?.addChild(stkn!)*/
         gkkn?.verticalAlignmentMode = .center
         gkkn?.horizontalAlignmentMode = .center
         cbkn?.horizontalAlignmentMode = .center
@@ -137,7 +137,7 @@ public class NineVNineInterface : SKScene{
         rfkn?.horizontalAlignmentMode = .center
         rfkn?.verticalAlignmentMode = .center
         stkn?.horizontalAlignmentMode = .center
-        stkn?.verticalAlignmentMode = .center*/
+        stkn?.verticalAlignmentMode = .center
         
         savecf?.isHidden = true
         scTitle?.isHidden = true
@@ -195,14 +195,14 @@ public class NineVNineInterface : SKScene{
                         self.rcm9?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
                         self.lcm9?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
                             
-                            self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                           /* self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
                             self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
                             self.rfkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
                             self.lfkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
                             self.cbkn?.run(SKAction.move(to: CGPoint(x: cbx, y: cby), duration: 0.5))
                             self.rcmkn?.run(SKAction.move(to: CGPoint(x: rcmx, y: rcmy), duration: 0.5))
                             self.lcmkn?.run(SKAction.move(to: CGPoint(x: lcmx, y: lcmy), duration: 0.5))
-                            self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                            self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))*/
                         }
                         }
                     }
@@ -226,7 +226,7 @@ public class NineVNineInterface : SKScene{
 
                         for pls in self.players{
                             print("players arr \(pls)")
-                                                            if (pls.pos1 == "GK"){
+                                    if (pls.pos1 == "GK"){
                                     self.gkkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "LCB"  || pls.pos1 == "LB" || pls.pos1 == "LWB" || pls.pos1 == "CB"){
                                     self.lcbkn?.text = pls.kitNum
@@ -237,7 +237,7 @@ public class NineVNineInterface : SKScene{
                                 } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RM" || pls.pos1 == "CF" || pls.pos1 == "ST"){
                                     self.rfkn?.text = pls.kitNum
                                 }  else if (pls.pos1 == "LCM" || pls.pos1 == "CM" || pls.pos1 == "CAM"){
-                                    self.lcmkn?.text = pls.pos1
+                                    self.lcmkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "RCM" || pls.pos1 == "CM" || pls.pos1 == "CAM"){
                                     self.rcmkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "ST" || pls.pos1 == "CF" || pls.pos1 == "CAM"){
@@ -247,7 +247,7 @@ public class NineVNineInterface : SKScene{
                                 }
                             }
                         } else {
-                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 5 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 9 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                             self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
                         }
@@ -290,31 +290,31 @@ public class NineVNineInterface : SKScene{
                     ball9?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "gk9"){
                     gk9?.position = CGPoint(x: tl.x, y: tl.y)
-                    gkkn?.position = CGPoint(x: tl.x, y: tl.y)
+                   // gkkn?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "lcb9"){
                     lcb9?.position = CGPoint(x: tl.x, y: tl.y)
-                    lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "cb9"){
                     cb9?.position = CGPoint(x: tl.x, y: tl.y)
-                    cbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //cbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rcb9"){
                     rcb9?.position = CGPoint(x: tl.x, y: tl.y)
-                    rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                   // rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lcm9"){
                     lcm9?.position = CGPoint(x: tl.x, y: tl.y)
-                    lcmkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lcmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "rcm9"){
                     rcm9?.position = CGPoint(x: tl.x, y: tl.y)
-                    rcmkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //rcmkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rf9"){
                     rf9?.position = CGPoint(x: tl.x, y: tl.y)
-                    rfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //rfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lf9"){
                     lf9?.position = CGPoint(x: tl.x, y: tl.y)
-                    lfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lfkn?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if(node.name == "str9"){
                     str9?.position = CGPoint(x: tl.x, y: tl.y)
-                    stkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //stkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "opgk9"){
                     opgk9?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oplcb9"){
@@ -348,14 +348,7 @@ public class NineVNineInterface : SKScene{
         lf9?.run(lf3131)
         str9?.run(str3131)
         
-        lcbkn?.run(lcb3131)
-        rcbkn?.run(rcb3131)
-        cbkn?.run(cb3131)
-        rcmkn?.run(rcm3131)
-        lcmkn?.run(lcm3131)
-        rfkn?.run(rf3131)
-        lfkn?.run(lf3131)
-        stkn?.run(str3131)
+        
     }
     
     func form323(){
@@ -368,15 +361,7 @@ public class NineVNineInterface : SKScene{
         lf9?.run(lf323)
         str9?.run(str323)
         
-        lcbkn?.run(lcb323)
-        rcbkn?.run(rcb323)
-        cbkn?.run(cb323)
-        rcmkn?.run(rcm323)
-        lcmkn?.run(lcm323)
-        rfkn?.run(rf323)
-        lfkn?.run(lf323)
-        stkn?.run(str323)
-    }
+            }
     
     func form233(){
         rcb9?.run(rcb233)
@@ -388,14 +373,7 @@ public class NineVNineInterface : SKScene{
         lf9?.run(lf233)
         str9?.run(str233)
         
-        lcbkn?.run(lcb233)
-        rcbkn?.run(rcb233)
-        cbkn?.run(cb233)
-        rcmkn?.run(rcm233)
-        lcmkn?.run(lcm233)
-        rfkn?.run(rf233)
-        lfkn?.run(lf233)
-        stkn?.run(str233)
+        
     }
     
     func form242(){
@@ -408,14 +386,7 @@ public class NineVNineInterface : SKScene{
         lf9?.run(lf242)
         str9?.run(str242)
         
-        lcbkn?.run(lcb242)
-        rcbkn?.run(rcb242)
-        cbkn?.run(cb242)
-        rcmkn?.run(RCM242)
-        lcmkn?.run(lcm242)
-        rfkn?.run(rf242)
-        lfkn?.run(lf242)
-        stkn?.run(str242)
+        
     }
     
     func form2222(){
@@ -428,14 +399,7 @@ public class NineVNineInterface : SKScene{
         lf9?.run(lf2222)
         str9?.run(str2222)
         
-        lcbkn?.run(lcb2222)
-        rcbkn?.run(rcb2222)
-        cbkn?.run(cb2222)
-        rcmkn?.run(rcm2222)
-        lcmkn?.run(lcm2222)
-        rfkn?.run(rf2222)
-        lfkn?.run(lf2222)
-        stkn?.run(str2222)
+        
     }
     
     func saveSetPlay(){

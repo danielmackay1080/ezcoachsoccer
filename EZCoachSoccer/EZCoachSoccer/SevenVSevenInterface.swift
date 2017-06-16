@@ -105,13 +105,13 @@ public class SevenVSevenInterface : SKScene{
         spTitle = childNode(withName: "saveplaylabel7") as! SKLabelNode!
         scTitle = childNode(withName: "savecflabel7") as! SKLabelNode!
         savecf = childNode(withName: "savecfbg7") as! SKSpriteNode!
-        gkkn = childNode(withName: "gkkn7") as! SKLabelNode!
-        lcbkn = childNode(withName: "lcbkn7") as! SKLabelNode!
-        rcbkn = childNode(withName: "rcbkn7") as! SKLabelNode!
-        cmkn = childNode(withName: "cmkn7") as! SKLabelNode!
-        lmkn = childNode(withName: "lmkn7") as! SKLabelNode!
-        rmkn = childNode(withName: "rmkn7") as! SKLabelNode!
-        stkn = childNode(withName: "stkn7") as! SKLabelNode!
+        gkkn = gk7?.childNode(withName: "gkkn7") as! SKLabelNode!
+        lcbkn = lcb7?.childNode(withName: "lcbkn7") as! SKLabelNode!
+        rcbkn = rcb7?.childNode(withName: "rcbkn7") as! SKLabelNode!
+        cmkn = cm7?.childNode(withName: "cmkn7") as! SKLabelNode!
+        lmkn = lm7?.childNode(withName: "lmkn7") as! SKLabelNode!
+        rmkn = rm7?.childNode(withName: "rmkn7") as! SKLabelNode!
+        stkn = str7?.childNode(withName: "stkn7") as! SKLabelNode!
         savePlays?.isHidden = true
         spTitle?.isHidden = true
         scTitle?.isHidden = true
@@ -122,7 +122,7 @@ public class SevenVSevenInterface : SKScene{
         cm7?.addChild(cmkn!)
         rm7?.addChild(rmkn!)
         lm7?.addChild(lmkn!)
-        str7?.addChild(stkn!)
+        str7?.addChild(stkn!)*/
         lcbkn?.horizontalAlignmentMode = .center
         lcbkn?.verticalAlignmentMode = .center
         rcbkn?.horizontalAlignmentMode = .center
@@ -136,7 +136,7 @@ public class SevenVSevenInterface : SKScene{
         lmkn?.horizontalAlignmentMode = .center
         lmkn?.verticalAlignmentMode = .center
         stkn?.horizontalAlignmentMode = .center
-        stkn?.verticalAlignmentMode = .center*/
+        stkn?.verticalAlignmentMode = .center
         
         ball7 = childNode(withName: "ball7") as? SKSpriteNode!
         
@@ -187,12 +187,12 @@ public class SevenVSevenInterface : SKScene{
                         self.cm7?.run(SKAction.move(to: CGPoint(x: cmx, y: cmy), duration: 0.5))
                         self.str7?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
                             
-                            self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                            /*self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
                             self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
                             self.rmkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
                             self.lmkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
                             self.cmkn?.run(SKAction.move(to: CGPoint(x: cmx, y: cmy), duration: 0.5))
-                            self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))
+                            self.stkn?.run(SKAction.move(to: CGPoint(x: strx, y: stry), duration: 0.5))*/
 
                         
                     }
@@ -216,7 +216,7 @@ public class SevenVSevenInterface : SKScene{
                             let parn = items.childSnapshot(forPath: "parentName").value!
                             self.players.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
                         }
-                        if (self.players.count == 9){
+                        if (self.players.count == 7){
                         for pls in self.players{
                             print("players arr \(pls)")
                             
@@ -237,7 +237,7 @@ public class SevenVSevenInterface : SKScene{
                                 }
                             }
                         } else {
-                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 5 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
+                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 7 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                             self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
                         }
@@ -324,12 +324,7 @@ public class SevenVSevenInterface : SKScene{
         cm7?.run(cm33)
         str7?.run(st33)
         
-        lcbkn?.run(lcb33)
-        rcbkn?.run(rcb33)
-        cmkn?.run(cm33)
-        rmkn?.run(rm33)
-        lmkn?.run(lm33)
-        stkn?.run(st33)
+        
     }
     
     func form312(){
@@ -340,12 +335,7 @@ public class SevenVSevenInterface : SKScene{
         cm7?.run(cm312)
         str7?.run(st312)
         
-        lcbkn?.run(lcb312)
-        rcbkn?.run(rcb312)
-        cmkn?.run(cm312)
-        rmkn?.run(rm312)
-        lmkn?.run(lm312)
-        stkn?.run(st312)
+        
     }
     
     func form231(){
@@ -356,13 +346,7 @@ public class SevenVSevenInterface : SKScene{
         rm7?.run(rm231)
         str7?.run(st231)
         
-        lcbkn?.run(lcb231)
-        rcbkn?.run(rcb231)
-        cmkn?.run(cm231)
-        rmkn?.run(rm231)
-        lmkn?.run(lm231)
-        stkn?.run(st231)
-    }
+            }
     
     func form2121(){
         lcb7?.run(lcb2121)
@@ -372,12 +356,7 @@ public class SevenVSevenInterface : SKScene{
         rm7?.run(rm2121)
         str7?.run(st2121)
         
-        lcbkn?.run(lcb2121)
-        rcbkn?.run(rcb2121)
-        cmkn?.run(cm2121)
-        rmkn?.run(rm2121)
-        lmkn?.run(lm2121)
-        stkn?.run(st2121)
+        
     }
     
     func form132(){
@@ -388,12 +367,7 @@ public class SevenVSevenInterface : SKScene{
         rm7?.run(rm132)
         str7?.run(st132)
         
-        lcbkn?.run(lcb132)
-        rcbkn?.run(rcb132)
-        cmkn?.run(cm132)
-        rmkn?.run(rm132)
-        lmkn?.run(lm132)
-        stkn?.run(st132)
+        
     }
     
     func saveSetPlay(){

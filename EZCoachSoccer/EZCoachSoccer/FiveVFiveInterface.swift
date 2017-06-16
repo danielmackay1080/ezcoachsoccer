@@ -280,13 +280,9 @@ public class FiveVFiveInterface: SKScene{
     
     func form22(){
         lcb5?.run(lcb22)
-        lcbkn?.run(lcb22)
         rcb5?.run(rcb22)
-        rcbkn?.run(rcb22)
         lf5?.run(lf22)
-        lfkn?.run(lf22)
         rf5?.run(rf22)
-        rfkn?.run(rf22)
     }
     
     func form31(){
@@ -294,10 +290,7 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb31)
         lf5?.run(lf31)
         rf5?.run(rf31)
-        lcbkn?.run(lcb31)
-        rcbkn?.run(rcb31)
-        lfkn?.run(lf31)
-        rfkn?.run(rf31)
+        
     }
     
     func form13(){
@@ -305,21 +298,14 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb13)
         rf5?.run(rf13)
         lf5?.run(lf13)
-        lcbkn?.run(lcb13)
-        rcbkn?.run(rcb13)
-        lfkn?.run(lf13)
-        rfkn?.run(rf13)
-    }
+            }
     
     func form121(){
         lcb5?.run(lcb121)
         rcb5?.run(rcb121)
         lf5?.run(lf121)
         rf5?.run(rf121)
-        lcbkn?.run(lcb121)
-        rcbkn?.run(rcb121)
-        lfkn?.run(lf121)
-        rfkn?.run(rf121)
+        
     }
     
     func form112(){
@@ -327,10 +313,7 @@ public class FiveVFiveInterface: SKScene{
         rcb5?.run(rcb112)
         rf5?.run(rf112)
         lf5?.run(lf112)
-        lcbkn?.run(lcb112)
-        rcbkn?.run(rcb112)
-        lfkn?.run(lf112)
-        rfkn?.run(rf112)
+        
     }
     
     func saveSetPlay(){

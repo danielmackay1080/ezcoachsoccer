@@ -139,7 +139,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
                 if (self.isUpdated){
                     if (self.plfn !=  self.updatedPlayer?.pfName || self.kn != self.updatedPlayer?.kitNum){
                         self.ref?.child("teams").child(self.tid).child("players").child((self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!).removeValue()
-                    self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child((self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!)
+                    self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child(self.plfn+self.kn).setValue(playersDict)
                     }
                     self.ref?.child("teams").child(self.tid).child("startingLineUp").observeSingleEvent(of: .value, with: { (snaps) in
                         if (snaps.childSnapshot(forPath: self.ft).childSnapshot(forPath: (self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!).exists()){
