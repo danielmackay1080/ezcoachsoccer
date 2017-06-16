@@ -42,6 +42,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
     var plem = ""
     var pn = ""
     var tid = ""
+    var ft = ""
     
     var ref : DatabaseReference?
     var players = [Players]()
@@ -83,13 +84,12 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (!firstSelect){
             pos1.text = posArr[indexPath.section][indexPath.row]
-            posArr[indexPath.section].remove(at: indexPath.row)
             tableView.reloadData()
             firstSelect = true
         } else {
             pos2.text = posArr[indexPath.section][indexPath.row]
-            posArr[indexPath.section].remove(at: indexPath.row)
             tableView.reloadData()
+            firstSelect = false
         }
         
     }
@@ -127,6 +127,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
             ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in
                 let val = snapshot.value as? NSDictionary
                 self.tid = val?["teamID"] as? String ?? ""
+                self.ft = val?["fieldType"] as? String ?? ""
                 let playersDict = ["playerFirstName" : self.plfn, "playerLastName":self.plln, "position1" : self.ps1, "position2": self.ps2, "parentName":self.parfn, "playerEmail" : self.plem, "kitNumber" : self.kn, "parentEmail":self.parem, "phoneNumber": self.pn ]
                 //let arrDict = [playersDict]
                 //self.pld.append(playersDict as NSDictionary)
@@ -137,8 +138,14 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.ref?.child("teams").child(self.tid).child("players").child(self.plfn+self.kn).setValue(playersDict)
                 if (self.isUpdated){
                     if (self.plfn !=  self.updatedPlayer?.pfName || self.kn != self.updatedPlayer?.kitNum){
-                        self.ref?.child("teams").child(self.tid).child((self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!).removeValue()
+                        self.ref?.child("teams").child(self.tid).child("players").child((self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!).removeValue()
+                    self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child((self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!)
                     }
+                    self.ref?.child("teams").child(self.tid).child("startingLineUp").observeSingleEvent(of: .value, with: { (snaps) in
+                        if (snaps.childSnapshot(forPath: self.ft).childSnapshot(forPath: (self.updatedPlayer?.pfName)!+(self.updatedPlayer?.kitNum)!).exists()){
+                            self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child(self.plfn+self.kn).setValue(playersDict)
+                        }
+                    })
                     self.navigationController?.popViewController(animated: true)
                 } else {
                 self.sendEmail(em1: self.plem, em2: self.parem, teamID: self.tid)

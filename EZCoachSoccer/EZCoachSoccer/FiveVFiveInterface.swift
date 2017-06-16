@@ -83,16 +83,16 @@ public class FiveVFiveInterface: SKScene{
         savePlays = childNode(withName: "saveplaybg5") as! SKSpriteNode!
         scTitle = childNode(withName: "savecflabel5") as! SKLabelNode!
         savecf = childNode(withName: "savecfbg5") as! SKSpriteNode!
-        gkkn = childNode(withName: "gkkn5") as! SKLabelNode!
-        lcbkn = childNode(withName: "lcbkn5") as! SKLabelNode!
-        rcbkn = childNode(withName: "rcbkn5") as! SKLabelNode!
-        rfkn = childNode(withName: "rfkn5") as! SKLabelNode!
-        lfkn = childNode(withName: "lfkn5") as! SKLabelNode!
+        gkkn = gk5?.childNode(withName: "gkkn5") as! SKLabelNode!
+        lcbkn = lcb5?.childNode(withName: "lcbkn5") as! SKLabelNode!
+        rcbkn = rcb5?.childNode(withName: "rcbkn5") as! SKLabelNode!
+        rfkn = rf5?.childNode(withName: "rfkn5") as! SKLabelNode!
+        lfkn = lf5?.childNode(withName: "lfkn5") as! SKLabelNode!
        /* gk5?.addChild(gkkn!)
         lcb5?.addChild(lcbkn!)
         rcb5?.addChild(rcbkn!)
         lf5?.addChild(lfkn!)
-        rf5?.addChild(rfkn!)
+        rf5?.addChild(rfkn!)*/
         gkkn?.horizontalAlignmentMode = .center
         gkkn?.verticalAlignmentMode = .center
         lcbkn?.horizontalAlignmentMode = .center
@@ -102,7 +102,7 @@ public class FiveVFiveInterface: SKScene{
         lfkn?.horizontalAlignmentMode = .center
         lfkn?.verticalAlignmentMode = .center
         rfkn?.horizontalAlignmentMode = .center
-        rfkn?.verticalAlignmentMode = .center*/
+        rfkn?.verticalAlignmentMode = .center
         
         
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
@@ -153,10 +153,10 @@ public class FiveVFiveInterface: SKScene{
                         self.rf5?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
                         self.lf5?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
                             
-                        self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
+                        /*self.lcbkn?.run(SKAction.move(to: CGPoint(x: lcbx, y: lcby), duration: 0.5))
                         self.rcbkn?.run(SKAction.move(to: CGPoint(x: rcbx, y: rcby), duration: 0.5))
                         self.rfkn?.run(SKAction.move(to: CGPoint(x: rfx, y: rfy), duration: 0.5))
-                        self.lfkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))
+                        self.lfkn?.run(SKAction.move(to: CGPoint(x: lfx, y: lfy), duration: 0.5))*/
                     }
                     }
                     }
@@ -177,22 +177,28 @@ public class FiveVFiveInterface: SKScene{
                             let parn = items.childSnapshot(forPath: "parentName").value!
                             self.players.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
                         }
-                        
+                        if (self.players.count == 5){
+
                         for pls in self.players{
                             print("players arr \(pls)")
-                            if (self.players.count == 5){
                                 if (pls.pos1 == "GK"){
                                     self.gkkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "LCB" || pls.pos1 == "LB"){
+                                } else if (pls.pos1 == "LCB" || pls.pos1 == "LB" || pls.pos1 == "LWB" || pls.pos1 == "CB"){
                                     self.lcbkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "RCB" || pls.pos1 == "RB"){
+                                } else if (pls.pos1 == "RCB" || pls.pos1 == "RB" || pls.pos1 == "RWB" || pls.pos1 == "CB"){
                                     self.rcbkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "ST"){
+                                } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "LW" || pls.pos1 == "LAM" || pls.pos1 == "CF" || pls.pos1 == "ST"){
                                     self.lfkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "ST"){
+                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RW" || pls.pos1 == "RAM" || pls.pos1 == "CF" || pls.pos1 == "ST"){
                                     self.rfkn?.text = pls.kitNum
                                 }
+                           
+
                             }
+                        } else {
+                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 5 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
                         }
                     })
                 })
@@ -227,27 +233,42 @@ public class FiveVFiveInterface: SKScene{
             if let node = self.atPoint(tl) as? SKSpriteNode{
                 if (node.name == "gk5"){
                     gk5?.position = CGPoint(x: tl.x, y: tl.y)
-                    gkkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //gkkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    gkkn?.horizontalAlignmentMode = .center
+                    gkkn?.verticalAlignmentMode = .center
+                    
                 } else if (node.name == "opgk5"){
                     opGk5?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "lcb5"){
                     lcb5?.position = CGPoint(x: tl.x, y: tl.y)
-                    lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    lcbkn?.horizontalAlignmentMode = .center
+                    lcbkn?.verticalAlignmentMode = .center
+                    
+                    //lcbkn?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "oplcb5"){
                     oplcb5?.position = CGPoint(x: tl.x, y: tl.y)
                 }else if (node.name == "rcb5"){
                     rcb5?.position = CGPoint(x: tl.x, y: tl.y)
-                    rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //rcbkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    rcbkn?.verticalAlignmentMode = .center
+                    rcbkn?.horizontalAlignmentMode = .center
+                    
                 } else if (node.name == "oprcb5"){
                     oprcb5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "rf5"){
                     rf5?.position = CGPoint(x: tl.x, y: tl.y)
-                    rfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //rfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    rfkn?.horizontalAlignmentMode = .center
+                    rfkn?.verticalAlignmentMode = .center
+
                 } else if (node.name == "oprf5"){
                     oprf5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "lf5"){
                     lf5?.position = CGPoint(x: tl.x, y: tl.y)
-                    lfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    //lfkn?.position = CGPoint(x: tl.x, y: tl.y)
+                    lfkn?.horizontalAlignmentMode = .center
+                    lfkn?.verticalAlignmentMode = .center
+
                 } else if (node.name == "oplf5"){
                     oplf5?.position = CGPoint(x: tl.x, y: tl.y)
                 } else if (node.name == "ball5"){

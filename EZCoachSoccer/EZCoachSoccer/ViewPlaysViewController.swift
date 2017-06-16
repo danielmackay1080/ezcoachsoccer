@@ -64,6 +64,7 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = playsView.dequeueReusableCell(withReuseIdentifier: "ccell", for: indexPath) as! CollectionViewCell
         ip = indexPath
         cell.playsImage.image = playsArr[indexPath.row]
+        cell.playTitle.text = plaTitles[indexPath.row]
         //cell.deletePl.isHidden = true
                 return cell
     }

@@ -25,13 +25,30 @@ class FieldViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
+        presentScn()
         //self.navigationController?.navigationBar.isHidden = false;
         //self.tabBarController?.tabBarController.h
         // Do any additional setup after loading the view.
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         ref = Database.database().reference()
+        presentScn()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func presentScn (){
         ref?.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary
-           // print("val \(val)")
+            // print("val \(val)")
             self.tc = val?["teamID"] as? String ?? ""
             self.ref?.child("teams").child(self.tc).observeSingleEvent(of:.value, with: {(snapshot) in
                 let val = snapshot.value as? NSDictionary
@@ -40,7 +57,7 @@ class FieldViewController: UIViewController {
                 print("ft \(self.ft)")
                 
                 if (self.ft == "5v5"){ // loads field type depending on what was saved
-                     FieldViewController.scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
+                    FieldViewController.scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
                     
                     
                     FieldViewController.v = self.view as? SKView
@@ -74,7 +91,7 @@ class FieldViewController: UIViewController {
                     
                     
                 } else if (self.ft == "11v11"){
-                     FieldViewController.scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
+                    FieldViewController.scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
                     
                     FieldViewController.v = self.view as? SKView
                     FieldViewController.v?.showsFPS = true
@@ -86,7 +103,7 @@ class FieldViewController: UIViewController {
                     
                     
                 }
-
+                
             })
             
             
@@ -94,20 +111,9 @@ class FieldViewController: UIViewController {
         { (error) in
             print("field error \(error.localizedDescription)")
         }
-         //print("ft \(ft)")
-        
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
+        //print("ft \(ft)")
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation

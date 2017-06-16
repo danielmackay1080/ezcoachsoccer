@@ -12,5 +12,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var playsImage: UIImageView!
     
+    @IBOutlet weak var playTitle: UILabel!
         
 }

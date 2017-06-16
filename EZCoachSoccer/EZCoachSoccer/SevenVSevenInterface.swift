@@ -216,19 +216,19 @@ public class SevenVSevenInterface : SKScene{
                             let parn = items.childSnapshot(forPath: "parentName").value!
                             self.players.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
                         }
-                        
+                        if (self.players.count == 9){
                         for pls in self.players{
                             print("players arr \(pls)")
-                            if (self.players.count == 9){
+                            
                                 if (pls.pos1 == "GK"){
                                     self.gkkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "LCB" ){
+                                } else if (pls.pos1 == "LCB" || pls.pos1 == "LB" || pls.pos1 == "LWB" || pls.pos1 == "CB" ){
                                     self.lcbkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "RCB" ){
+                                } else if (pls.pos1 == "RCB" || pls.pos1 == "RB" || pls.pos1 == "RWB" || pls.pos1 == "CB"){
                                     self.rcbkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "LF" || pls.pos1 == "LM" || pls.pos1 == "LAM" || pls.pos1 == "LW"){
                                     self.lmkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RM"){
+                                } else if (pls.pos1 == "RF" || pls.pos1 == "RM" || pls.pos1 == "RAM" || pls.pos1 == "RW"){
                                     self.rmkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "ST" || pls.pos1 == "CF"){
                                     self.stkn?.text = pls.kitNum
@@ -236,6 +236,10 @@ public class SevenVSevenInterface : SKScene{
                                     self.cmkn?.text = pls.kitNum
                                 }
                             }
+                        } else {
+                            let alert = UIAlertController(title: "Alert", message: "You are supposed to have 5 players in your starting line up but you currently have \(self.players.count)", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.view?.window?.rootViewController?.present(alert, animated: true, completion: nil)
                         }
                         
                         

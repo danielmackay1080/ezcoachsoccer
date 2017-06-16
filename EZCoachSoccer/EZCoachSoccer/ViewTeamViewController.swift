@@ -136,7 +136,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 
             }))
             alert.addAction(UIAlertAction(title: "Remove", style: .default, handler: { (action) in
-                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
+                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
             }))
             alert.addAction(UIAlertAction(title: "Edit", style: .default, handler: { (action) in
                 self.udef.set(true, forKey: "isUpdated")
@@ -200,7 +200,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 let val = snapshot.value as? NSDictionary
                 self.tid = val?["teamID"] as? String ?? ""
                 self.ref?.child("teams").child(self.tid).child("players").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
-                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
+                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).removeValue()
                 self.arrPlay.remove(at: indexPath.row)
                 tableView.reloadData()
             })
