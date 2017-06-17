@@ -273,9 +273,9 @@ public class ElevenVElevenInterface: SKScene{
                                     self.lbkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "RB" || pls.pos1 == "RWB" || pls.pos1 == "RM"){
                                     self.rbkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "LCM" ||  pls.pos1 == "CAM"){
+                                } else if (pls.pos1 == "LCM" ||  pls.pos1 == "LDM"){
                                     self.lcmkn?.text = pls.kitNum
-                                } else if (pls.pos1 == "RCM" ||  pls.pos1 == "CAM"){
+                                } else if (pls.pos1 == "RCM" ||  pls.pos1 == "RDM"){
                                     self.rcmkn?.text = pls.kitNum
                                 } else if (pls.pos1 == "ST" || pls.pos1 == "CF"){
                                     self.stkn?.text = pls.kitNum

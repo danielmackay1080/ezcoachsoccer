@@ -66,7 +66,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 let cn = snapshot.childSnapshot(forPath: "coachName").value
                  self.ft = snapshot.childSnapshot(forPath: "fieldType").value as! String
                 self.coachName.text = cn as? String
-                self.ftLabel.text = "Fielst Type: \(self.ft )"
+                self.ftLabel.text = "Field Type: \(self.ft )"
                 if (snapshot.childSnapshot(forPath: "players").exists()){
             
                         //storage.data
@@ -153,6 +153,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 return cell
     }
     
+        
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let tcell = cell as! TeamCell
         ref?.child("teams").child(tid).child("players").observeSingleEvent(of: .value, with: { (snaps1) in

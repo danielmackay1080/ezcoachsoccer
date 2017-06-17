@@ -14,7 +14,7 @@ class ViewPlayZoomViewController: ViewController {
 
     @IBOutlet weak var delButton: UIButton!
     
-    var isplayer = UserDefaults.standard.bool(forKey: "isplayer")
+    var isplayer = UserDefaults.standard.bool(forKey: "IamPlayer")
     var bigPlay : UIImage?
     var url : String?
     var playTitle : String?

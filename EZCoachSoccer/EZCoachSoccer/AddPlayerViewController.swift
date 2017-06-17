@@ -51,7 +51,7 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
     let isUpdated = UserDefaults.standard.bool(forKey: "isUpdated")
     var updatedPlayer : Players?
     var section = ["Defenders", "Midfielders", "Atackers"]
-    var posArr = [["GK", "LCB", "RCB", "CB", "RB", "LB" , "RWB", "LWB"], ["CM", "CDM" , "CAM", "LCM", "RCM", "LM", "RM", "LW", "RW"], ["ST", "CF", "LF", "RF", "LAM", "RAM"]]
+    var posArr = [["GK", "LCB", "RCB", "CB", "RB", "LB" , "RWB", "LWB"], ["CM", "CDM" ,"RDM","LDM", "CAM", "LCM", "RCM", "LM", "RM", "LW", "RW"], ["ST", "CF", "LF", "RF", "LAM", "RAM"]]
     var firstSelect = false
     
     override func viewDidLoad() {
@@ -168,6 +168,8 @@ class AddPlayerViewController: UIViewController, UITableViewDelegate, UITableVie
             email.setSubject("You have been added to a team via EZ Coach Soccer")
             email.setMessageBody("Hello your coach is using EZ Coach Soccer and has added you to his team, please download and sign in with this password \(self.tid)", isHTML: false)
             present(email, animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
     }
 

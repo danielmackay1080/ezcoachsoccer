@@ -60,7 +60,7 @@ class FieldViewController: UIViewController {
                     FieldViewController.scn = FiveVFiveInterface(fileNamed: "FiveVFiveInterface")!
                     
                     
-                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v = self.view.viewWithTag(2) as? SKView
                     FieldViewController.v?.showsFPS = true
                     FieldViewController.v?.showsNodeCount = true
                     FieldViewController.v?.ignoresSiblingOrder = true
@@ -70,7 +70,7 @@ class FieldViewController: UIViewController {
                     
                 } else if (self.ft == "7v7"){
                     FieldViewController.scn = SevenVSevenInterface(fileNamed: "SevenVSevenInterface")!
-                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v = self.view.viewWithTag(2) as? SKView
                     FieldViewController.v?.showsFPS = true
                     FieldViewController.v?.showsNodeCount = true
                     FieldViewController.v?.ignoresSiblingOrder = true
@@ -81,7 +81,7 @@ class FieldViewController: UIViewController {
                     
                 }else if (self.ft == "9v9"){
                     FieldViewController.scn = NineVNineInterface(fileNamed: "NineVNineInterface")!
-                    FieldViewController.v = self.view as? SKView
+                    FieldViewController.v = self.view.viewWithTag(2) as? SKView
                     FieldViewController.v?.showsFPS = true
                     FieldViewController.v?.showsNodeCount = true
                     FieldViewController.v?.ignoresSiblingOrder = true
@@ -93,11 +93,11 @@ class FieldViewController: UIViewController {
                 } else if (self.ft == "11v11"){
                     FieldViewController.scn = ElevenVElevenInterface(fileNamed: "ElevenVElevenInterface")!
                     
-                    FieldViewController.v = self.view as? SKView
-                    FieldViewController.v?.showsFPS = true
-                    FieldViewController.v?.showsNodeCount = true
+                    FieldViewController.v = self.view.viewWithTag(2) as? SKView
+                    //FieldViewController.v?.showsFPS = true
+                    //FieldViewController.v?.showsNodeCount = true
                     FieldViewController.v?.ignoresSiblingOrder = true
-                    FieldViewController.scn?.scaleMode = .aspectFit
+                    FieldViewController.scn?.scaleMode = .fill
                     //scn.size = self.view.frame.size
                     FieldViewController.v?.presentScene(FieldViewController.scn)
                     
