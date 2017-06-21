@@ -39,7 +39,7 @@ class PlayerLoginViewController: UIViewController {
                 if let error = error{
                     print("playererror \(error.localizedDescription)")
                 } else {
-                self.ref?.child("teams").observe(.value, with: { (snapshot) in
+                    self.ref?.child("teams").observeSingleEvent(of:.value, with: { (snapshot) in
                     if (snapshot.hasChild(self.tc)){
                         let ft = snapshot.childSnapshot(forPath: self.tc).childSnapshot(forPath: "fieldType").value
                         self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").setValue(self.tc)
@@ -56,15 +56,21 @@ class PlayerLoginViewController: UIViewController {
                         })
                         return
                     }
-                })
-            }
+                        
             })
-            if (success){
-                self.performSegue(withIdentifier: "playerlogintofield", sender: self)
-            } else {
-                self.showAlert(alertMessage: "This team has not been registered please try again.")
+                    DispatchQueue.main.async {
+                        if (self.success){
+                            self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+                        } else {
+                            self.showAlert(alertMessage: "This team has not been registered please try again.")
+                        }
+                        
+                    }
+
             }
-        }
+                
+            })
+                    }
     }else {
             showAlert(alertMessage: "Unable to establish an internet connection")
     }

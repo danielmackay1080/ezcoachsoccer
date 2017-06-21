@@ -97,7 +97,7 @@ class FieldViewController: UIViewController {
                     //FieldViewController.v?.showsFPS = true
                     //FieldViewController.v?.showsNodeCount = true
                     FieldViewController.v?.ignoresSiblingOrder = true
-                    FieldViewController.scn?.scaleMode = .fill
+                    FieldViewController.scn?.scaleMode = .aspectFit
                     //scn.size = self.view.frame.size
                     FieldViewController.v?.presentScene(FieldViewController.scn)
                     

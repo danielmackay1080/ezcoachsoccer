@@ -42,39 +42,66 @@ class SettingsViewController: ViewController {
     
     @IBAction func deleteAccount(_ sender: Any) { // delete account
         if (ConnectionTest.isConnected()){
+            let delalert = UIAlertController(title: "Alert", message: "Are you sure you want to delete your account?", preferredStyle: UIAlertControllerStyle.alert)
+            delalert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { (action) in
+                let user = Auth.auth().currentUser
+                if (FBSDKAccessToken.current() != nil){
+                    let loginMan = FBSDKLoginManager()
+                    loginMan.logOut()
+                }
+                self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                    
+                    let value = snapshot.value as? NSDictionary
+                    let tid = value?["teamID"] as? String ?? ""
+                    self.ref?.child("teams").child(tid).removeValue()
+                    self.ref?.child("users").child((user?.uid)!).removeValue()
 
-        let user = Auth.auth().currentUser
-            if (FBSDKAccessToken.current() != nil){
-                let loginMan = FBSDKLoginManager()
-                loginMan.logOut()
-            }
-        user?.delete { error in
-            if let error = error {
-                self.showAlert(alertMessage: error.localizedDescription)
-            } else {
-                self.navigationController?.popToRootViewController(animated: true)
-            }
-        }
-        } else {
+                })
+                user?.delete { error in
+                    if let error = error {
+                        self.showAlert(alertMessage: error.localizedDescription)
+                    } else {
+                        
+                        self.navigationController?.popToRootViewController(animated: true)
+                        //self.ref?.child("teams").child(tid).removeValue()
+                        
+                    }
+                }
+
+            }))
+            
+            delalert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+
+            self.present(delalert, animated: true, completion: nil)
+
+                } else {
             showAlert(alertMessage: "Unable to connect to the internet")
         }
     }
     
     @IBAction func deleteTeam(_ sender: Any) { // delete team
         if (ConnectionTest.isConnected()){
-            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
             
-            let value = snapshot.value as? NSDictionary
-            let tid = value?["teamID"] as? String ?? ""
-            self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").removeValue()
-            self.ref?.child("teams").child(tid).removeValue()
-            UserDefaults.standard.set(true, forKey: "teamDeleted")
-            DispatchQueue.main.async {
-                self.navigationController?.popToRootViewController(animated: true)
-                self.showAlert(alertMessage: "Your team has been deleted.")
-            }
-            //self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)
-        })
+            let delTAlert = UIAlertController(title: "Alert", message: "Are you sure you want to delete your team?  ", preferredStyle: UIAlertControllerStyle.alert)
+            delTAlert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { (action) in
+                self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
+                    
+                    let value = snapshot.value as? NSDictionary
+                    let tid = value?["teamID"] as? String ?? ""
+                    self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("teamID").removeValue()
+                    self.ref?.child("teams").child(tid).removeValue()
+                    UserDefaults.standard.set(true, forKey: "teamDeleted")
+                    DispatchQueue.main.async {
+                        self.navigationController?.popToRootViewController(animated: true)
+                        self.showAlert(alertMessage: "Your team has been deleted.")
+                    }
+                    //self.performSegue(withIdentifier: "deleteTeamSegue", sender: self)
+                })
+
+            }))
+            delTAlert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+            self.present(delTAlert, animated: true, completion: nil)
+            
         } else {
             showAlert(alertMessage: "Unable to connect to the internet")
         }

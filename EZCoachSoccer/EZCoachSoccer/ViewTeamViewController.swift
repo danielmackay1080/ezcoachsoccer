@@ -29,6 +29,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
     var picker : UIImagePickerController?
     var udef = UserDefaults.standard
     var ft = ""
+    var firstCall = false
 
     
     override func viewDidLoad() {
@@ -38,6 +39,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
         ref = Database.database().reference()
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
         //picker?.delegate = self
+        //teamTable.minimumZoomScale
         if (isPlayer)!{
             AddplayerButton.isHidden = true
         }
@@ -61,12 +63,17 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                         }
                     })
 
-            
+                    if (!self.tid.isEmpty){
             _ = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
+                if (snapshot.childSnapshot(forPath: "fieldType").exists()){
                 let cn = snapshot.childSnapshot(forPath: "coachName").value
                  self.ft = snapshot.childSnapshot(forPath: "fieldType").value as! String
                 self.coachName.text = cn as? String
                 self.ftLabel.text = "Field Type: \(self.ft )"
+                self.tabBarController?.navigationItem.title = self.ft
+                }
+                
+
                 if (snapshot.childSnapshot(forPath: "players").exists()){
             
                         //storage.data
@@ -100,11 +107,14 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 self.teamTable.reloadData()
             })
                 }
-        })
+            })
+                    }
                 }
         })
+            
         
         })
+            
         }
         if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){
             teamTable.setEditing(false, animated: false)
@@ -130,6 +140,7 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                     self.tid = val?["teamID"] as? String ?? ""
                     let playersDict = ["playerFirstName" : self.arrPlay[indexPath.row].pfName, "playerLastName":self.arrPlay[indexPath.row].plName, "position1" : self.arrPlay[indexPath.row].pos1, "position2": self.arrPlay[indexPath.row].pos2, "parentName":self.arrPlay[indexPath.row].parentFN, "playerEmail" : self.arrPlay[indexPath.row].playerEm, "kitNumber" : self.arrPlay[indexPath.row].kitNum, "parentEmail":self.arrPlay[indexPath.row].parentEm, "phoneNumber": self.arrPlay[indexPath.row].phoneNum]
                     self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).child(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).setValue(playersDict)
+                    self.firstCall = false
                     //cell.contentView.backgroundColor = UIColor(
                     tableView.reloadData()
                 })
@@ -143,32 +154,34 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 self.performSegue(withIdentifier: "toAddPlayer", sender: self)
                 
             }))
+            alert.addAction(UIAlertAction(title: "Remove All", style: .default, handler: { (action) in
+                self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).removeValue()
+            }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
     
     func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "tcell") as! TeamCell
-                return cell
-    }
-    
+        let tcell = tableView.dequeueReusableCell(withIdentifier: "tcell") as! TeamCell
+        DispatchQueue.main.async {
         
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let tcell = cell as! TeamCell
-        ref?.child("teams").child(tid).child("players").observeSingleEvent(of: .value, with: { (snaps1) in
+        self.ref?.child("teams").child(self.tid).child("players").observeSingleEvent(of: .value, with: { (snaps1) in
             self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).observeSingleEvent(of: .value, with: { (snaps2) in
                 if (!self.arrPlay[indexPath.row].pfName.isEmpty && !self.arrPlay[indexPath.row].kitNum.isEmpty){
                     //print("cell snaps2 \(snaps2)")
-                    
-                    for snaps in snaps2.children{
-                        let item = snaps as! DataSnapshot
-                        if( item.key == self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum){
-                            print("set image for cell \(item.key)")
-                            tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
-                            
-                        }
-
+                    if (snaps2.hasChild(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)){
+                        
+                        
+                        //let item = snaps as! DataSnapshot
+                        // print("items for table \(item.key)")
+                        
+                        print("set image for cell \(snaps2.childSnapshot(forPath: self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).value)")
+                        tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
+                        
+                        
+                        
+                        
                     }
                     
                 }
@@ -178,12 +191,57 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
                 tcell.phoneNumber.text = self.arrPlay[indexPath.row].phoneNum
                 tcell.playerPositions.text = "Positions: "+self.arrPlay[indexPath.row].pos1+" "+self.arrPlay[indexPath.row].pos2
                 tcell.parentName.text = self.arrPlay[indexPath.row].parentFN
-                
+                self.firstCall = true
                 //tableView.reloadData()
+                
 
             })
             
+            
         })
+        }
+        
+        return tcell
+
+
+    }
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+       /* let tcell = cell as! TeamCell
+        ref?.child("teams").child(tid).child("players").observeSingleEvent(of: .value, with: { (snaps1) in
+            self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft).observeSingleEvent(of: .value, with: { (snaps2) in
+                if (!self.arrPlay[indexPath.row].pfName.isEmpty && !self.arrPlay[indexPath.row].kitNum.isEmpty){
+                    //print("cell snaps2 \(snaps2)")
+                    if (snaps2.hasChild(self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum)){
+                   
+                        
+                        //let item = snaps as! DataSnapshot
+                       // print("items for table \(item.key)")
+                        
+                            print("set image for cell \(snaps2.childSnapshot(forPath: self.arrPlay[indexPath.row].pfName+self.arrPlay[indexPath.row].kitNum).value)")
+                            tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
+                            
+                        
+
+                    
+                    }
+                    
+                }
+                tcell.playerFullName.text = self.arrPlay[indexPath.row].pfName + " "+self.arrPlay[indexPath.row].plName
+                tcell.kitNumber.text = self.arrPlay[indexPath.row].kitNum
+                tcell.emailAddresses.text = self.arrPlay[indexPath.row].playerEm + " "+self.arrPlay[indexPath.row].parentEm
+                tcell.phoneNumber.text = self.arrPlay[indexPath.row].phoneNum
+                tcell.playerPositions.text = "Positions: "+self.arrPlay[indexPath.row].pos1+" "+self.arrPlay[indexPath.row].pos2
+                tcell.parentName.text = self.arrPlay[indexPath.row].parentFN
+                self.firstCall = true
+                //tableView.reloadData()
+                
+
+            })
+            
+            
+        })*/
         
     }
     
