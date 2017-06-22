@@ -38,7 +38,7 @@ class ChangeFormationViewController: ViewController, UITableViewDelegate, UITabl
         ref = Database.database().reference()
         user = Auth.auth().currentUser
         isPlayer = UserDefaults.standard.bool(forKey: "IamPlayer")
-        print("anon \(user?.uid)")
+        print("anon \(String(describing: user?.uid))")
         if (user != nil){
         ref?.child("users").child((user?.uid)!).observeSingleEvent(of:.value, with: { (snapshot) in
             let val = snapshot.value as? NSDictionary

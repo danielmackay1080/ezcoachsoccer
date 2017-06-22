@@ -19,7 +19,7 @@ class ViewTeamAndFormationsViewController: UITabBarController {
                 // Do any additional setup after loading the view.
         if (isPlayer!){
             print("this is a player")
-            self.viewControllers?.remove(at: 3)
+            self.viewControllers?.remove(at: 2)
         }
     }
     

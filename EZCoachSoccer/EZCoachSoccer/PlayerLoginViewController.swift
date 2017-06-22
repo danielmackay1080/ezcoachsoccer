@@ -46,10 +46,14 @@ class PlayerLoginViewController: UIViewController {
                         self.ref?.child("users").child((Auth.auth().currentUser?.uid)!).child("fieldType").setValue(ft)
                         DispatchQueue.main.async {
                             self.success = true
+                            self.performSegue(withIdentifier: "playerlogintofield", sender: self)
+
                         }
                     } else {
                         DispatchQueue.main.async {
                             self.success = false
+                            self.showAlert(alertMessage: "This team has not been registered please try again.")
+
                         }
                         try! Auth.auth().signOut()
                         Auth.auth().currentUser?.delete(completion: { error in
@@ -58,14 +62,7 @@ class PlayerLoginViewController: UIViewController {
                     }
                         
             })
-                    DispatchQueue.main.async {
-                        if (self.success){
-                            self.performSegue(withIdentifier: "playerlogintofield", sender: self)
-                        } else {
-                            self.showAlert(alertMessage: "This team has not been registered please try again.")
-                        }
-                        
-                    }
+                   
 
             }
                 
