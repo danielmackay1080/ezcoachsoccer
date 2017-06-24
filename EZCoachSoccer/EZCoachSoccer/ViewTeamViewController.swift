@@ -46,104 +46,103 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
         }
         // Do any additional setup after loading the view.
         if (Auth.auth().currentUser != nil){
-        ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in // reads data for tableview
-            let val = snapshot.value as? NSDictionary
-            self.tid = val?["teamID"] as? String ?? ""
-            //self.coachName.text! = val?["coachName"] as? String ?? ""
-            self.idLabel.text! = "Team ID: \(self.tid)"
-            self.ref?.observeSingleEvent(of: .value, with: { (snapshot1) in
-                if (snapshot1.childSnapshot(forPath: "teams").exists()){
-                    _ = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
-                        if let error = error {
-                            print("images loading error \(error)")
-                        } else {
-                            let im = UIImage(data: data!)
-                            if (im  != nil){
-                                self.teamLogo.setImage(im, for: .normal)
+            ref?.child("users").child((Auth.auth().currentUser?.uid)!).observe(.value, with: { (snapshot) in // reads data for tableview
+                let val = snapshot.value as? NSDictionary
+                self.tid = val?["teamID"] as? String ?? ""
+                //self.coachName.text! = val?["coachName"] as? String ?? ""
+                self.idLabel.text! = "Team ID: \(self.tid)"
+                self.ref?.observeSingleEvent(of: .value, with: { (snapshot1) in
+                    if (snapshot1.childSnapshot(forPath: "teams").exists()){
+                        _ = Storage.storage().reference().child(self.tid).child("teamCrest").child("teamCrest.png").getData(maxSize: 1*10000*10000, completion: { (data, error) in
+                            if let error = error {
+                                print("images loading error \(error)")
+                            } else {
+                                let im = UIImage(data: data!)
+                                if (im  != nil){
+                                    self.teamLogo.setImage(im, for: .normal)
+                                }
                             }
+                        })
+                        
+                        if (!self.tid.isEmpty){
+                            _ = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
+                                if (snapshot.childSnapshot(forPath: "fieldType").exists()){
+                                    let cn = snapshot.childSnapshot(forPath: "coachName").value
+                                    self.ft = snapshot.childSnapshot(forPath: "fieldType").value as! String
+                                    self.coachName.text = cn as? String
+                                    self.ftLabel.text = "Field Type: \(self.ft )"
+                                    self.tabBarController?.navigationItem.title = self.ft
+                                }
+                                
+                                
+                                if (snapshot.childSnapshot(forPath: "players").exists()){
+                                    
+                                    //storage.data
+                                    let ref3 = self.ref?.child("teams").child(self.tid).child("players")
+                                    ref3?.observe(.value, with: { (snapshot) in
+                                        _ = snapshot.value as? [NSDictionary]
+                                        //print("val \(String(describing: val))")
+                                        //self.arrPlay = val?["players"] as? [NSDictionary] ?? ["":""]
+                                        if (self.arrPlay.count > 0){
+                                            self.arrPlay.removeAll()
+                                        }
+                                        for child in  snapshot.children{
+                                            let item = child as! DataSnapshot
+                                            //let dict = ((item as AnyObject) as AnyObject) as! NSDictionary
+                                            let plfn = item.childSnapshot(forPath: "playerFirstName").value!
+                                            let plln = item.childSnapshot(forPath: "playerLastName").value!
+                                            let kn = item.childSnapshot(forPath: "kitNumber").value!
+                                            let pn = item.childSnapshot(forPath: "phoneNumber").value!
+                                            let ps1 = item.childSnapshot(forPath: "position1").value!
+                                            let ps2 = item.childSnapshot(forPath: "position2").value!
+                                            let plem = item.childSnapshot(forPath: "playerEmail").value!
+                                            let parem = item.childSnapshot(forPath: "parentEmail").value!
+                                            let parn = item.childSnapshot(forPath: "parentName").value!
+                                            
+                                            
+                                            //print("arrplay \(chi)")
+                                            self.arrPlay.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
+                                            print("arrplay \(self.arrPlay)")
+                                            
+                                        }
+                                        let ref4 = self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft)
+                                        ref4?.observe(.value, with: { (snaps) in
+                                            if (self.lineup.count > 0){
+                                                self.lineup.removeAll()
+                                            }
+                                            if (snaps.exists()){
+                                                for child in  snaps.children{
+                                                    let item = child as! DataSnapshot
+                                                    //let dict = ((item as AnyObject) as AnyObject) as! NSDictionary
+                                                    let plfn = item.childSnapshot(forPath: "playerFirstName").value!
+                                                    let plln = item.childSnapshot(forPath: "playerLastName").value!
+                                                    let kn = item.childSnapshot(forPath: "kitNumber").value!
+                                                    let pn = item.childSnapshot(forPath: "phoneNumber").value!
+                                                    let ps1 = item.childSnapshot(forPath: "position1").value!
+                                                    let ps2 = item.childSnapshot(forPath: "position2").value!
+                                                    let plem = item.childSnapshot(forPath: "playerEmail").value!
+                                                    let parem = item.childSnapshot(forPath: "parentEmail").value!
+                                                    let parn = item.childSnapshot(forPath: "parentName").value!
+                                                    
+                                                    
+                                                    //print("arrplay \(chi)")
+                                                    self.lineup.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
+                                                    print("lineup \(self.lineup)")
+                                                    
+                                                }
+                                            }
+                                            self.teamTable.reloadData()
+                                        })
+                                        
+                                        //self.teamTable.reloadData()
+                                    })
+                                }
+                            })
                         }
-                    })
-
-                    if (!self.tid.isEmpty){
-            _ = self.ref?.child("teams").child(self.tid).observe(.value, with: { (snapshot) in
-                if (snapshot.childSnapshot(forPath: "fieldType").exists()){
-                let cn = snapshot.childSnapshot(forPath: "coachName").value
-                 self.ft = snapshot.childSnapshot(forPath: "fieldType").value as! String
-                self.coachName.text = cn as? String
-                self.ftLabel.text = "Field Type: \(self.ft )"
-                self.tabBarController?.navigationItem.title = self.ft
-                }
-                
-
-                if (snapshot.childSnapshot(forPath: "players").exists()){
-            
-                        //storage.data
-            let ref3 = self.ref?.child("teams").child(self.tid).child("players")
-            ref3?.observe(.value, with: { (snapshot) in
-                _ = snapshot.value as? [NSDictionary]
-                //print("val \(String(describing: val))")
-                //self.arrPlay = val?["players"] as? [NSDictionary] ?? ["":""]
-                if (self.arrPlay.count > 0){
-                    self.arrPlay.removeAll()
-                }
-                for child in  snapshot.children{
-                    let item = child as! DataSnapshot
-                    //let dict = ((item as AnyObject) as AnyObject) as! NSDictionary
-                    let plfn = item.childSnapshot(forPath: "playerFirstName").value!
-                    let plln = item.childSnapshot(forPath: "playerLastName").value!
-                    let kn = item.childSnapshot(forPath: "kitNumber").value!
-                    let pn = item.childSnapshot(forPath: "phoneNumber").value!
-                    let ps1 = item.childSnapshot(forPath: "position1").value!
-                    let ps2 = item.childSnapshot(forPath: "position2").value!
-                    let plem = item.childSnapshot(forPath: "playerEmail").value!
-                    let parem = item.childSnapshot(forPath: "parentEmail").value!
-                    let parn = item.childSnapshot(forPath: "parentName").value!
-                    
-                    
-                //print("arrplay \(chi)")
-                self.arrPlay.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
-                print("arrplay \(self.arrPlay)")
-
-                }
-                let ref4 = self.ref?.child("teams").child(self.tid).child("startingLineUp").child(self.ft)
-                ref4?.observe(.value, with: { (snaps) in
-                    if (self.lineup.count > 0){
-                        self.lineup.removeAll()
                     }
-                    if (snaps.exists()){
-                    for child in  snaps.children{
-                        let item = child as! DataSnapshot
-                        //let dict = ((item as AnyObject) as AnyObject) as! NSDictionary
-                        let plfn = item.childSnapshot(forPath: "playerFirstName").value!
-                        let plln = item.childSnapshot(forPath: "playerLastName").value!
-                        let kn = item.childSnapshot(forPath: "kitNumber").value!
-                        let pn = item.childSnapshot(forPath: "phoneNumber").value!
-                        let ps1 = item.childSnapshot(forPath: "position1").value!
-                        let ps2 = item.childSnapshot(forPath: "position2").value!
-                        let plem = item.childSnapshot(forPath: "playerEmail").value!
-                        let parem = item.childSnapshot(forPath: "parentEmail").value!
-                        let parn = item.childSnapshot(forPath: "parentName").value!
-                        
-                        
-                        //print("arrplay \(chi)")
-                        self.lineup.append(Players(pfName: plfn as! String, plName: plln as! String, pos1: ps1 as! String, pos2: ps2 as! String, parentEm: parem as! String, playerEm: plem as! String, parentFN: parn as! String, kitNum: kn as! String, phoneNum: pn as! String))
-                        print("lineup \(self.lineup)")
-                        
-                    }
-                    }
-                        self.teamTable.reloadData()
                 })
                 
-                self.teamTable.reloadData()
             })
-                }
-            })
-                    }
-                }
-        })
-            
-        
-        })
             
         }
         if (isPlayer! || (Auth.auth().currentUser?.isAnonymous)!){
@@ -204,24 +203,19 @@ class ViewTeamViewController: UIViewController, UITableViewDelegate, UITableView
         self.firstCall = true
         //tableView.reloadData()
         
-        for i in lineup{
-            if (arrPlay[indexPath.row].kitNum == i.kitNum){
-                print ("set selected image \(arrPlay[indexPath.row].kitNum+i.kitNum)")
+        if ( lineup.contains(where: {$0.pfName == self.arrPlay[indexPath.row].pfName}) && lineup.contains(where: {$0.kitNum == self.arrPlay[indexPath.row].kitNum})){
+               print ("set selected image \(lineup[0].pfName)")
+                tcell.startingIm.isHidden = false
                 tcell.startingIm.image = #imageLiteral(resourceName: "blueplayer")
-                break
-            } 
-        }
+            } else {
+                tcell.startingIm.isHidden = true
+            }
+        
 
         
         return tcell
 
 
-    }
-    
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-                let tcell = cell as! TeamCell
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

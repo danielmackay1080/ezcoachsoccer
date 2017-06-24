@@ -57,6 +57,7 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return playsArr.count
     }
     
@@ -141,5 +142,12 @@ class ViewPlaysViewController: UIViewController, UICollectionViewDelegate, UICol
         }
 
     }
+    
+    func showAlert(alertMessage: String){
+        let alert = UIAlertController(title: "Alert", message: alertMessage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
     
 }
